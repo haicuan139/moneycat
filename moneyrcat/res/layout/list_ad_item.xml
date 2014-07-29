@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/background"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/adIcon"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/adIcon"
+        android:text="奔驰汽车"
+        android:layout_marginTop="5dp"
+        android:textSize="17sp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="秉承&quot;唯有最好&quot;的品牌理念,秉承&quot;唯有最好&quot;的品牌理念"
+        android:textColor="#A0A0A0"
+        android:textSize="12sp" />
+
+    <com.emperises.monercat.custom.CircleImageView
+        android:id="@+id/adIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:background="@drawable/test01" />
+
+</RelativeLayout>
