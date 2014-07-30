@@ -1,18 +1,15 @@
 package com.emperises.monercat.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.ImageView;
 
 import com.emperises.monercat.BaseActivity;
+import com.emperises.monercat.R;
 
 public class MoreActivity extends BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ImageView i = new ImageView(this);
-		i.setBackgroundColor(Color.BLUE);
-		setContentView(i);
+		setContentView(R.layout.activity_more);
 	}
 	@Override
 	protected void initViews() {

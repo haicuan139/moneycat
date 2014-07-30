@@ -4,7 +4,7 @@
     android:background="@color/background"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <include layout="@layout/header" />
+    <include layout="@layout/back_header" />
 	<include layout="@layout/mingxi_wodeyue"/>
 	
     <ListView

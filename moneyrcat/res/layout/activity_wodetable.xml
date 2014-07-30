@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.emperises.monercat.custom.AdViewPager
+    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
         android:id="@+id/adPager"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:background="#00ff00" >
-    </com.emperises.monercat.custom.AdViewPager>
+    </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"

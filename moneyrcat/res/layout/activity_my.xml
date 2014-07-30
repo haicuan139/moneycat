@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/headerview"
-        layout="@layout/header" />
+        layout="@layout/back_header" />
 
     <include layout="@layout/wodeyue" />
 

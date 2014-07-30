@@ -2,8 +2,6 @@ package com.emperises.monercat.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +10,7 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.format.DateUtils;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -22,12 +18,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
-import com.emperises.monercat.adapter.AdPagerAdapter;
-import com.emperises.monercat.custom.AdViewPager;
-import com.emperises.monercat.utils.Logger;
+import com.emperises.monercat.adapter.ImagePagerAdapter;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -36,15 +31,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 {
 	private PullToRefreshListView mAdListView;
 	private static final int REFRESH_COMPLETE = 1;
-	private int currentIndexPosition;
-    private boolean isContinue = true;
-    private Timer timer;
-    private static final int initPositon = 0;
-    private static int currentPosition = initPositon;
-	private AdViewPager mAdPager;
-	private AdPagerAdapter mPagerAdapter;
 	private MyAdAdapter mAdListAdapter;
-    private static final int VIEWPAGER_SCROLL = 0;
 	private Handler mHandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -53,11 +40,6 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 			case REFRESH_COMPLETE:
 				mAdListView.onRefreshComplete();
 				break;
-			case VIEWPAGER_SCROLL:
-				Logger.i("PAGER", "current:"+currentPosition);
-				mAdPager.setCurrentItem(currentPosition);
-				break;
-
 			default:
 				break;
 			}
@@ -65,6 +47,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	};
 	private List<View> mListImage;
 	private LinearLayout mPagerIndexLayout;
+	private AutoScrollViewPager mAdPager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,7 +57,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	
 	@Override
 	protected void initViews() {
-		mAdPager = (AdViewPager) findViewById(R.id.adPager);
+		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
 		mAdListView = (PullToRefreshListView) findViewById(R.id.adListView);
 		mAdListView.setOnItemClickListener(this);
 		mListImage = new ArrayList<View>();
@@ -90,37 +73,18 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		mListImage.add(i1);
 		mListImage.add(i2);
 		mListImage.add(i3);
-		timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-			public void run()
-            {
-                while (true)
-                {
-                    if (isContinue)
-                    {
-                    	currentIndexPosition++;
-                    	if(currentIndexPosition == 4){
-                    		currentIndexPosition = 0;
-                    	}
-                        currentPosition ++;
-                        mHandler.sendEmptyMessage(VIEWPAGER_SCROLL);
-                        sleep(3000);
-                    }
-                    
-                }
-            }
-        }, 4000);
         mAdListView.setOnRefreshListener(this);
 		mAdListAdapter = new MyAdAdapter(); 
 		mAdListView.setAdapter(mAdListAdapter);
 		///////////////////////
-		mPagerAdapter = new AdPagerAdapter(mListImage);
-		mAdPager.setAdapter(mPagerAdapter);
-        mAdPager.setCurrentItem(initPositon);
+		mAdPager.setAdapter(new ImagePagerAdapter(this, mListImage).setInfiniteLoop(true));
+		mAdPager.setInterval(2000);
+		mAdPager.startAutoScroll();
+		mAdPager.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2
+				% mListImage.size());
         mAdPager.setOnPageChangeListener(this);
-        mAdPager.setOnTouchListener(new MyTouchListener());
         mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
+        
 	}
 	class MyAdAdapter extends BaseAdapter{
 
@@ -166,36 +130,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 			}
 		}).start();	
 	}
-	 class MyTouchListener implements OnTouchListener
-	    {
 
-	        @Override
-	        public boolean onTouch(View v, MotionEvent event)
-	        {
-	            switch (event.getAction())
-	            {
-	            case MotionEvent.ACTION_DOWN:
-	            case MotionEvent.ACTION_MOVE:
-	                isContinue = false;                
-	                break;
-	            case MotionEvent.ACTION_UP:
-	            default:
-	                isContinue = true;
-	                break;
-	            }
-	            return false;
-	        }
-	    }
-
-	private void sleep(long time){
-        try
-        {
-           Thread.sleep(time); 
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
 
 
 	@Override
@@ -212,19 +147,19 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 
 	@Override
 	public void onPageSelected(int position) {
-		Logger.i("PAGER", "onPageSelected:"+position);
-		   currentPosition = position;
-		   changeIndexBg(currentIndexPosition);
+		currentIndex ++ ;
+		if (currentIndex == 4) {
+			currentIndex = 0;
+		}
+		changeIndexBg(currentIndex);
 	}
-	
+	private int currentIndex = 0;
 	private void changeIndexBg(int currentPosition){
 		for (int i = 0; i < mPagerIndexLayout.getChildCount(); i++) {
 			ImageView bg = (ImageView) mPagerIndexLayout.getChildAt(i);
 			if(i == currentPosition){
 				bg.setBackgroundResource(R.drawable.circle_selected);
-//				bg.setBackgroundColor(Color.parseColor("#c80019"));
 			}else{
-//				bg.setBackgroundColor(Color.parseColor("#f0f0f0"));
 				bg.setBackgroundResource(R.drawable.circle_noraml);
 			}
 		}

@@ -37,7 +37,10 @@ public class AdPagerAdapter extends PagerAdapter
         Log.v(TAG, "instantiateItem" + position);
     
         position = position % mViews.size();
-        container.addView(mViews.get(position), 0);
+        try {
+        	container.addView(mViews.get(position), 0);
+		} catch (Exception e) {
+		}
         return mViews.get(position);
         
     }

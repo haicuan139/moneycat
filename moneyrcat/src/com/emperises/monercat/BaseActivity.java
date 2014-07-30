@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,12 +49,29 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 		super.setContentView(layoutResID);
 		titleText = (TextView) findViewById(R.id.titleText);
 		if(findViewById(R.id.leftItem) != null && findViewById(R.id.rightItem) != null){
-			findViewById(R.id.leftItem).setOnClickListener(this);
-			findViewById(R.id.rightItem).setOnClickListener(this);
+			Button leftButton = (Button)findViewById(R.id.leftItem);
+			leftButton.setOnClickListener(this);
+			Button rightButton = (Button)findViewById(R.id.rightItem);
+			rightButton.setOnClickListener(this);
+//			List<Integer> ids = new ArrayList<Integer>();
+//			ids.add(R.layout.activity_home);
+//			ids.add(R.layout.activity_recommend);
+//			ids.add(R.layout.activity_wodetable);
+//			ids.add(R.layout.activity_more);
+//			if(!ids.contains(mCurrentLayoutResId)){
+//				
+//			}
 		}
 		initViews();
 	}
-	protected void setTitle(String title) {
+	public String getCurrentTitle(){
+		String title = "";
+		if(titleText != null){
+			title = titleText.getText().toString();
+		}
+		return title; 
+	}
+	protected void setCurrentTitle(String title) {
 		if(titleText != null){
 			titleText.setText(title);
 		}

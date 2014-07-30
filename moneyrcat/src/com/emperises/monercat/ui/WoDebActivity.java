@@ -7,17 +7,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.emperises.monercat.BaseActivity;
+import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 
-public class WoDebActivity extends BaseActivity {
+public class WoDebActivity extends OtherBaseActivity {
 
 	private ListView mAdList;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my);
-		setTitle("我的广告");
+		setCurrentTitle("我的广告");
 	}
 	@Override
 	protected void initViews() {

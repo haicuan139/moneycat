@@ -6,16 +6,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import com.emperises.monercat.BaseActivity;
+import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 
-public class MingXiActivity extends BaseActivity {
+public class MingXiActivity extends OtherBaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mingxi);
-		setTitle("收支明细");
+		setCurrentTitle("收支明细");
 	}
 	@Override
 	protected void initViews() {

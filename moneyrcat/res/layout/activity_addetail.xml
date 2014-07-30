@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/include1"
-        layout="@layout/header" />
+        layout="@layout/back_header" />
 
     <ImageView
         android:id="@+id/imageView1"
