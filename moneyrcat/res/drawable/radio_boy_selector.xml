@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">   
     <item   
     android:state_checked="false"   
-    android:drawable="@drawable/dot_unselected" />   
+    android:drawable="@drawable/radio_circle_bg_normal" />   
     <item   
     android:state_checked="true"   
-    android:drawable="@drawable/dot_selected" />   
+    android:drawable="@drawable/radio_gir_bt_selected" />   
 </selector>

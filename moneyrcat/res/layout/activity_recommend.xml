@@ -8,7 +8,6 @@
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/headerview"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -39,7 +38,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#cdcdcd" />
 
         <RelativeLayout
@@ -71,7 +70,7 @@
         </RelativeLayout>
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#cdcdcd" />
         <RelativeLayout
             android:id="@+id/relativeLayout3"
@@ -103,22 +102,23 @@
                  />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/copy_link_but"
+                android:onClick="onClick"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="40dp"
-                android:layout_height="25dp"
+                android:layout_height="27dp"
                 android:layout_alignBaseline="@+id/imageView2_1"
                 android:layout_alignBottom="@+id/imageView2_1"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
-                android:background="#000000"
+                android:background="@drawable/black_button"
                 android:text="复制"
                 android:textColor="#ffffff" />
 
         </RelativeLayout>
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#cdcdcd" />
 
         <RelativeLayout
@@ -150,19 +150,19 @@
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/pengyouquan" />
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/weixinhaoyou" />
 
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/sina" />
             </LinearLayout>
 
             <TextView
@@ -179,7 +179,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:background="#cdcdcd" />
         
     </LinearLayout>

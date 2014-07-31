@@ -17,7 +17,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:background="#ffAACC" >
+        android:background="#fdb2b2" >
 
         <TextView
             android:id="@+id/textView1"
@@ -26,8 +26,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
+            android:textColor="#ffffff"
             android:text="提现100元"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="30sp"
+             />
 
         <TextView
             android:id="@+id/textView2"
@@ -58,7 +60,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="超值兑换"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textColor="#ffffff"
+            android:textSize="30sp"
+             />
 
         <TextView
             android:id="@+id/TextView04"

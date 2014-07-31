@@ -1,6 +1,7 @@
 package com.emperises.monercat.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
@@ -15,6 +16,18 @@ public class RecommendActivity extends BaseActivity {
 	@Override
 	protected void initViews() {
 		
+	}
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		switch (v.getId()) {
+		case R.id.copy_link_but:
+			showToast("已经复制到剪切板");
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

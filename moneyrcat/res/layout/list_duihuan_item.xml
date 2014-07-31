@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/background"
+    android:background="@drawable/white_selector"
     android:paddingTop="15dp"
     android:paddingBottom="15dp"
     android:layout_height="match_parent" >
@@ -13,7 +13,7 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
-        android:background="@drawable/ic_launcher" />
+        android:background="@drawable/dianxin1" />
 
     <TextView
         android:id="@+id/textView1"
@@ -56,10 +56,11 @@
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
+        android:focusable="false"
         android:layout_marginRight="26dp"
-        android:background="#000000"
+        android:background="@drawable/black_button"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="兑换"

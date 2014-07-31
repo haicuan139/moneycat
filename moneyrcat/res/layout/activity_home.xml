@@ -57,7 +57,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:background="#cdcdcd" />
@@ -70,7 +70,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/relativeLayout1"
         android:divider="#cdcdcd"
-        android:dividerHeight="1dp"
+        android:dividerHeight="0.5dp"
         android:scrollbars="none" >
     </com.handmark.pulltorefresh.library.PullToRefreshListView>
 

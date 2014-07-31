@@ -11,7 +11,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="#ecebeb"
+        android:background="@drawable/dialog_bg"
         android:orientation="vertical" >
 
         <RelativeLayout
@@ -38,7 +38,8 @@
                 android:onClick="onClick"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="10dp"
-                android:text="X" />
+                android:background="@drawable/x"
+                />
         </RelativeLayout>
 
         <View
@@ -91,7 +92,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/textView2"
-                android:background="#f0f0f0"
+                android:background="@drawable/commit_bt_normal"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp"
                 android:ems="10" />
 
             <TextView
@@ -118,7 +121,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@+id/textView3"
-                android:background="#f0f0f0"
+                android:background="@drawable/commit_bt_normal"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp"
                 android:ems="10" />
 
             <TextView
@@ -145,7 +150,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="6dp"
                 android:layout_toRightOf="@+id/textView4"
-                android:background="#f0f0f0"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp"
+                android:background="@drawable/commit_bt_normal"
                 android:ems="10" />
 
             <TextView
@@ -162,10 +169,11 @@
 
         <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/commit_bt_selector"
             android:text="提交" />
 
         <TextView

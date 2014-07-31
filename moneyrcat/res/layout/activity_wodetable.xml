@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/background"
     android:layout_height="match_parent" >
 
     <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
@@ -56,7 +57,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:background="#cdcdcd" />
@@ -74,18 +75,19 @@
             android:orientation="vertical" >
 
             <RelativeLayout
+                android:background="@drawable/white_selector"
                 android:id="@+id/wodeguanggao"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp" >
 
                 <ImageView
                     android:id="@+id/imageView1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:background="@drawable/wodeguanggao" />
 
                 <TextView
                     android:id="@+id/textView1"
@@ -93,37 +95,39 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
+                    android:textColor="@color/texttitle"
                     android:layout_toRightOf="@+id/imageView1"
                     android:text="我的广告" />
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/imageView1"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/right_arrow" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="#cdcdcd" />
 
             <RelativeLayout
+                android:background="@drawable/white_selector"
                 android:id="@+id/woyaotixian"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp" >
 
                 <ImageView
                     android:id="@+id/imageView1_1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:background="@drawable/woyaotixian" />
 
                 <TextView
                     android:id="@+id/textView1_1"
@@ -132,36 +136,38 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/imageView1_1"
+                    android:textColor="@color/texttitle"
                     android:text="我要提现" />
 
                 <ImageView
                     android:id="@+id/imageView2_1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/imageView1_1"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/right_arrow" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="#cdcdcd" />
 
             <RelativeLayout
+                android:background="@drawable/white_selector"
                 android:id="@+id/shouzhimingxi"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp" >
 
                 <ImageView
                     android:id="@+id/imageView1_2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:background="@drawable/shouzhimingxie" />
 
                 <TextView
                     android:id="@+id/textView1_2"
@@ -170,36 +176,38 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/imageView1_2"
+                    android:textColor="@color/texttitle"
                     android:text="收支明细" />
 
                 <ImageView
                     android:id="@+id/imageView2_2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/imageView1_2"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/right_arrow" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="#cdcdcd" />
 
             <RelativeLayout
+                android:background="@drawable/white_selector"
                 android:id="@+id/chaozhiduihuan"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp" >
 
                 <ImageView
                     android:id="@+id/imageView1_3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:background="@drawable/chaozhiduihuan" />
 
                 <TextView
                     android:id="@+id/textView1_3"
@@ -207,22 +215,23 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
+                    android:textColor="@color/texttitle"
                     android:layout_toRightOf="@+id/imageView1_3"
                     android:text="超值兑换" />
 
                 <ImageView
                     android:id="@+id/imageView2_3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/imageView1_3"
                     android:layout_marginRight="20dp"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/right_arrow" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:background="#cdcdcd" />
         </LinearLayout>
     </ScrollView>
