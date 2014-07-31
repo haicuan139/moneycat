@@ -73,6 +73,15 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		mListImage.add(i1);
 		mListImage.add(i2);
 		mListImage.add(i3);
+		for (View im : mListImage) {
+			im.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivityWithAnimation(new Intent(HomeActivity.this , AdDetailActivity.class));
+				}
+			});
+		}
         mAdListView.setOnRefreshListener(this);
 		mAdListAdapter = new MyAdAdapter(); 
 		mAdListView.setAdapter(mAdListAdapter);

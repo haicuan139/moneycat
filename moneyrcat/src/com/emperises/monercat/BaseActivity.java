@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
+import com.emperises.monercat.ui.MingXiActivity;
 
 public abstract class BaseActivity extends Activity implements OnClickListener , HttpInterface{
 
@@ -24,10 +25,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 	public void onClick(View v){
 		switch (v.getId()) {
 		case R.id.leftItem:
-			showToast("left item");
+			startActivityWithAnimation(new Intent(this , MingXiActivity.class));
 			break;
 		case R.id.rightItem:
-			showToast("right item");
+			showToast("签到成功,获得0.1元");
 			break;
 
 		default:
@@ -42,7 +43,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 	}
 	protected void 	showNetErrorToast(){
 		showToast("操作失败");
-	}
+	} 
 
 	@Override
 	public void setContentView(int layoutResID) {
@@ -53,14 +54,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 			leftButton.setOnClickListener(this);
 			Button rightButton = (Button)findViewById(R.id.rightItem);
 			rightButton.setOnClickListener(this);
-//			List<Integer> ids = new ArrayList<Integer>();
-//			ids.add(R.layout.activity_home);
-//			ids.add(R.layout.activity_recommend);
-//			ids.add(R.layout.activity_wodetable);
-//			ids.add(R.layout.activity_more);
-//			if(!ids.contains(mCurrentLayoutResId)){
-//				
-//			}
 		}
 		initViews();
 	}

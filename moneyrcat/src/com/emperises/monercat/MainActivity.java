@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.emperises.monercat.adapter.HomeViewPagerAdapter;
 import com.emperises.monercat.ui.HomeActivity;
+import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.MoreActivity;
 import com.emperises.monercat.ui.WoDeTabActivity;
 import com.emperises.monercat.ui.WoDebActivity;
@@ -156,12 +157,10 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 			changeButtonColor(3);
 			break;
 		case R.id.leftItem:
-			Toast.makeText(this, "leftItem", Toast.LENGTH_SHORT).show();;
-//			showToast("left item");
+			startActivity(new Intent(this , MingXiActivity.class));
 			break;
 		case R.id.rightItem:
-//			showToast("right item");
-			Toast.makeText(this, "rightItem", Toast.LENGTH_SHORT).show();;
+			Toast.makeText(this, "签到成功,获得0.1元", Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;

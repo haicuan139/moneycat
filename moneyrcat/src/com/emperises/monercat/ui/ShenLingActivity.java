@@ -1,13 +1,36 @@
 package com.emperises.monercat.ui;
 
-import com.emperises.monercat.BaseActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-public class ShenLingActivity extends BaseActivity {
+import com.emperises.monercat.OtherBaseActivity;
+import com.emperises.monercat.R;
 
+public class ShenLingActivity extends OtherBaseActivity {
+
+	private Button mCloseButton;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_shenling);
+		setTitleHide(View.GONE);
+	}
 	@Override
 	protected void initViews() {
-		// TODO Auto-generated method stub
-		
+		mCloseButton = (Button) findViewById(R.id.closeButton);
+	}
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		switch (v.getId()) {
+		case R.id.closeButton:
+			finish();
+			break;
+
+		default:
+			break;
+		}
 	}
 
 }

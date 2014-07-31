@@ -43,6 +43,15 @@ public class WoDeTabActivity extends BaseActivity implements
 		mListImage.add(i1);
 		mListImage.add(i2);
 		mListImage.add(i3);
+		for (View im : mListImage) {
+			im.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivityWithAnimation(new Intent(WoDeTabActivity.this , AdDetailActivity.class));
+				}
+			});
+		}
 		// /////////////////////
 		mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
 		findViewById(R.id.wodeguanggao).setOnClickListener(this);;
@@ -97,7 +106,7 @@ public class WoDeTabActivity extends BaseActivity implements
 			startActivityWithAnimation(new Intent(this,WoDebActivity.class));
 			break;
 		case R.id.woyaotixian:
-			
+			startActivityWithAnimation(new Intent(this,TiXianActivity.class));
 			break;
 		case R.id.shouzhimingxi:
 			startActivityWithAnimation(new Intent(this,MingXiActivity.class));
