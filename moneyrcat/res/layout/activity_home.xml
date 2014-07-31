@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:layout_alignParentLeft="true"
-        android:background="#00ff00" >
+        android:background="@drawable/adtest1" >
     </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
 
     <RelativeLayout

@@ -38,7 +38,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name="com.emperises.monercat.ui.ShenLingActivity"
+            android:name="com.emperises.monercat.ui.RecommendDialogActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -84,6 +84,11 @@
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="com.emperises.monercat.ui.TiXianDialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.ShenLingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
