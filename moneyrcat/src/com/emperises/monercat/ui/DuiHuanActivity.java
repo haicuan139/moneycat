@@ -1,15 +1,18 @@
 package com.emperises.monercat.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 
-public class DuiHuanActivity extends OtherBaseActivity {
+public class DuiHuanActivity extends OtherBaseActivity implements OnItemClickListener{
 
 	private ListView mDuiHuanListView;
 	@Override
@@ -22,6 +25,7 @@ public class DuiHuanActivity extends OtherBaseActivity {
 	protected void initViews() {
 		mDuiHuanListView = (ListView) findViewById(R.id.duihuanListView);
 		mDuiHuanListView.setAdapter(new MyAdapter());
+		mDuiHuanListView.setOnItemClickListener(this);
 	}
 	class MyAdapter extends BaseAdapter{
 
@@ -48,5 +52,9 @@ public class DuiHuanActivity extends OtherBaseActivity {
 			return v;
 		}
 		
+	}
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		startActivity(new Intent(this, DuiHuanDialogActivity.class));
 	}
 }

@@ -2,38 +2,32 @@ package com.emperises.monercat.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 
-public class TiXianDialogActivity extends OtherBaseActivity {
+public class DuiHuanDialogActivity extends OtherBaseActivity {
 
-	private Button mCloseButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_tixian_dialog);
-		setTitleHide(View.GONE);
+		setContentView(R.layout.activity_duihuan_dialog);
 	}
 	@Override
 	protected void initViews() {
-		mCloseButton = (Button) findViewById(R.id.closeButton);
+		super.initViews();
 	}
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
 		switch (v.getId()) {
-		case R.id.closeButton:
+		case R.id.sure_bt:
+			showToast("兑换成功");
 			finish();
 			break;
-		case R.id.commit_bt:
-			showToast("提交成功");
-			finish();
-			break;
+
 		default:
 			break;
 		}
 	}
-
 }
