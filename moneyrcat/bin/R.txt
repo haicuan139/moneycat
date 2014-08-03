@@ -222,6 +222,7 @@ int layout wodeyue 0x7f030019
 int menu main 0x7f0a0000
 int string action_settings 0x7f070007
 int string app_name 0x7f070006
+int string cancle 0x7f07001c
 int string chaozhiduihuan 0x7f070014
 int string commitsuccess 0x7f07000a
 int string copylikestr 0x7f070017
@@ -244,6 +245,8 @@ int string pull_to_refresh_release_label 0x7f070001
 int string recommend 0x7f070010
 int string shouzhimingxi 0x7f070016
 int string signtoast 0x7f07000b
+int string sure 0x7f07001d
+int string updatestartstr 0x7f07001b
 int string wait 0x7f07000d
 int string woyaotixian 0x7f070019
 int string 我的广告 0x7f07001a

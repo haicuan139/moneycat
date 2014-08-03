@@ -370,6 +370,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f070007;
         public static final int app_name=0x7f070006;
+        public static final int cancle=0x7f07001c;
         public static final int chaozhiduihuan=0x7f070014;
         public static final int commitsuccess=0x7f07000a;
         public static final int copylikestr=0x7f070017;
@@ -395,6 +396,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int recommend=0x7f070010;
         public static final int shouzhimingxi=0x7f070016;
         public static final int signtoast=0x7f07000b;
+        public static final int sure=0x7f07001d;
+        public static final int updatestartstr=0x7f07001b;
         public static final int wait=0x7f07000d;
         public static final int woyaotixian=0x7f070019;
         public static final int 我的广告=0x7f07001a;

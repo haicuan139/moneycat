@@ -1,12 +1,9 @@
 package com.emperises.monercat.utils;
 
 import android.util.Log;
-/**
- * ??¥å??ç®¡ç??
- */
 public class Logger
 {
-	private static boolean DEBUG = true;
+	public static boolean DEBUG = true;
 	public static void i(String tag,String msg) {
 		if (DEBUG) {
 			Log.i(tag, msg);

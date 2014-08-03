@@ -1,8 +1,7 @@
 package com.emperises.monercat.domain;
 
-import java.io.Serializable;
 
-public class ADInfo implements Serializable {
+public class ADInfo extends DomainObject {
 	private String adId;// 
 	private String adImage; // 
 	private String adDescription; //

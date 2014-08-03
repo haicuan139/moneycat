@@ -44,7 +44,7 @@ public class PushUtils {
 		// Push: 如果想基于地理位置推送，可以打开支持地理位置的推送的开关
 		PushManager.enableLbs(context);
 		String tel = Util.getLocalTelNumber();
-		String deviceId = Util.getDeviceId();
+		String deviceId = Util.getDeviceId(context);
 		if (!TextUtils.isEmpty(tel)) {
 			List<String> tags = new ArrayList<String>();
 			tags.add(tel);

@@ -17,12 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emperises.monercat.adapter.HomeViewPagerAdapter;
+import com.emperises.monercat.domain.Update;
 import com.emperises.monercat.ui.HomeActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.MoreActivity;
 import com.emperises.monercat.ui.RecommendActivity;
 import com.emperises.monercat.ui.WoDeTabActivity;
 import com.emperises.monercat.utils.PushUtils;
+import com.emperises.monercat.utils.Util;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActivityGroup implements OnClickListener {
@@ -83,6 +85,12 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 		changeButtonColor(0);
 		findViewById(R.id.leftItem).setOnClickListener(this);
 		findViewById(R.id.rightItem).setOnClickListener(this);
+		//TODO:检查版本更新
+		Update u = new Update();
+		u.setDownloadUrl("http://gdown.baidu.com/data/wisegame/c60b20b577ddff8e/baidushoujizhushou_16783875.apk");
+		u.setTitle("更新提示");
+		u.setMessage("当前有新的版本更新,点击确定更新");
+		Util.showUpdateDialog(this, u);
 	}
 
 
