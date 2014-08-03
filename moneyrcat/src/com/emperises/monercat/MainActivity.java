@@ -20,9 +20,9 @@ import com.emperises.monercat.adapter.HomeViewPagerAdapter;
 import com.emperises.monercat.ui.HomeActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.MoreActivity;
-import com.emperises.monercat.ui.WoDeTabActivity;
-import com.emperises.monercat.ui.WoDebActivity;
 import com.emperises.monercat.ui.RecommendActivity;
+import com.emperises.monercat.ui.WoDeTabActivity;
+import com.emperises.monercat.utils.PushUtils;
 
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActivityGroup implements OnClickListener {
@@ -34,7 +34,8 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		titleIds = new String[] { "广告平台", "邀请好友", "我的广告", "更多" };
+		PushUtils.startPush(this);
+		titleIds = new String[] { getResources().getString(R.string.home), getResources().getString(R.string.recommend),getResources().getString(R.string.my), getResources().getString(R.string.more) };
 		mHomePager = (ViewPager) findViewById(R.id.homePager);
 		mHomePager.setOffscreenPageLimit(4);
 		View home = getLocalActivityManager().startActivity("index",
@@ -160,7 +161,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 			startActivity(new Intent(this , MingXiActivity.class));
 			break;
 		case R.id.rightItem:
-			Toast.makeText(this, "签到成功,获得0.1元", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.signtoast, Toast.LENGTH_SHORT).show();
 			break;
 		default:
 			break;

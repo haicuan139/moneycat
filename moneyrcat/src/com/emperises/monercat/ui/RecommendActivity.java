@@ -22,7 +22,7 @@ public class RecommendActivity extends BaseActivity {
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.copy_link_but:
-			showToast("已经复制到剪切板");
+			showToast(R.string.copylikestr);
 			break;
 
 		default:

@@ -13,7 +13,7 @@ public class ShenLingActivity extends OtherBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_shenling);
-		setCurrentTitle("…Í¡Ïπ„∏Ê");
+		setCurrentTitle(getString(R.string.guanggaoshenling));
 	}
 	@Override
 	protected void initViews() {

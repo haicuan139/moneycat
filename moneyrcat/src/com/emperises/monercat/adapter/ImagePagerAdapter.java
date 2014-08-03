@@ -10,7 +10,6 @@ import java.util.List;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 /**
  * ImagePagerAdapter
@@ -19,14 +18,14 @@ import android.widget.ImageView;
  */
 public class ImagePagerAdapter extends RecyclingPagerAdapter {
 
-    private Context       context;
+//    private Context       context;
     private List<View> imageIdList;
 
     private int           size;
     private boolean       isInfiniteLoop;
 
     public ImagePagerAdapter(Context context, List<View> imageIdList) {
-        this.context = context;
+//        this.context = context;
         this.imageIdList = imageIdList;
         this.size = imageIdList.size();
         isInfiniteLoop = false;
@@ -62,10 +61,10 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
         return imageIdList.get(getPosition(position));
     }
 
-    private static class ViewHolder {
-
-        ImageView imageView;
-    }
+//    private static class ViewHolder {
+//
+//        ImageView imageView;
+//    }
 
     /**
      * @return the isInfiniteLoop

@@ -13,7 +13,7 @@ public class TiXianActivity extends OtherBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tixian);
-		setCurrentTitle("我要提现");
+		setCurrentTitle(getString(R.string.woyaotixian));
 	}
 	@Override
 	protected void initViews() {

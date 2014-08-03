@@ -4,5 +4,23 @@
     <string name="app_name">招财喵</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="neterror">网络错误</string>
+    <string name="commitsuccess">提交成功</string>
+    <string name="signtoast">签到成功获得0.1元</string>
+    <string name="errortoast">操作失败</string>
+    <string name="wait">操作中请等待</string>
+    <string name="hit">提示</string>
+    <string name="home">首页</string>
+    <string name="recommend">推荐</string>
+    <string name="my">我的</string>
+    <string name="more">更多</string>
+    <string name="guanggaoxiangqing">广告详情</string>
+    <string name="chaozhiduihuan">超值兑换</string>
+    <string name="duihuanchenggong">兑换成功</string>
+    <string name="shouzhimingxi">收支明细</string>
+    <string name="copylikestr">成功复制到剪切板</string>
+    <string name="guanggaoshenling">广告申领</string>
+    <string name="woyaotixian">我要体现</string>
+    <string name="我的广告">我的广告</string>
 
 </resources>

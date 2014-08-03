@@ -15,7 +15,7 @@ public class AdDetailActivity extends  OtherBaseActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_addetail);
-		setCurrentTitle("π„∏ÊœÍ«È");
+		setCurrentTitle(getString(R.string.guanggaoxiangqing));
 	}
 	@Override
 	protected void initViews() {

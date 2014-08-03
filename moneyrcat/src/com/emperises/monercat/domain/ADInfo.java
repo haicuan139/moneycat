@@ -3,15 +3,15 @@ package com.emperises.monercat.domain;
 import java.io.Serializable;
 
 public class ADInfo implements Serializable {
-	private String adId;// 广告ID
-	private String adImage; // 广告大图图片
-	private String adDescription; // 广告内容
-	private String adSource;// 广告厂商
-	private String adIcon; // 广告的小图标
-	private String adAward; // 广告的赏金
-	private String adType;// 广告类型 0:默认类型广告 private String ：可以推荐给好友
+	private String adId;// 
+	private String adImage; // 
+	private String adDescription; //
+	private String adSource;// 
+	private String adIcon; // 
+	private String adAward; // 
+	private String adType;//
 	private static final long serialVersionUID = 1L;
-	private String adTtile; // 广告标题
+	private String adTtile; // 
 
 	public String getAdTtile() {
 		return adTtile;

@@ -15,7 +15,7 @@ public class MingXiActivity extends OtherBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mingxi);
-		setCurrentTitle("ÊÕÖ§Ã÷Ï¸");
+		setCurrentTitle(getString(R.string.shouzhimingxi));
 	}
 	@Override
 	protected void initViews() {

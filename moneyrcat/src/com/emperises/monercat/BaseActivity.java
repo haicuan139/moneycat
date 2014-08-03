@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
 import com.emperises.monercat.ui.MingXiActivity;
@@ -28,7 +27,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 			startActivityWithAnimation(new Intent(this , MingXiActivity.class));
 			break;
 		case R.id.rightItem:
-			showToast("签到成功,获得0.1元");
+			showToast(R.string.signtoast);
 			break;
 
 		default:
@@ -39,10 +38,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 		return getSharedPreferences("config", MODE_PRIVATE);
 	}
 	protected void showCommitOkToast(){
-		showToast("操作成功");
+		showToast(R.string.commitsuccess);
 	}
 	protected void 	showNetErrorToast(){
-		showToast("操作失败");
+		showToast(R.string.neterror);
 	} 
 
 	@Override
@@ -105,7 +104,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 		mProgressDialog = showBaseProgressDialog();
 	}
 	protected ProgressDialog  showBaseProgressDialog() {
-		return ProgressDialog.show(this, "提示", "请等待");
+		return ProgressDialog.show(this, getString(R.string.hit), getString(R.string.wait));
 	}
 	protected void showToast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
@@ -114,7 +113,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 		Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
 	}
 	protected void showErrorToast() {
-		showToast("数据解析失败");
+		showToast(R.string.errortoast);
 	}
 	public String getResString(int resId){
 		return getResources().getString(resId);

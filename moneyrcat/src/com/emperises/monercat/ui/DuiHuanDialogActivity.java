@@ -22,7 +22,7 @@ public class DuiHuanDialogActivity extends OtherBaseActivity {
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.sure_bt:
-			showToast("¶Ò»»³É¹¦");
+			showToast(R.string.duihuanchenggong);
 			finish();
 			break;
 

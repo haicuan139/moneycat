@@ -28,7 +28,7 @@ public class RecommendDialogActivity extends OtherBaseActivity {
 			finish();
 			break;
 		case R.id.commit_bt:
-			showToast("提交成功");
+			showCommitOkToast();
 			finish();
 			break;
 		default:

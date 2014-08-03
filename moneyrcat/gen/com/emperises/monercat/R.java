@@ -370,7 +370,19 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f070007;
         public static final int app_name=0x7f070006;
+        public static final int chaozhiduihuan=0x7f070014;
+        public static final int commitsuccess=0x7f07000a;
+        public static final int copylikestr=0x7f070017;
+        public static final int duihuanchenggong=0x7f070015;
+        public static final int errortoast=0x7f07000c;
+        public static final int guanggaoshenling=0x7f070018;
+        public static final int guanggaoxiangqing=0x7f070013;
         public static final int hello_world=0x7f070008;
+        public static final int hit=0x7f07000e;
+        public static final int home=0x7f07000f;
+        public static final int more=0x7f070012;
+        public static final int my=0x7f070011;
+        public static final int neterror=0x7f070009;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
          */
@@ -380,6 +392,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
+        public static final int recommend=0x7f070010;
+        public static final int shouzhimingxi=0x7f070016;
+        public static final int signtoast=0x7f07000b;
+        public static final int wait=0x7f07000d;
+        public static final int woyaotixian=0x7f070019;
+        public static final int 我的广告=0x7f07001a;
     }
     public static final class style {
         /** 

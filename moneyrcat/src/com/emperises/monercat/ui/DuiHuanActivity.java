@@ -19,7 +19,7 @@ public class DuiHuanActivity extends OtherBaseActivity implements OnItemClickLis
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_duihuan);
-		setCurrentTitle("³¬Öµ¶Ò»»");
+		setCurrentTitle(getString(R.string.chaozhiduihuan));
 	}
 	@Override
 	protected void initViews() {

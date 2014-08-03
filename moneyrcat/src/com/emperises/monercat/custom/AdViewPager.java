@@ -22,22 +22,19 @@ public class AdViewPager extends ViewPager{
     public boolean onTouchEvent(MotionEvent evt) {  
         switch (evt.getAction()) {  
         case MotionEvent.ACTION_DOWN:  
-            // 记录按下时候的坐标  
             downPoint.x = evt.getX();  
             downPoint.y = evt.getY();  
-            if (this.getChildCount() > 1) { //有内容，多于1个时  
-                // 通知其父控件，现在进行的是本控件的操作，不允许拦截  
+            if (this.getChildCount() > 1) { //锟斤拷锟斤拷锟捷ｏ拷锟斤拷锟斤拷1锟斤拷时  
+                // 通知锟戒父锟截硷拷锟斤拷锟斤拷锟节斤拷锟叫碉拷锟角憋拷锟截硷拷锟侥诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷  
                 getParent().requestDisallowInterceptTouchEvent(true);  
             }  
             break;  
         case MotionEvent.ACTION_MOVE:  
-            if (this.getChildCount() > 1) { //有内容，多于1个时  
-                // 通知其父控件，现在进行的是本控件的操作，不允许拦截  
+            if (this.getChildCount() > 1) {   
                 getParent().requestDisallowInterceptTouchEvent(true);  
             }  
             break;  
         case MotionEvent.ACTION_UP:  
-            // 在up时判断是否按下和松手的坐标为一个点  
             if (PointF.length(evt.getX() - downPoint.x, evt.getY()  
                     - downPoint.y) < (float) 5.0) {  
                 onSingleTouch(this);  
