@@ -11,10 +11,11 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1"
-        android:background="@drawable/adtestbig" />
+        android:background="@drawable/adtestbig"
+        />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -24,7 +25,8 @@
         android:layout_below="@+id/imageView1"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/adtestlogo" />
+        android:background="@drawable/adtestlogo"
+         />
 
     <RelativeLayout
         android:id="@+id/ImageView01"
@@ -37,12 +39,12 @@
         android:background="#ebebeb" >
 
         <ImageView
+            android:layout_marginLeft="20dp"
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:src="@drawable/rmbicon_1" />
 
         <TextView
@@ -50,18 +52,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:textSize="10sp"
             android:layout_marginLeft="3dp"
-            android:layout_toRightOf="@+id/imageView3"
-            android:text="点击:0.2元/次"
             android:textColor="#777777"
-            android:textSize="10sp" />
+            android:layout_toRightOf="@+id/imageView3"
+            android:text="点击:0.2元/次" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/textView1"
             android:src="@drawable/rmbicon_2" />
 
@@ -71,34 +73,32 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView1"
             android:layout_alignBottom="@+id/textView1"
+            android:textColor="#777777"
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/imageView4"
             android:text="推荐:5元/次"
-            android:textColor="#777777"
             android:textSize="10sp" />
+
     </RelativeLayout>
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView2"
         android:layout_below="@+id/imageView2"
-        android:layout_marginTop="10dp"
-        android:text="我要参加"
-        android:textColor="#ffffff"
-        android:background="@drawable/black_button" />
+        android:layout_marginTop="38dp"
+        android:background="@drawable/canjia_bt"
+         />
 
     <Button
         android:id="@+id/shenling_but"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:text="申领"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:background="@drawable/shenling_bt"
+        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_alignRight="@+id/ImageView01"
-        android:background="@drawable/commit_bt_selector" />
-
+         />
 
 </RelativeLayout>

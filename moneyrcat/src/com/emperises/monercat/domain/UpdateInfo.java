@@ -1,6 +1,6 @@
 package com.emperises.monercat.domain;
 
-public class Update extends DomainObject{
+public class UpdateInfo extends DomainObject{
 
 	private static final long serialVersionUID = 1L;
 	private String title;

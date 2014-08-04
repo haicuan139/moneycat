@@ -33,15 +33,18 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:background="@drawable/mingxibg" />
+        android:background="@drawable/black_button"
+        android:textSize="13sp"
+        android:text="明细"
+        android:textColor="#ffffff" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/mingxi_button"
         android:layout_alignBottom="@+id/mingxi_button"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/mingxi_button"
         android:text="余额:4.8 元"
         android:textColor="#ffffff" />

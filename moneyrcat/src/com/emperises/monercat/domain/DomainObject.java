@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class DomainObject implements Serializable{
 
+	public DomainObject() {
+	}
 	private static final long serialVersionUID = 1L;
 	private String code;
 	private String msg;

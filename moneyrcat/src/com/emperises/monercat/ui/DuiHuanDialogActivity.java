@@ -25,7 +25,9 @@ public class DuiHuanDialogActivity extends OtherBaseActivity {
 			showToast(R.string.duihuanchenggong);
 			finish();
 			break;
-
+		case R.id.closeButton:
+			finish();
+			break;
 		default:
 			break;
 		}

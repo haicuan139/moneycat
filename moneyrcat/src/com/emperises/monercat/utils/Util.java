@@ -26,7 +26,7 @@ import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
 import com.emperises.monercat.R;
-import com.emperises.monercat.domain.Update;
+import com.emperises.monercat.domain.UpdateInfo;
 import com.google.gson.Gson;
 
 public class Util {
@@ -52,7 +52,7 @@ public class Util {
 	private static final String CONFIG_FILE_NAME = "config";
 	
 	@SuppressLint({ "InlinedApi", "NewApi" })
-	public static void downloadApkAndInstall(Context context , Update updateObj){
+	public static void downloadApkAndInstall(Context context , UpdateInfo updateObj){
 			//TODO:没有APK下载地址
 			DOWN_ID = System.currentTimeMillis()+"";
 			BroadcastReceiver mDownloadReceiver = new BroadcastReceiver() {
@@ -160,7 +160,7 @@ public class Util {
 			public void onSuccess(String t) {
 				//解析更新json
 				if(!TextUtils.isEmpty(t)){
-					Update update = new Gson().fromJson(t, Update.class);
+					UpdateInfo update = new Gson().fromJson(t, UpdateInfo.class);
 					if(update != null){
 						float currentVersionCode = Float.parseFloat(update.getVersionCode());
 						if(currentVersionCode > getLocalVersionCode(context)){
@@ -188,7 +188,7 @@ public class Util {
 		builder.setNegativeButton(R.string.cancle, falseButtonListener);
 		builder.show();
 	}
-	public static void showUpdateDialog(final Context context ,final Update update){
+	public static void showUpdateDialog(final Context context ,final UpdateInfo update){
 		showCustomDialog(context, update.getTitle(), update.getMessage(), new DialogInterface.OnClickListener() {
 			
 			@Override
