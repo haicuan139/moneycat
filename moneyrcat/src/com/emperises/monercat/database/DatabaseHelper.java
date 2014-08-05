@@ -1,16 +1,11 @@
 package com.emperises.monercat.database;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.emperises.monercat.domain.ADInfo;
-import com.emperises.monercat.domain.DomainObject;
-import com.emperises.monercat.domain.UpdateInfo;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -20,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			int version) {
 		super(context, DATABASE_NAME, factory, version);
 	}
-	public DatabaseHelper(Context context) {
+	private DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	/**
@@ -38,42 +33,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		//TODO:创建数据表
 		createDatabaseForObjs(db);
 	}
 
 	//通过反射创建数据库字段与表
 	private void createDatabaseForObjs(SQLiteDatabase db){
-		List<Class<?>> os = new ArrayList<Class<?>>();
-		os.add(ADInfo.class);
-		os.add(UpdateInfo.class);
-		DatabaseUtil.createTableDatabaseForListClass(os, db);
-		List<DomainObject> objs = new ArrayList<DomainObject>();
-		ADInfo info = new ADInfo();
-		info.setAdAward("Award");
-		info.setAdDescription("des");
-		info.setAdIcon("iconpath");
-		info.setAdId("id");
-		info.setAdImage("image");
-		info.setAdSource("aaa");
-		info.setAdTtile("title");
-		info.setAdType("type");
-		UpdateInfo u = new UpdateInfo();
-		u.setDownloadUrl("http://");
-		u.setMessage("message");
-		u.setTitle("title");
-		u.setVersionCode("version code");
-		objs.add(info);
-		objs.add(u);
-		try {
-			DatabaseUtil.insertDataForObjs(objs, db);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		List<Class<?>> os = new ArrayList<Class<?>>();
+//		os.add(ADInfo.class);
+//		os.add(UpdateInfo.class);
+		if(mObjs != null){
+			DatabaseUtil.createTableDatabaseForListClass(mObjs, db);
 		}
+//		List<DomainObject> objs = new ArrayList<DomainObject>();
+//		ADInfo info = new ADInfo();
+//		info.setAdAward("Award");
+//		info.setAdDescription("des");
+//		info.setAdIcon("iconpath");
+//		info.setAdId("id");
+//		info.setAdImage("image");
+//		info.setAdSource("aaa");
+//		info.setAdTtile("title");
+//		info.setAdType("type");
+//		UpdateInfo u = new UpdateInfo();
+//		u.setDownloadUrl("http://");
+//		u.setMessage("message");
+//		u.setTitle("title");
+//		u.setVersionCode("version code");
+//		objs.add(info);
+//		objs.add(u);
+//		try {
+//			DatabaseUtil.insertDataForObjs(objs, db);
+//		} catch (IllegalArgumentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

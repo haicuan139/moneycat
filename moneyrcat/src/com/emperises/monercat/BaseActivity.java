@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emperises.monercat.database.DatabaseImpl;
+import com.emperises.monercat.database.DatabaseInterface;
 import com.emperises.monercat.database.DatabaseUtil;
 import com.emperises.monercat.domain.ADInfo;
 import com.emperises.monercat.interfaces.HttpInterface;
@@ -101,27 +102,29 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 				android.R.anim.slide_out_right);
 	}
 	private static final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
+	private DatabaseInterface mDatabase;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// 社会化分享初始化
 		initShare();
-		DatabaseImpl d = new DatabaseImpl(this);//创建数据库
-		//TODO:数据库测试
-		testDB(d.getDatabase());
+		mDatabase = new DatabaseImpl(this,null);//TODO:创建数据库
+//		testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 	}
-
-	private void testDB(SQLiteDatabase db) {
-				try {
-					Object o = DatabaseUtil.queryDatabaseForClass(ADInfo.class, db, "adId", new String[]{"id"});
-					Logger.i("SQL", o.toString());
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				}
+	protected SQLiteDatabase getDatabase() {
+		return mDatabase.getDatabase();
 	}
+//	private void testDB(SQLiteDatabase db) {
+//				try {
+//					Object o = DatabaseUtil.queryDatabaseForClass(ADInfo.class, db, "adId", new String[]{"id"});
+//					Logger.i("SQL", o.toString());
+//				} catch (InstantiationException e) {
+//					e.printStackTrace();
+//				} catch (IllegalAccessException e) {
+//					e.printStackTrace();
+//				}
+//	}
 	private void initShare() {
 		// 设置分享内容
 		String shareContent = "招财喵分享测试 http://www.baidu.com";

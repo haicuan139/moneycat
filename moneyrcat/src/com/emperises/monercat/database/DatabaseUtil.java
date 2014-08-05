@@ -182,5 +182,28 @@ public class DatabaseUtil {
 		return queryDatabaseForClassToList(cls, db, null, where, selectionArgs, null, null);
 	}
 	
+	public static void deleteData(String tabName , SQLiteDatabase db , String whereClause , String[] whereArgs){
+		db.delete(tabName, whereClause+"=?", whereArgs);
+	}
 	
+	public static void update(String tabName ,Object obj, SQLiteDatabase db , String whereClause , String[] whereArgs) throws IllegalArgumentException, IllegalAccessException{
+		if(obj != null){
+			ContentValues  values = new ContentValues();
+			Field[] fields = obj.getClass().getDeclaredFields();
+			for (int i = 0; i < fields.length; i++) {
+				Field field = fields[i];
+				if(!field.getName().equals("serialVersionUID")){
+					field.setAccessible(true);
+					Object value =  field.get(obj);
+					if(value != null){
+						values.put(field.getName(), (String)value);
+					}
+					field.setAccessible(false);
+				}
+			}
+			db.update(tabName, values, whereClause + "=?", whereArgs);
+		}else{
+			Logger.i("SQL", "更新数据时,数据对象不能为空");
+		}
+	}
 }
