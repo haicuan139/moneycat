@@ -85,7 +85,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 		findViewById(R.id.leftItem).setOnClickListener(this);
 		findViewById(R.id.rightItem).setOnClickListener(this);
 		//TODO:检查版本更新
-		new DatabaseImpl(this);//创建数据库
+		
 		
 	}
 

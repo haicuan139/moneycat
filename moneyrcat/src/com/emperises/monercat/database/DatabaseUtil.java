@@ -1,9 +1,11 @@
 package com.emperises.monercat.database;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.emperises.monercat.domain.DomainObject;
@@ -11,7 +13,17 @@ import com.emperises.monercat.utils.Logger;
 
 public class DatabaseUtil {
 	/**
-	 * 根据类创建数据库表
+	 * 根据字节码创建数据库表，与字段
+	 * @param classz
+	 * @param db
+	 */
+	public static void createTableDatabaseForClass(Class<?> classz , SQLiteDatabase db){
+		List<Class<?>> ls = new ArrayList<Class<?>>();
+		ls.add(classz);
+		createTableDatabaseForListClass(ls, db);
+	}
+	/**
+	 * 根据字节码列表创建数据库表，与字段
 	 * @param classz
 	 * @param db
 	 */
@@ -74,4 +86,101 @@ public class DatabaseUtil {
 			
 		}
 	}
+	/**
+	 * 获得一个查询Cursor
+	 * @param db
+	 * @param where
+	 * @return
+	 */
+	public static Cursor queryCursor(Class<?> cls,SQLiteDatabase db , String[] columns , String where, String[] selectionArgs, String orderBy , String limit){
+		//获得表名
+		String tableName = cls.getSimpleName();
+		return db.query(tableName, columns, where+"=?", selectionArgs, null, null, orderBy,limit);
+	}
+	/**
+	 * 通过字节码获得数据库中的数据，返回指定字节码类的实例
+	 * 前提数据库表与字段通过createTableDatabaseForListClass创建
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public static Object queryDatabaseForClass(Class<?> classz , SQLiteDatabase db , String[] columns , String where ,String[] selectionArgs, String orderBy , String limit) throws InstantiationException, IllegalAccessException{
+		
+		List<Class<?>> cls = new ArrayList<Class<?>>();
+		cls.add(classz);
+		return queryDatabaseForClassToList(cls, db, columns, where, selectionArgs, orderBy, limit);
+	}
+	/**
+	 * 通过字节码获得数据库中的数据，返回指定字节码类的实例
+	 * 前提数据库表与字段通过createTableDatabaseForListClass创建
+	 * 不要指定字段的操作
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public static Object queryDatabaseForClass(Class<?> classz , SQLiteDatabase db , String where ,String[] selectionArgs, String orderBy , String limit) throws InstantiationException, IllegalAccessException{
+		
+		List<Class<?>> cls = new ArrayList<Class<?>>();
+		cls.add(classz);
+		return queryDatabaseForClassToList(cls, db, null, where, selectionArgs, orderBy, limit);
+	}
+	/**
+	 * 通过字节码集合获得数据库中的数据,返回指定字节码实例集合
+	 * 前提数据库表与字段通过createTableDatabaseForListClass创建
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public static List<Object> queryDatabaseForClassToList(List<Class<?>> classz , SQLiteDatabase db , String[] columns , String where, String[] selectionArgs, String orderBy,String limit) throws InstantiationException, IllegalAccessException{
+		List<Object> objs = new ArrayList<Object>(); 
+		for (Class<?> cls : classz) {
+			Object obj = cls.newInstance();
+			Cursor cursor = queryCursor(cls, db, columns, where, selectionArgs, orderBy, limit);
+			while (cursor.moveToNext()) {
+				Field[] fields = cls.getDeclaredFields();
+				for (int i = 0; i < fields.length; i++) {
+					Field f = fields[i];
+					if(!f.getName().equals("serialVersionUID")){
+						f.setAccessible(true);
+						String fieldName = f.getName();
+						String value = cursor.getString(cursor.getColumnIndex(fieldName));//获得数据库数据值
+						f.set(obj, value);
+						f.setAccessible(false);
+					}
+				}
+			}
+			cursor.close();
+			objs.add(obj);
+		}
+		return objs;
+	}
+	
+	/**
+	 * 无附加条件查询出指定标识的数据
+	 * @param classz
+	 * @param db
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public static Object queryDatabaseForClass(Class<?> classz , SQLiteDatabase db , String[] columns , String where ,String[] selectionArgs) throws InstantiationException, IllegalAccessException{
+		List<Class<?>> cls = new ArrayList<Class<?>>();
+		cls.add(classz);
+		return queryDatabaseForClassToList(cls, db, columns, where, selectionArgs, null, null);
+	}
+	/**
+	 * 无附加条件查询出指定标识的数据,不需要指定返回某个字段
+	 * @param classz
+	 * @param db
+	 * @return
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 */
+	public static Object queryDatabaseForClass(Class<?> classz , SQLiteDatabase db , String where ,String[] selectionArgs) throws InstantiationException, IllegalAccessException{
+		List<Class<?>> cls = new ArrayList<Class<?>>();
+		cls.add(classz);
+		return queryDatabaseForClassToList(cls, db, null, where, selectionArgs, null, null);
+	}
+	
+	
 }

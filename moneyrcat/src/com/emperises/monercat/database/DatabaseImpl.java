@@ -8,7 +8,9 @@ public class DatabaseImpl implements DatabaseInterface {
 	private SQLiteDatabase mDb;
 	public DatabaseImpl(Context context) {
 		DatabaseHelper mDatabaseHelper = new DatabaseHelper(context);
-		mDb = mDatabaseHelper.getWritableDatabase();
+		this.mDb = mDatabaseHelper.getWritableDatabase();
 	}
-	
+	public SQLiteDatabase getDatabase() {
+		return mDb;
+	}
 }

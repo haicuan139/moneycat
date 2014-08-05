@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,9 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.emperises.monercat.database.DatabaseImpl;
+import com.emperises.monercat.database.DatabaseUtil;
+import com.emperises.monercat.domain.ADInfo;
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
 import com.emperises.monercat.ui.MingXiActivity;
+import com.emperises.monercat.utils.Logger;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -101,9 +106,22 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		// 社会化分享初始化
 		initShare();
+		DatabaseImpl d = new DatabaseImpl(this);//创建数据库
+		//TODO:数据库测试
+		testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 	}
 
+	private void testDB(SQLiteDatabase db) {
+				try {
+					Object o = DatabaseUtil.queryDatabaseForClass(ADInfo.class, db, "adId", new String[]{"id"});
+					Logger.i("SQL", o.toString());
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					e.printStackTrace();
+				}
+	}
 	private void initShare() {
 		// 设置分享内容
 		String shareContent = "招财喵分享测试 http://www.baidu.com";
