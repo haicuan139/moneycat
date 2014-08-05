@@ -27,10 +27,14 @@ public class RecommendActivity extends BaseActivity {
 		case R.id.copy_code_bt:
 			showToast(R.string.copylikestr);
 			break;
+		case R.id.wxpengyouquan:
+			openShare();
+			break;
 
 		default:
 			break;
 		}
 	}
 
+	
 }

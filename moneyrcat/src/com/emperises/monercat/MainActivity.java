@@ -18,10 +18,6 @@ import android.widget.Toast;
 
 import com.emperises.monercat.adapter.HomeViewPagerAdapter;
 import com.emperises.monercat.database.DatabaseImpl;
-import com.emperises.monercat.database.DatabaseUtil;
-import com.emperises.monercat.domain.ADInfo;
-import com.emperises.monercat.domain.DomainObject;
-import com.emperises.monercat.domain.UpdateInfo;
 import com.emperises.monercat.ui.HomeActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.MoreActivity;
@@ -89,15 +85,11 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 		findViewById(R.id.leftItem).setOnClickListener(this);
 		findViewById(R.id.rightItem).setOnClickListener(this);
 		//TODO:检查版本更新
-//		Update u = new Update();
-//		u.setDownloadUrl("http://gdown.baidu.com/data/wisegame/c60b20b577ddff8e/baidushoujizhushou_16783875.apk");
-//		u.setTitle("更新提示");
-//		u.setMessage("当前有新的版本更新,点击确定更新");
-//		Util.showUpdateDialog(this, u);
-		new DatabaseImpl(this);
+		new DatabaseImpl(this);//创建数据库
+		
 	}
 
-
+	
 	private List<Button> mTableButtonList;
 	private TextView titleText;
 

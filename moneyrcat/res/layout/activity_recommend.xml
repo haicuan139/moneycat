@@ -139,6 +139,8 @@
                 android:orientation="horizontal" >
 
                 <ImageView
+                    android:id="@+id/wxpengyouquan"
+                    android:onClick="onClick"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/pengyouquan" />

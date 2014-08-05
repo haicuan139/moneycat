@@ -12,19 +12,34 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
 import com.emperises.monercat.ui.MingXiActivity;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
+import com.umeng.socialize.media.TencentWbShareContent;
+import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.sso.QZoneSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
-public abstract class BaseActivity extends Activity implements OnClickListener , HttpInterface{
+public abstract class BaseActivity extends Activity implements OnClickListener,
+		HttpInterface {
 
 	private FinalHttp mFinalHttp;
 	private ProgressDialog mProgressDialog;
 	private TextView titleText;
-	public void onClick(View v){
+
+	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.leftItem:
-			startActivityWithAnimation(new Intent(this , MingXiActivity.class));
+			startActivityWithAnimation(new Intent(this, MingXiActivity.class));
 			break;
 		case R.id.rightItem:
 			showToast(R.string.signtoast);
@@ -34,90 +49,194 @@ public abstract class BaseActivity extends Activity implements OnClickListener ,
 			break;
 		}
 	}
+
 	protected SharedPreferences getSP() {
 		return getSharedPreferences("config", MODE_PRIVATE);
 	}
-	protected void showCommitOkToast(){
+
+	protected void showCommitOkToast() {
 		showToast(R.string.commitsuccess);
 	}
-	protected void 	showNetErrorToast(){
+
+	protected void showNetErrorToast() {
 		showToast(R.string.neterror);
-	} 
+	}
 
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
 		titleText = (TextView) findViewById(R.id.titleText);
-		if(findViewById(R.id.leftItem) != null && findViewById(R.id.rightItem) != null){
-			Button leftButton = (Button)findViewById(R.id.leftItem);
+		if (findViewById(R.id.leftItem) != null
+				&& findViewById(R.id.rightItem) != null) {
+			Button leftButton = (Button) findViewById(R.id.leftItem);
 			leftButton.setOnClickListener(this);
-			Button rightButton = (Button)findViewById(R.id.rightItem);
+			Button rightButton = (Button) findViewById(R.id.rightItem);
 			rightButton.setOnClickListener(this);
 		}
 		initViews();
 	}
-	public String getCurrentTitle(){
+
+	public String getCurrentTitle() {
 		String title = "";
-		if(titleText != null){
+		if (titleText != null) {
 			title = titleText.getText().toString();
 		}
-		return title; 
+		return title;
 	}
+
 	protected void setCurrentTitle(String title) {
-		if(titleText != null){
+		if (titleText != null) {
 			titleText.setText(title);
 		}
 	}
-	protected void startActivityWithAnimation(Intent i){
+
+	protected void startActivityWithAnimation(Intent i) {
 		startActivity(i);
-		overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+		overridePendingTransition(android.R.anim.slide_in_left,
+				android.R.anim.slide_out_right);
 	}
+	private static final UMSocialService mController = UMServiceFactory.getUMSocialService("com.umeng.share");
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// 社会化分享初始化
+		initShare();
 		mFinalHttp = new FinalHttp();
+	}
+
+	private void initShare() {
+		// 设置分享内容
+		String shareContent = "招财喵分享测试 http://www.baidu.com";
+//		String picUrl = "http://www.baidu.com/img/baidu_sylogo1.gif";
+		String shareUrl = "http://www.baidu.com";
+		String shareTitle = "招财喵";
+		//QQ好友
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "1101962112",
+                "RY1S5XEVSVnjx3B7");
+		qqSsoHandler.setTitle(shareTitle);
+		qqSsoHandler.setTargetUrl(shareUrl);
+		qqSsoHandler.addToSocialSDK(); 
+		
+		QQShareContent qqShareContent = new QQShareContent();
+		qqShareContent.setShareContent(shareContent);
+		qqShareContent.setTitle(shareTitle);
+		qqShareContent.setShareImage(new UMImage(this, R.drawable.ic_launcher));
+		qqShareContent.setTargetUrl(shareUrl);
+		mController.setShareMedia(qqShareContent);
+		//QQ空间
+		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(this, "1101962112",
+                "RY1S5XEVSVnjx3B7");
+		QZoneShareContent content = new QZoneShareContent();
+		qZoneSsoHandler.setTargetUrl(shareUrl);
+		qZoneSsoHandler.addToSocialSDK();
+		content.setShareContent(shareContent);
+		content.setShareImage(new UMImage(this, R.drawable.ic_launcher));
+		content.setTargetUrl(shareUrl);
+		content.setTitle(shareTitle);
+		mController.setShareMedia(content);
+		// wx967daebe835fbeac是你在微信开发平台注册应用的AppID, 这里需要替换成你注册的AppID
+		String appID = "wxcec4566d135405e6";
+		// 添加微信平台
+		UMWXHandler wxHandler = new UMWXHandler(this,appID);
+		wxHandler.setTitle(shareTitle);
+		wxHandler.setTargetUrl(shareUrl);
+		wxHandler.addToSocialSDK();
+		// 支持微信朋友圈
+		UMWXHandler wxCircleHandler = new UMWXHandler(this,appID);
+		wxCircleHandler.setTitle(shareTitle);
+		wxCircleHandler.setTargetUrl(shareUrl);
+		wxCircleHandler.setToCircle(true);
+		wxCircleHandler.addToSocialSDK();
+		
+		//为了保证人人分享成功且能够在PC上正常显示，请设置website                                      
+		mController.setAppWebSite(SHARE_MEDIA.RENREN, shareUrl);
+		// 设置分享到微信的内容, 图片类型
+		UMImage mUMImgBitmap = new UMImage(this,
+		                R.drawable.ic_launcher);//TODO:改为网页LOGO图片
+		WeiXinShareContent weixinContent = new WeiXinShareContent(mUMImgBitmap);
+		weixinContent.setTitle(shareTitle);
+		weixinContent.setTargetUrl(shareUrl);
+		weixinContent.setShareContent(shareContent);
+		mController.setShareMedia(weixinContent);
+
+		// 设置朋友圈分享的内容
+		CircleShareContent circleMedia = new CircleShareContent();
+		circleMedia.setTitle(shareTitle);
+		circleMedia.setTargetUrl(shareUrl);
+		circleMedia.setShareContent(shareContent);
+		circleMedia.setShareImage(new UMImage(this, R.drawable.ic_launcher));//TODO:改为网页LOGO图片
+		mController.setShareMedia(circleMedia);
+
+		TencentWbShareContent tencentContent = new TencentWbShareContent();
+		tencentContent.setTitle(shareTitle);
+		tencentContent.setTargetUrl(shareUrl);
+		tencentContent.setShareContent(shareContent);
+		tencentContent.setShareImage(new UMImage(this, R.drawable.ic_launcher));
+		tencentContent.setTargetUrl(shareUrl);
+		// 设置分享到腾讯微博的文字内容
+		tencentContent.setShareContent(shareContent);
+		// 设置分享到腾讯微博的多媒体内容
+		mController.setShareMedia(tencentContent);
+		// 设置分享图片，参数2为图片的url. 
+		mController.setShareMedia(new UMImage(this, R.drawable.ic_launcher));
+	}
+
+	protected void openShare() {
+		mController.openShare(this, false);
 	}
 	protected void startRequest() {
 	}
+
 	protected void startRequest(String url) {
 		AjaxParams params = new AjaxParams();
-		mFinalHttp.post(url, params,new HttpRequest(this));
+		mFinalHttp.post(url, params, new HttpRequest(this));
 	}
+
 	@Override
 	public void onFinished(String content) {
 		mProgressDialog.dismiss();
 	}
-	public final FinalHttp getHttpClient(){
+
+	public final FinalHttp getHttpClient() {
 		return mFinalHttp;
 	}
+
 	abstract protected void initViews();
+
 	@Override
 	public void onFail(Throwable t, int errorNo, String strMsg) {
 		mProgressDialog.dismiss();
 	}
+
 	@Override
 	public void onLoading(long count, long current) {
-		
+
 	}
+
 	@Override
 	public void onHttpStart() {
 		mProgressDialog = showBaseProgressDialog();
 	}
-	protected ProgressDialog  showBaseProgressDialog() {
-		return ProgressDialog.show(this, getString(R.string.hit), getString(R.string.wait));
+
+	protected ProgressDialog showBaseProgressDialog() {
+		return ProgressDialog.show(this, getString(R.string.hit),
+				getString(R.string.wait));
 	}
+
 	protected void showToast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
+
 	protected void showToast(int id) {
 		Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
 	}
+
 	protected void showErrorToast() {
 		showToast(R.string.errortoast);
 	}
-	public String getResString(int resId){
+
+	public String getResString(int resId) {
 		return getResources().getString(resId);
-	}	
-	
+	}
 
 }
