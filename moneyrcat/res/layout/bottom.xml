@@ -28,7 +28,7 @@
             android:drawableTop="@drawable/bottom_home_selected"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:text="首页"
+            android:text="@string/home"
             android:textColor="#777777"
             android:textSize="12sp" />
 
@@ -41,7 +41,7 @@
             android:drawableTop="@drawable/bottom_recommed_normal"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:text="推荐"
+            android:text="@string/tasks"
             android:textColor="#777777"
             android:textSize="12sp" />
 
@@ -54,7 +54,7 @@
             android:drawableTop="@drawable/bottom_my_normal"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:text="我的"
+            android:text="@string/my"
             android:textColor="#777777"
             android:textSize="12sp" />
 
@@ -67,7 +67,7 @@
             android:drawableTop="@drawable/bottom_more_normal"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:text="更多"
+            android:text="@string/more"
             android:textColor="#777777"
             android:textSize="12sp" />
     </LinearLayout>

@@ -16,12 +16,9 @@ import android.widget.Toast;
 
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
-import com.emperises.monercat.database.DatabaseUtil;
-import com.emperises.monercat.domain.ADInfo;
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
 import com.emperises.monercat.ui.MingXiActivity;
-import com.emperises.monercat.utils.Logger;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;

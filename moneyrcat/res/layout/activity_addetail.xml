@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1"
         android:background="@drawable/adtestbig" />
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:src="@drawable/rmbicon_1" />
 
         <TextView
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/textView1"
             android:src="@drawable/rmbicon_2" />
 
@@ -84,7 +84,7 @@
         android:layout_height="30dp"
         android:layout_alignLeft="@+id/imageView2"
         android:layout_below="@+id/imageView2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:text="我要参加"
         android:textColor="#ffffff"
         android:background="@drawable/black_button" />
