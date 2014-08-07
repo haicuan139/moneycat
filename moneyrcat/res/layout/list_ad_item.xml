@@ -30,7 +30,7 @@
         android:textColor="#A0A0A0"
         android:textSize="12sp" />
 
-    <com.emperises.monercat.custom.CircleImageView
+    <com.emperises.monercat.customview.CircleImageView
         android:id="@+id/adIcon"
         android:layout_width="70dp"
         android:layout_height="70dp"

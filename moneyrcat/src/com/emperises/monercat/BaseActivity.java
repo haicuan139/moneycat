@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.emperises.monercat.customview.CustomDialog.DialogClick;
+import com.emperises.monercat.customview.CustomDialogConfig;
+import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
 import com.emperises.monercat.interfaces.HttpInterface;
@@ -38,7 +41,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	private FinalHttp mFinalHttp;
 	private ProgressDialog mProgressDialog;
 	private TextView titleText;
-
+	private SharedPreferences sp;
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.leftItem:
@@ -108,6 +111,49 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		mDatabase = new DatabaseImpl(this,null);//TODO:创建数据库
 //		testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
+		sp = getSharedPreferences("config", MODE_PRIVATE);
+	}
+	private void showDialog(CustomDialogConfig config) {
+		DialogManager.getInstance(this, config).show();
+	}
+	/**
+	 * 显示一个标准的自定义对话框
+	 * @param title
+	 * @param message
+	 * @param sureClickListener “确定”点击事件
+	 * @param cancleClickListener “取消”点击事件
+	 */
+	protected void showDialog(String title ,String message , DialogClick sureClickListener ,DialogClick cancleClickListener) {
+		CustomDialogConfig config = new CustomDialogConfig();
+		config.setCancelListener(cancleClickListener);
+		config.setSureListener(sureClickListener);
+		config.setMessage(message);
+		config.setTitle(title);
+		showDialog(config);
+	}
+	protected void setStringtForKey(String key , String value) {
+		sp.edit().putString(key, value).commit();
+	}
+	protected void setBooleanForKey(String key , boolean value) {
+		sp.edit().putBoolean(key, value).commit();
+	}
+	protected void setIntForKey(String key , int value) {
+		sp.edit().putInt(key, value).commit();
+	}
+	protected void setFloatForKey(String key , float value) {
+		sp.edit().putFloat(key, value).commit();
+	}
+	protected String getStringValueForKey(String key) {
+		return sp.getString(key, "");
+	}
+	protected float getFloatValueForKey(String key) {
+		return sp.getFloat(key, 0.0f);
+	}
+	protected boolean getBoleanValueForKey(String key) {
+		return sp.getBoolean(key, false);
+	}
+	protected int getIntValueForKey(String key){
+		return sp.getInt(key, 0);
 	}
 	protected SQLiteDatabase getDatabase() {
 		return mDatabase.getDatabase();

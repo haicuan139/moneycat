@@ -30,5 +30,6 @@
 	<string name="errcode_deny">发送被拒绝</string>
 	<string name="errcode_unknown">发送返回</string>
 	<string name="tasks">任务</string>
+	<string name="dialog_default_message">确定要执行此操作吗?</string>
 
 </resources>

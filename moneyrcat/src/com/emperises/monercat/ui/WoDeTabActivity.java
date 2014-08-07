@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -14,6 +15,9 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
+import com.emperises.monercat.customview.CustomDialog;
+import com.emperises.monercat.customview.CustomDialog.DialogClick;
+import com.emperises.monercat.customview.DialogManager;
 
 public class WoDeTabActivity extends BaseActivity implements
 		OnPageChangeListener {
@@ -112,7 +116,20 @@ public class WoDeTabActivity extends BaseActivity implements
 			startActivityWithAnimation(new Intent(this,MingXiActivity.class));
 			break;
 		case R.id.chaozhiduihuan:
-			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));
+//			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));
+			showDialog("标题","消息", new CustomDialog.DialogClick() {
+				@Override
+				public void onClick(View v) {
+					super.onClick(v);
+					showToast("点击了确定");
+				}
+			}, new DialogClick() {
+				@Override
+				public void onClick(View v) {
+					super.onClick(v);
+					showToast("点击了取消");
+				}
+			});
 			break;
 
 		default:

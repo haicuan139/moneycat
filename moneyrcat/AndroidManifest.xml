@@ -118,6 +118,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.customview.CustomDialog"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" />
 
         <!-- push应用定义消息receiver声明 -->
         <receiver

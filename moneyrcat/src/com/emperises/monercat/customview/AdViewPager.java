@@ -1,4 +1,4 @@
-package com.emperises.monercat.custom;
+package com.emperises.monercat.customview;
 
 import android.content.Context;
 import android.graphics.PointF;
