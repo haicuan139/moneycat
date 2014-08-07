@@ -435,6 +435,7 @@ int string hit 0x7f07000e
 int string home 0x7f07000f
 int string more 0x7f070012
 int string my 0x7f070011
+int string myad 0x7f07001a
 int string neterror 0x7f070009
 int string pull_to_refresh_from_bottom_pull_label 0x7f070003
 int string pull_to_refresh_from_bottom_refreshing_label 0x7f070005
@@ -506,7 +507,6 @@ int string umeng_socialize_ucenter_login_title_platform 0x7f070032
 int string updatestartstr 0x7f07001b
 int string wait 0x7f07000d
 int string woyaotixian 0x7f070019
-int string 我的广告 0x7f07001a
 int style AppBaseTheme 0x7f090000
 int style AppTheme 0x7f090001
 int style Theme_UMDefault 0x7f09000c

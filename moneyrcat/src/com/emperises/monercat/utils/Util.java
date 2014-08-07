@@ -23,9 +23,13 @@ import android.net.Uri;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.view.View;
 import android.webkit.MimeTypeMap;
 
 import com.emperises.monercat.R;
+import com.emperises.monercat.customview.CustomDialog.DialogClick;
+import com.emperises.monercat.customview.CustomDialogConfig;
+import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.domain.UpdateInfo;
 import com.google.gson.Gson;
 
@@ -189,19 +193,22 @@ public class Util {
 		builder.show();
 	}
 	public static void showUpdateDialog(final Context context ,final UpdateInfo update){
-		showCustomDialog(context, update.getTitle(), update.getMessage(), new DialogInterface.OnClickListener() {
-			
+		CustomDialogConfig config = new CustomDialogConfig();
+		config.setTitle("更新提示");
+		config.setSureButtonText("更新");
+		config.setMessage(update.getMessage());
+		config.setCancelListener(new DialogClick() {
 			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				//确定
-				downloadApkAndInstall(context, update);
-			}
-		}, new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				//取消
+			public void onClick(View v) {
+				super.onClick(v);
 			}
 		});
+		config.setSureListener(new DialogClick() {
+			public void onClick(View v) {
+				super.onClick(v);
+				downloadApkAndInstall(context, update);
+			};
+		});
+		DialogManager.getInstance(context, config).show();
 	}
 }

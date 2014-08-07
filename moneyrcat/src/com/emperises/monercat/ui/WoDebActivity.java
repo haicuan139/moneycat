@@ -17,7 +17,7 @@ public class WoDebActivity extends OtherBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my);
-		setCurrentTitle(getString(R.string.我的广告));
+		setCurrentTitle(getString(R.string.myad));
 	}
 	@Override
 	protected void initViews() {

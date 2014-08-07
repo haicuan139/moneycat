@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
@@ -15,9 +14,8 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
-import com.emperises.monercat.customview.CustomDialog;
-import com.emperises.monercat.customview.CustomDialog.DialogClick;
-import com.emperises.monercat.customview.DialogManager;
+import com.emperises.monercat.domain.UpdateInfo;
+import com.emperises.monercat.utils.Util;
 
 public class WoDeTabActivity extends BaseActivity implements
 		OnPageChangeListener {
@@ -117,19 +115,10 @@ public class WoDeTabActivity extends BaseActivity implements
 			break;
 		case R.id.chaozhiduihuan:
 //			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));
-			showDialog("标题","消息", new CustomDialog.DialogClick() {
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					showToast("点击了确定");
-				}
-			}, new DialogClick() {
-				@Override
-				public void onClick(View v) {
-					super.onClick(v);
-					showToast("点击了取消");
-				}
-			});
+			UpdateInfo info = new UpdateInfo();
+			info.setMessage("招财喵有新的版本更新招财喵有新的版本更新招财喵有新的版本更新");
+			info.setDownloadUrl("http://gdown.baidu.com/data/wisegame/9c71d971e9df1b3c/zhifubaoqianbao_60.apk");
+			Util.showUpdateDialog(this, info);
 			break;
 
 		default:

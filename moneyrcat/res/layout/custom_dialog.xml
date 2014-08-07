@@ -77,9 +77,9 @@
                 android:layout_height="35dp"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/black_button"
+                android:background="@drawable/commit_bt_selector"
                 android:text="@string/sure"
-                android:textColor="#ffffff" />
+                 />
         </LinearLayout>
 
         <View

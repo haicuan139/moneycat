@@ -583,6 +583,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int home=0x7f07000f;
         public static final int more=0x7f070012;
         public static final int my=0x7f070011;
+        public static final int myad=0x7f07001a;
         public static final int neterror=0x7f070009;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
@@ -659,7 +660,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int updatestartstr=0x7f07001b;
         public static final int wait=0x7f07000d;
         public static final int woyaotixian=0x7f070019;
-        public static final int 我的广告=0x7f07001a;
     }
     public static final class style {
         /** 
