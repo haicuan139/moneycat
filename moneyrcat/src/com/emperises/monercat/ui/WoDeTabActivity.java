@@ -14,8 +14,6 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
-import com.emperises.monercat.domain.UpdateInfo;
-import com.emperises.monercat.utils.Util;
 
 public class WoDeTabActivity extends BaseActivity implements
 		OnPageChangeListener {
@@ -114,11 +112,7 @@ public class WoDeTabActivity extends BaseActivity implements
 			startActivityWithAnimation(new Intent(this,MingXiActivity.class));
 			break;
 		case R.id.chaozhiduihuan:
-//			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));
-			UpdateInfo info = new UpdateInfo();
-			info.setMessage("招财喵有新的版本更新招财喵有新的版本更新招财喵有新的版本更新");
-			info.setDownloadUrl("http://gdown.baidu.com/data/wisegame/9c71d971e9df1b3c/zhifubaoqianbao_60.apk");
-			Util.showUpdateDialog(this, info);
+			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));
 			break;
 
 		default:

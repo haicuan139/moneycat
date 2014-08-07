@@ -74,8 +74,10 @@ public class DatabaseUtil {
 					if(!f.getName().equals("serialVersionUID")){
 						f.setAccessible(true);//开启权限
 						Object value = f.get(domainObject);
-						String fieldName = f.getName();
-						values.put(fieldName, (String)value);
+						if(value != null){
+							String fieldName = f.getName();
+							values.put(fieldName, (String)value);
+						}
 						f.setAccessible(false);
 					}
 				}
