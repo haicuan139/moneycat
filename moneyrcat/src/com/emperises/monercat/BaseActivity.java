@@ -21,7 +21,9 @@ import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
 import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
+import com.emperises.monercat.interfaces.LocalConfigKey;
 import com.emperises.monercat.ui.MingXiActivity;
+import com.emperises.monercat.utils.Util;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
@@ -36,7 +38,7 @@ import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 public abstract class BaseActivity extends Activity implements OnClickListener,
-		HttpInterface {
+		HttpInterface , LocalConfigKey{
 
 	private FinalHttp mFinalHttp;
 	private ProgressDialog mProgressDialog;
@@ -302,5 +304,22 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	public String getResString(int resId) {
 		return getResources().getString(resId);
 	}
+    /**
+     * Convert from DIP value to Pixel value.
+     * @param dip Value in DIP
+     * @return Value in Pixel
+     */
+    public  int dip2px(float dip ) {
+    	
+        return Util.dip2px(dip, this);
+    }
 
+    /**
+     * Convert from Pixel value to DIP value.
+     * @param pixel Value in Pixel
+     * @return Value in DIP
+     */
+    public int px2dip(float pixel) {
+        return Util.px2dip(pixel, this);
+    }
 }

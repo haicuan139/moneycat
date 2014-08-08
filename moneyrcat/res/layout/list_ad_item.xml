@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/white_selector"
-    android:paddingTop="20dp"
     android:paddingBottom="20dp"
-    android:layout_height="match_parent" >
+    android:paddingTop="20dp" >
 
     <TextView
         android:id="@+id/textView1"
@@ -14,18 +14,17 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/adIcon"
         android:text="奔驰汽车"
-        android:layout_marginTop="5dp"
-        android:textSize="17sp"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="10dp"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
         android:text="秉承&quot;唯有最好&quot;的品牌理念,秉承&quot;唯有最好&quot;的品牌理念"
         android:textColor="#A0A0A0"
         android:textSize="12sp" />
@@ -38,5 +37,48 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="12dp"
         android:background="@drawable/test01" />
+
+    <LinearLayout
+        android:id="@+id/ImageView01"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rmbicon_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="2dp"
+            android:text="点击:0.2元/次"
+            android:textColor="#777777"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/rmbicon_2" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:text="推荐:5元/次"
+            android:textColor="#777777"
+            android:textSize="10sp" />
+    </LinearLayout>
 
 </RelativeLayout>

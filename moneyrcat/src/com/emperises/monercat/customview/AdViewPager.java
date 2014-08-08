@@ -2,12 +2,12 @@ package com.emperises.monercat.customview;
 
 import android.content.Context;
 import android.graphics.PointF;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
-public class AdViewPager extends ViewPager{
+public class AdViewPager extends AutoScrollViewPager{
 
 	public AdViewPager(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -24,8 +24,7 @@ public class AdViewPager extends ViewPager{
         case MotionEvent.ACTION_DOWN:  
             downPoint.x = evt.getX();  
             downPoint.y = evt.getY();  
-            if (this.getChildCount() > 1) { //�����ݣ�����1��ʱ  
-                // ֪ͨ�丸�ؼ������ڽ��е��Ǳ��ؼ��Ĳ���������������  
+            if (this.getChildCount() > 1) {   
                 getParent().requestDisallowInterceptTouchEvent(true);  
             }  
             break;  

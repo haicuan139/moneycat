@@ -29,6 +29,9 @@ public class AdDetailActivity extends  OtherBaseActivity{
 		case R.id.shenling_but:
 			startActivity(new Intent(this , ShenLingActivity.class));
 			break;
+		case R.id.woyaocanjia_button:
+			startActivity(new Intent(this , WYCJDialogActivity.class));
+			break;
 
 		default:
 			break;

@@ -19,6 +19,7 @@ public class MingXiActivity extends OtherBaseActivity {
 	}
 	@Override
 	protected void initViews() {
+		findViewById(R.id.mingxi_button).setVisibility(View.GONE);;
 		ListView mMinxiListView = (ListView) findViewById(R.id.mingxiListView);
 		mMinxiListView.setAdapter(new MyAdapter());
 	}

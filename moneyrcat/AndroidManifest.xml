@@ -49,6 +49,26 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
+            android:name="com.emperises.monercat.ui.WoDeAdDetailForList"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.BindActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.BindActivity_1"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.BindActivity_Safe"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" />
+        <activity
             android:name="com.emperises.monercat.ui.WoDebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -62,7 +82,17 @@
             android:name="com.emperises.monercat.ui.RecommendDialogActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/Translucent_NoTitle" />
+        <activity
+            android:name="com.emperises.monercat.ui.WYCJDialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" />
+        <activity
+            android:name="com.emperises.monercat.ui.ChangeBindActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" />
         <activity
             android:name="com.emperises.monercat.ui.WoDeTabActivity"
             android:launchMode="singleTop"
@@ -95,7 +125,7 @@
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
             android:name="com.emperises.monercat.MainActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
@@ -107,7 +137,7 @@
             android:name="com.emperises.monercat.ui.TiXianDialogActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/Translucent_NoTitle" />
         <activity
             android:name="com.emperises.monercat.ui.ShenLingActivity"
             android:launchMode="singleTop"
@@ -117,12 +147,22 @@
             android:name="com.emperises.monercat.ui.DuiHuanDialogActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/Translucent_NoTitle" />
         <activity
             android:name="com.emperises.monercat.customview.CustomDialog"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/Translucent_NoTitle" />
+        <activity
+            android:name="com.emperises.monercat.ui.TasksActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.HaoPinTestActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <!-- push应用定义消息receiver声明 -->
         <receiver

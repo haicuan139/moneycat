@@ -15,14 +15,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
+import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -30,8 +33,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 public class HomeActivity extends BaseActivity implements OnRefreshListener<ListView> ,OnPageChangeListener ,OnItemClickListener
 {
 	private PullToRefreshListView mAdListView;
-	private static final int REFRESH_COMPLETE = 1;
 	private MyAdAdapter mAdListAdapter;
+	private static final int REFRESH_COMPLETE = 1;
 	private Handler mHandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -57,6 +60,8 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	
 	@Override
 	protected void initViews() {
+		findViewById(R.id.mingxi_button).setVisibility(View.GONE);
+		changeBindState();
 		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
 		mAdListView = (PullToRefreshListView) findViewById(R.id.adListView);
 		mAdListView.setOnItemClickListener(this);
@@ -94,6 +99,21 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
         mAdPager.setOnPageChangeListener(this);
         mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
         
+	}
+
+
+	private void changeBindState() {
+		boolean bindFlg = getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG);
+		Logger.i("BIND", "BIND FLG : "+bindFlg);
+		TextView yue = (TextView) findViewById(R.id.yue_text);
+		Button button = (Button) findViewById(R.id.mingxi_button);
+		if(bindFlg){
+			button.setVisibility(View.VISIBLE);
+			yue.setText("余额:88元");
+		}else{
+			button.setVisibility(View.GONE);
+			yue.setText("绑定手机号码,满100元即可提现");
+		}
 	}
 	class MyAdAdapter extends BaseAdapter{
 
@@ -180,6 +200,30 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		startActivityWithAnimation(new Intent(this,AdDetailActivity.class));
 		
 	}
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		if (hasFocus) {
+			changeBindState();
+		}
+	}
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		switch (v.getId()) {
+		case R.id.mingxi_button:
+		case R.id.home_bind:
+			boolean bindFlg = getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG);
+			if(!bindFlg){
+				startActivity(new Intent(this , BindActivity.class));
+			}else{
+				startActivity(new Intent(this , MingXiActivity.class));
+			}
+			break;
 
+		default:
+			break;
+		}
+	}
 
 }

@@ -2,15 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#88000000" >
+    android:background="#00000000" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="@drawable/dialog_bg"
         android:orientation="vertical" >
 
@@ -137,7 +135,8 @@
                 android:textColor="@color/texttitle" />
         </RelativeLayout>
 
-        <RelativeLayout
+
+  <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -155,10 +154,10 @@
 
             <RadioGroup
                 android:id="@+id/gender_radio_group"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="28dp"
+                android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/textView5"
                 android:orientation="horizontal" >
 
@@ -197,6 +196,7 @@
             android:background="@drawable/commit_bt_selector"
             android:id="@+id/commit_bt"
             android:onClick="onClick"
+            android:textColor="@color/texttitle"
             android:text="提交" />
 
         <TextView

@@ -12,6 +12,7 @@ public class RecommendActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_recommend);
+		setCurrentTitle(getString(R.string.recommend_title));
 	}
 	@Override
 	protected void initViews() {

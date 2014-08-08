@@ -12,6 +12,7 @@
     <string name="hit">提示</string>
     <string name="home">首页</string>
     <string name="recommend">推荐</string>
+    <string name="tasktitle">任务广场</string>
     <string name="my">我的</string>
     <string name="more">更多</string>
     <string name="guanggaoxiangqing">广告详情</string>
@@ -31,5 +32,14 @@
 	<string name="errcode_unknown">发送返回</string>
 	<string name="tasks">任务</string>
 	<string name="dialog_default_message">确定要执行此操作吗?</string>
+	<string name="update_button_text">更新</string>
+	<string name="update_title">更新提示</string>
+	<string name="bindteltext">绑定手机</string>
+	<string name="safe_info_text">安全信息</string>
+	<string name="sendcode">发送验证码</string>
+	<string name="bindtext">绑定</string>
+	<string name="yanzheng_hit_text">提示:请确认绑定的手机号码能够正常接收短信,兑换、提现时均需要通过手机短信验证。</string>
+	<string name="more_update_text">当前已经是最新版本</string>
+	<string name="recommend_title">推荐给朋友</string>
 
 </resources>

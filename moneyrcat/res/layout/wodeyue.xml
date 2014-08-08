@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/relativeLayout1"
+    android:id="@+id/home_bind"
     android:layout_width="fill_parent"
     android:layout_height="40dp"
+    android:onClick="onClick"
     android:layout_alignParentLeft="true"
-    android:background="#bdbdbd" >
+    android:background="#f4f4f4" >
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/header_normal_icon" />
 
     <TextView
@@ -20,33 +21,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
+        android:layout_marginLeft="4dp"
         android:layout_toRightOf="@+id/imageView1"
-        android:text="Lv1"
-        android:textColor="#ffffff"
-        android:textSize="12sp" />
+        android:text="Lv.0"
+        android:textColor="#6e7d83"
+        android:textSize="9sp" />
 
-    <Button
-        android:id="@+id/mingxi_button"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="50dp"
-        android:layout_height="25dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:background="@drawable/black_button"
-        android:textSize="13sp"
-        android:text="明细"
-        android:textColor="#ffffff" />
+        android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/mingxi_button"
-        android:layout_alignBottom="@+id/mingxi_button"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/mingxi_button"
-        android:text="余额:4.8 元"
-        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/yue_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="余额:4.8 元"
+            android:textColor="#6e7d83" />
+
+        <Button
+            android:id="@+id/mingxi_button"
+            android:onClick="onClick"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:background="@drawable/black_button"
+            android:text="明细"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+    </LinearLayout>
 
 </RelativeLayout>

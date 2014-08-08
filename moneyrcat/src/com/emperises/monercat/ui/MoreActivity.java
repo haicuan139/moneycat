@@ -1,20 +1,62 @@
 package com.emperises.monercat.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 
 public class MoreActivity extends BaseActivity {
+	private TextView mBindText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_more);
 	}
 	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		if (hasFocus) {
+			changeBindText();
+		}
+	}
+	@Override
 	protected void initViews() {
-		// TODO Auto-generated method stub
-		
+		changeBindText();
+	}
+	private void changeBindText() {
+		mBindText = (TextView) findViewById(R.id.more_bind_text);
+		if(getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG)){
+			mBindText.setText("更改绑定");
+		}else{
+			mBindText.setText("绑定手机");
+		}
+	}
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		switch (v.getId()) {
+		case R.id.more_bind:
+			if(getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG)){
+				startActivity(new Intent(this , ChangeBindActivity.class));
+			}else{
+				startActivity(new Intent(this , BindActivity.class));
+			}
+			break;
+		case R.id.more_recommend:
+			startActivity(new Intent(this , RecommendActivity.class));
+			break;
+		case R.id.more_haoping:
+			startActivity(new Intent(this , HaoPinTestActivity.class));
+			break;
+		case R.id.moreCheckUpdate:
+			showToast(R.string.more_update_text);
+			break;
+		default:
+			break;
+		}
 	}
 
 }

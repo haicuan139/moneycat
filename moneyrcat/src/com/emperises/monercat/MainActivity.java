@@ -22,6 +22,7 @@ import com.emperises.monercat.ui.HomeActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.MoreActivity;
 import com.emperises.monercat.ui.RecommendActivity;
+import com.emperises.monercat.ui.TasksActivity;
 import com.emperises.monercat.ui.WoDeTabActivity;
 import com.emperises.monercat.utils.PushUtils;
 
@@ -36,13 +37,13 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		PushUtils.startPush(this);
-		titleIds = new String[] { getResources().getString(R.string.home), getResources().getString(R.string.recommend),getResources().getString(R.string.my), getResources().getString(R.string.more) };
+		titleIds = new String[] { getResources().getString(R.string.home), getResources().getString(R.string.tasktitle),getResources().getString(R.string.my), getResources().getString(R.string.more) };
 		mHomePager = (ViewPager) findViewById(R.id.homePager);
 		mHomePager.setOffscreenPageLimit(4);
 		View home = getLocalActivityManager().startActivity("index",
 				new Intent(this, HomeActivity.class)).getDecorView();
-		View recommend = getLocalActivityManager().startActivity("recommend",
-				new Intent(this, RecommendActivity.class)).getDecorView();
+		View recommend = getLocalActivityManager().startActivity("tasks",
+				new Intent(this, TasksActivity.class)).getDecorView();
 		View my = getLocalActivityManager().startActivity("wode",
 				new Intent(this, WoDeTabActivity.class)).getDecorView();
 		View more = getLocalActivityManager().startActivity("more",

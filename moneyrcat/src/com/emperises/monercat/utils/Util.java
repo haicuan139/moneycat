@@ -34,7 +34,26 @@ import com.emperises.monercat.domain.UpdateInfo;
 import com.google.gson.Gson;
 
 public class Util {
+    /**
+     * Convert from DIP value to Pixel value.
+     * @param dip Value in DIP
+     * @return Value in Pixel
+     */
+    public  static int dip2px(float dip ,Context ctx) {
+    	
+        final float scale = ctx.getResources().getDisplayMetrics().density;
+        return (int) (dip * scale + 0.5f);
+    }
 
+    /**
+     * Convert from Pixel value to DIP value.
+     * @param pixel Value in Pixel
+     * @return Value in DIP
+     */
+    public static  int px2dip(float pixel,Context ctx) {
+        final float scale = ctx.getResources().getDisplayMetrics().density;
+        return (int) (pixel / scale + 0.5f);
+    }
 	public static String getDeviceId(Context context){
 		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);  
 		return tm.getDeviceId();
@@ -194,8 +213,8 @@ public class Util {
 	}
 	public static void showUpdateDialog(final Context context ,final UpdateInfo update){
 		CustomDialogConfig config = new CustomDialogConfig();
-		config.setTitle("更新提示");
-		config.setSureButtonText("更新");
+		config.setTitle(context.getString(R.string.update_title));
+		config.setSureButtonText(context.getString(R.string.update_button_text));
 		config.setMessage(update.getMessage());
 		config.setCancelListener(new DialogClick() {
 			@Override
