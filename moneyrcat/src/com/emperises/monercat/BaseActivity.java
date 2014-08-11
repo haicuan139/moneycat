@@ -23,6 +23,7 @@ import com.emperises.monercat.interfaces.HttpInterface;
 import com.emperises.monercat.interfaces.HttpRequest;
 import com.emperises.monercat.interfaces.LocalConfigKey;
 import com.emperises.monercat.ui.MingXiActivity;
+import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.emperises.monercat.utils.Util;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -46,6 +47,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	private SharedPreferences sp;
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.myheaderimage:
+			startActivity(new Intent(this , ActivityMyInfo.class));
+			break;
 		case R.id.leftItem:
 			startActivityWithAnimation(new Intent(this, MingXiActivity.class));
 			break;

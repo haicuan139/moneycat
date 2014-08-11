@@ -14,6 +14,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
+import com.emperises.monercat.ui.v3.ActivityMyInfo;
 
 public class WoDeTabActivity extends BaseActivity implements
 		OnPageChangeListener {
@@ -56,7 +57,7 @@ public class WoDeTabActivity extends BaseActivity implements
 		mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
 		findViewById(R.id.wodeguanggao).setOnClickListener(this);;
 		findViewById(R.id.woyaotixian).setOnClickListener(this);
-		findViewById(R.id.shouzhimingxi).setOnClickListener(this);
+		findViewById(R.id.myinfo).setOnClickListener(this);
 		findViewById(R.id.chaozhiduihuan).setOnClickListener(this);
 		mAdPager.setAdapter(new ImagePagerAdapter(this, mListImage).setInfiniteLoop(true));
 		mAdPager.setInterval(2000);
@@ -108,8 +109,8 @@ public class WoDeTabActivity extends BaseActivity implements
 		case R.id.woyaotixian:
 			startActivityWithAnimation(new Intent(this,TiXianActivity.class));
 			break;
-		case R.id.shouzhimingxi:
-			startActivityWithAnimation(new Intent(this,MingXiActivity.class));
+		case R.id.myinfo:
+			startActivityWithAnimation(new Intent(this,ActivityMyInfo.class));
 			break;
 		case R.id.chaozhiduihuan:
 			startActivityWithAnimation(new Intent(this,DuiHuanActivity.class));

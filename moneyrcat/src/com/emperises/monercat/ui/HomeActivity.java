@@ -19,13 +19,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
-import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -60,8 +58,8 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	
 	@Override
 	protected void initViews() {
-		findViewById(R.id.mingxi_button).setVisibility(View.GONE);
-		changeBindState();
+		mMXButton = (Button) findViewById(R.id.mingxi_button);
+		mMXButton.setText(R.string.tixian);
 		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
 		mAdListView = (PullToRefreshListView) findViewById(R.id.adListView);
 		mAdListView.setOnItemClickListener(this);
@@ -102,24 +100,11 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	}
 
 
-	private void changeBindState() {
-		boolean bindFlg = getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG);
-		Logger.i("BIND", "BIND FLG : "+bindFlg);
-		TextView yue = (TextView) findViewById(R.id.yue_text);
-		Button button = (Button) findViewById(R.id.mingxi_button);
-		if(bindFlg){
-			button.setVisibility(View.VISIBLE);
-			yue.setText("余额:88元");
-		}else{
-			button.setVisibility(View.GONE);
-			yue.setText("绑定手机号码,满100元即可提现");
-		}
-	}
 	class MyAdAdapter extends BaseAdapter{
 
 		@Override
 		public int getCount() {
-			return 10;
+			return 5;
 		}
 
 		@Override
@@ -136,10 +121,13 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		public View getView(int position, View arg1, ViewGroup arg2) {
 			View v = getLayoutInflater().inflate(R.layout.list_ad_item, null);
 			ImageView i = (ImageView) v.findViewById(R.id.adIcon);
-			if(position % 2 == 0){
-				i.setBackgroundResource(R.drawable.test01);
+			if(position == 2){
+				v.findViewById(R.id.aditem_content).setVisibility(View.GONE);
+				v.setBackgroundResource(R.drawable.testaditemhengfu);
+			}else if(position % 2 == 0){
+				i.setBackgroundResource(R.drawable.bmtestbg);
 			}else{
-				i.setBackgroundResource(R.drawable.test02);
+				i.setBackgroundResource(R.drawable.testbenchi);
 			}
 			return v; 
 		}
@@ -183,6 +171,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		changeIndexBg(currentIndex);
 	}
 	private int currentIndex = 0;
+	private Button mMXButton;
 	private void changeIndexBg(int currentPosition){
 		for (int i = 0; i < mPagerIndexLayout.getChildCount(); i++) {
 			ImageView bg = (ImageView) mPagerIndexLayout.getChildAt(i);
@@ -201,24 +190,14 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		
 	}
 	@Override
-	public void onWindowFocusChanged(boolean hasFocus) {
-		super.onWindowFocusChanged(hasFocus);
-		if (hasFocus) {
-			changeBindState();
-		}
-	}
-	@Override
 	public void onClick(View v) {
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.mingxi_button:
-		case R.id.home_bind:
-			boolean bindFlg = getBoleanValueForKey(LOCAL_CONFIGKEY_BIND_FLG);
-			if(!bindFlg){
-				startActivity(new Intent(this , BindActivity.class));
-			}else{
-				startActivity(new Intent(this , MingXiActivity.class));
-			}
+			startActivity(new Intent(this , TiXianActivity.class));
+			break;
+		case R.id.wodeyue:
+			
 			break;
 
 		default:

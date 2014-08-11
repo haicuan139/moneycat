@@ -3,10 +3,10 @@ package com.emperises.monercat.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import com.emperises.monercat.BaseActivity;
+import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 
-public class RecommendActivity extends BaseActivity {
+public class RecommendActivity extends OtherBaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

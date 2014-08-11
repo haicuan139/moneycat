@@ -26,7 +26,9 @@ public class ShenLingActivity extends OtherBaseActivity {
 		case R.id.recommend_bt:
 			startActivity(new Intent(this , RecommendDialogActivity.class));
 			break;
-
+		case R.id.shenling_pengyouquan:
+			openShare();
+			break;
 		default:
 			break;
 		}

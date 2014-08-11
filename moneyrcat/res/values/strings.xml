@@ -21,8 +21,8 @@
     <string name="shouzhimingxi">收支明细</string>
     <string name="copylikestr">成功复制到剪切板</string>
     <string name="guanggaoshenling">广告申领</string>
-    <string name="woyaotixian">我要体现</string>
-    <string name="myad">我的广告</string>
+    <string name="woyaotixian">我要提现</string>
+    <string name="myad">我的申领</string>
     <string name="updatestartstr">招财喵更新启动</string>
     <string name="cancle">取消</string>
     <string name="sure">确定</string>
@@ -41,5 +41,6 @@
 	<string name="yanzheng_hit_text">提示:请确认绑定的手机号码能够正常接收短信,兑换、提现时均需要通过手机短信验证。</string>
 	<string name="more_update_text">当前已经是最新版本</string>
 	<string name="recommend_title">推荐给朋友</string>
+	<string name="tixian">提现</string>
 
 </resources>

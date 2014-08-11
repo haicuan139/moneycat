@@ -24,6 +24,8 @@ import com.emperises.monercat.ui.MoreActivity;
 import com.emperises.monercat.ui.RecommendActivity;
 import com.emperises.monercat.ui.TasksActivity;
 import com.emperises.monercat.ui.WoDeTabActivity;
+import com.emperises.monercat.ui.v3.ActivityDaiBan;
+import com.emperises.monercat.ui.v3.ActivityMessageList;
 import com.emperises.monercat.utils.PushUtils;
 
 @SuppressWarnings("deprecation")
@@ -163,10 +165,11 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 			changeButtonColor(3);
 			break;
 		case R.id.leftItem:
-			startActivity(new Intent(this , MingXiActivity.class));
+			startActivity(new Intent(this , ActivityMessageList.class));
 			break;
 		case R.id.rightItem:
-			Toast.makeText(this, R.string.signtoast, Toast.LENGTH_SHORT).show();
+//			Toast.makeText(this, R.string.signtoast, Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(this , ActivityDaiBan.class));
 			break;
 		default:
 			break;

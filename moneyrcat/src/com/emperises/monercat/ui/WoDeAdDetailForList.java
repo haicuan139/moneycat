@@ -13,7 +13,7 @@ public class WoDeAdDetailForList extends OtherBaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wodeaddetailforlist);
-		setCurrentTitle(getString(R.string.myad));
+		setCurrentTitle("分享给好友");
 	}
 	@Override
 	protected void initViews() {

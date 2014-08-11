@@ -97,7 +97,7 @@
                     android:layout_marginLeft="16dp"
                     android:textColor="@color/texttitle"
                     android:layout_toRightOf="@+id/imageView1"
-                    android:text="我的广告" />
+                    android:text="我的申领" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -156,7 +156,7 @@
 
             <RelativeLayout
                 android:background="@drawable/white_selector"
-                android:id="@+id/shouzhimingxi"
+                android:id="@+id/myinfo"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp" >
 
@@ -176,8 +176,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@+id/imageView1_2"
-                    android:textColor="@color/texttitle"
-                    android:text="收支明细" />
+                    android:text="我的信息"
+                    android:textColor="@color/texttitle" />
 
                 <ImageView
                     android:id="@+id/imageView2_2"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/home_bind"
+    android:id="@+id/wodeyue"
     android:layout_width="fill_parent"
     android:layout_height="40dp"
     android:onClick="onClick"
@@ -8,11 +8,12 @@
     android:background="#f4f4f4" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/myheaderimage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:onClick="onClick"
         android:layout_marginLeft="20dp"
         android:background="@drawable/header_normal_icon" />
 
@@ -20,12 +21,12 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
+        android:layout_alignBottom="@+id/myheaderimage"
         android:layout_marginLeft="4dp"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toRightOf="@+id/myheaderimage"
         android:text="Lv.0"
         android:textColor="#6e7d83"
-        android:textSize="9sp" />
+        android:textSize="10sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -47,12 +48,23 @@
             android:id="@+id/mingxi_button"
             android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:background="@drawable/black_button"
             android:text="明细"
             android:textColor="#ffffff"
             android:textSize="13sp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:textSize="10sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_marginLeft="10dp"
+        android:textColor="#6e7d83"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="13922334444" />
 
 </RelativeLayout>

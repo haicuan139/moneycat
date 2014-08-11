@@ -7,6 +7,7 @@
     
     <RelativeLayout
         android:id="@+id/more_bind"
+        android:visibility="gone"
         android:layout_width="fill_parent"
         android:background="@drawable/white_selector"
         android:onClick="onClick"
@@ -51,7 +52,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="19dp"
-            android:text="推荐朋友"
+            android:text="推荐招财猫"
             android:textColor="@color/texttitle" />
 
         <ImageView

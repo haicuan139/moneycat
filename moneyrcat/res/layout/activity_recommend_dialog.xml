@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:background="@drawable/dialog_bg"
         android:orientation="vertical" >
@@ -35,9 +35,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="10dp"
-                android:onClick="onClick"
                 android:background="@drawable/x"
-                />
+                android:onClick="onClick" />
         </RelativeLayout>
 
         <View
@@ -56,15 +55,15 @@
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="fill_parent"
-                android:layout_marginRight="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/textView2"
                 android:background="@drawable/commit_bt_normal"
+                android:ems="10"
                 android:textColor="@color/texttitle"
-                android:textSize="13sp"
-                android:ems="10" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -85,15 +84,15 @@
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="fill_parent"
-                android:layout_marginRight="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/textView3"
-                android:textColor="@color/texttitle"
-                android:textSize="13sp"
                 android:background="@drawable/commit_bt_normal"
-                android:ems="10" />
+                android:ems="10"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -114,15 +113,15 @@
             <EditText
                 android:id="@+id/editText3"
                 android:layout_width="fill_parent"
-                android:textColor="@color/texttitle"
-                android:textSize="13sp"
-                android:layout_marginRight="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/textView4"
                 android:background="@drawable/commit_bt_normal"
-                android:ems="10" />
+                android:ems="10"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -135,12 +134,10 @@
                 android:textColor="@color/texttitle" />
         </RelativeLayout>
 
-
-  <RelativeLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal" >
+            android:layout_marginTop="10dp" >
 
             <TextView
                 android:id="@+id/textView5"
@@ -152,52 +149,45 @@
                 android:text="性别"
                 android:textColor="@color/texttitle" />
 
-            <RadioGroup
-                android:id="@+id/gender_radio_group"
-                android:layout_width="fill_parent"
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="18dp"
                 android:layout_toRightOf="@+id/textView5"
-                android:orientation="horizontal" >
+                android:textColor="@color/texttitle"
+                android:drawableLeft="@drawable/radio_boy_selector"
+                android:drawablePadding="10dp"
+                android:background="#00000000"
+                android:text="男" />
 
-                <RadioButton
-                    android:id="@+id/radio0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableLeft="@drawable/radio_boy_selector"
-                    android:drawablePadding="10dp"
-                    android:text="男"
-                    android:textColor="@color/texttitle" />
-
-                <RadioButton
-                    android:id="@+id/radio1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableLeft="@drawable/radio_boy_selector"
-                    android:drawablePadding="10dp"
-                    android:text="女"
-                    android:textColor="@color/texttitle" />
-            </RadioGroup>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@+id/button1"
+                android:background="#00000000"
+                android:drawableLeft="@drawable/radio_gir_bt_selected"
+                android:drawablePadding="10dp"
+                android:text="女"
+                android:textColor="@color/texttitle" />
 
         </RelativeLayout>
 
         <Button
+            android:id="@+id/commit_bt"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/commit_bt_selector"
-            android:id="@+id/commit_bt"
             android:onClick="onClick"
-            android:textColor="@color/texttitle"
-            android:text="提交" />
+            android:text="提交"
+            android:textColor="@color/texttitle" />
 
         <TextView
             android:layout_width="fill_parent"
