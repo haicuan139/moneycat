@@ -1,12 +1,23 @@
 package com.emperises.monercat.ui;
 
+import java.io.File;
+
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
+import com.emperises.monercat.customview.headerimage.CropImageActivity;
 
 public class MoreActivity extends BaseActivity {
 	private TextView mBindText;
@@ -54,9 +65,10 @@ public class MoreActivity extends BaseActivity {
 		case R.id.moreCheckUpdate:
 			showToast(R.string.more_update_text);
 			break;
+		case R.id.more_About:
+			break;
 		default:
 			break;
 		}
 	}
-
 }

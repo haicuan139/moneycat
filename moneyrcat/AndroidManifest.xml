@@ -44,10 +44,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.emperises.monercat.customview.headerimage.CropImageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
             android:name="com.emperises.monercat.ui.RecommendActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.v3.ActivitySelectedHeadImage"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/Translucent_NoTitle" />
         <activity
             android:name="com.emperises.monercat.ui.v3.ActivityShenLinJiLu"
             android:launchMode="singleTop"

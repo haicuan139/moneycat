@@ -21,7 +21,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
             android:layout_centerVertical="true"
             android:background="@drawable/header_right_item"
              />
@@ -29,7 +28,6 @@
         <Button
             android:id="@+id/leftItem"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/rightItem"
             android:layout_alignBottom="@+id/rightItem"

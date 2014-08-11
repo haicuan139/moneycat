@@ -24,5 +24,8 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
+ <style name="mypopwindow_anim_style">
+  <item name="android:windowEnterAnimation">@anim/popupwindowshow</item>        <!-- 指定显示的动画xml  -->
+   <item name="android:windowExitAnimation">@anim/popupwindowhide</item>       <!-- 指定消失的动画xml  -->
+ </style>
 </resources>

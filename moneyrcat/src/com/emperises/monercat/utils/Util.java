@@ -34,6 +34,7 @@ import com.emperises.monercat.domain.UpdateInfo;
 import com.google.gson.Gson;
 
 public class Util {
+
     /**
      * Convert from DIP value to Pixel value.
      * @param dip Value in DIP
