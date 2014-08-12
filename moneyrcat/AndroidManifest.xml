@@ -59,6 +59,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/Translucent_NoTitle" />
         <activity
+            android:name="com.emperises.monercat.ui.v3.ActivityQRCode"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.v3.ActivityEditText"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
+            android:name="com.emperises.monercat.ui.v3.ActivityEditMyinfo"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+        <activity
             android:name="com.emperises.monercat.ui.v3.ActivityShenLinJiLu"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

@@ -43,5 +43,6 @@
 	<string name="more_update_text">当前已经是最新版本</string>
 	<string name="recommend_title">推荐给朋友</string>
 	<string name="tixian">提现</string>
+	<string name="picture_nofound">图片没找到</string>
 
 </resources>

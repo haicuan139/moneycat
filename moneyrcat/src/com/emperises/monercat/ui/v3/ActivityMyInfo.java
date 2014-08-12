@@ -22,44 +22,49 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.customview.headerimage.CropImageActivity;
+import com.emperises.monercat.domain.MyInfo;
+import com.emperises.monercat.interfaces.EditMyInfoEvent;
+import com.emperises.monercat.interfaces.EditMyInfoInterface;
 import com.emperises.monercat.interfaces.HeaderImageEvent;
+import com.emperises.monercat.ui.MingXiActivity;
 
-public class ActivityMyInfo extends OtherBaseActivity {
+public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInterface{
 	private static final int FLAG_CHOOSE_IMG = 5;
 	private static final int FLAG_CHOOSE_PHONE = 6;
 	private static final int FLAG_MODIFY_FINISH = 7;
 	public static final File FILE_SDCARD = Environment
 			.getExternalStorageDirectory();
-	public static final String IMAGE_PATH = "loveand";
+	public static final String IMAGE_PATH = "moneycat";
 	public static final File FILE_LOCAL = new File(FILE_SDCARD, IMAGE_PATH);
 	public static final File FILE_PIC_SCREENSHOT = new File(FILE_LOCAL,
 			"images/screenshots");
 	private static String localTempImageFileName = "";
 	private ImageView mHeadImage;
-	private Button mSelectButton;
 	private PopupWindow mPopupWindow;
+	private TextView mInfoNicknameText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myinfo);
 		setCurrentTitle("我的信息");
+		EditMyInfoEvent.getInstance().addEditInfoListener(this);
 	}
 
 	@Override
 	protected void initViews() {
 		super.initViews();
-		mSelectButton = (Button) findViewById(R.id.select_default);
 		mHeadImage = (ImageView) findViewById(R.id.headerImage);
 		mHeadImage.setBackgroundResource(getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID));
+		mInfoNicknameText = (TextView) findViewById(R.id.myinfo_nickname);
 	}
 
 	@Override
@@ -72,7 +77,7 @@ public class ActivityMyInfo extends OtherBaseActivity {
 							new String[] { MediaStore.Images.Media.DATA },
 							null, null, null);
 					if (null == cursor) {
-						showToast("图片没找到");
+						showToast(R.string.picture_nofound);
 						return;
 					}
 					cursor.moveToFirst();
@@ -152,7 +157,7 @@ public class ActivityMyInfo extends OtherBaseActivity {
 		mPopupWindow.setOutsideTouchable(true);
 		mPopupWindow.setBackgroundDrawable(new ColorDrawable(-000000));
 		mPopupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
-		mPopupWindow.showAsDropDown(mSelectButton);
+		mPopupWindow.showAsDropDown(mHeadImage);
 		headerLayout.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -170,17 +175,22 @@ public class ActivityMyInfo extends OtherBaseActivity {
 	public void onClick(View v) {
 		super.onClick(v);
 		switch (v.getId()) {
-		case R.id.selectImageButton:
-			selectedPhoto();
-			break;
-		case R.id.takePhoto:
-			takePhoto();
-			break;
-		case R.id.select_default:
+		case R.id.headerImage:
 			//选择默认头像，弹出PopupWindow
 			showSelectedImagePopupWindow();
 			break;
-			
+		case R.id.myinfo_yue:
+			startActivity(new Intent(this , MingXiActivity.class));
+			break;
+		case R.id.myinfo_mylink:
+			showToast("已经复制到剪切板");
+			break;
+		case R.id.myinfo_erweima:
+			startActivity(new Intent(this , ActivityQRCode.class));
+			break;
+		case R.id.myinfo_edit:
+			startActivity(new Intent(this , ActivityEditMyinfo.class));
+			break;
 		default:
 			break;
 		}
@@ -211,6 +221,30 @@ public class ActivityMyInfo extends OtherBaseActivity {
 			i.setBackgroundResource(mHeaders.get(position));
 			return i;
 		}
+		
+	}
+	@Override
+	public void onInfoEditAfter(MyInfo info) {
+		
+	}
+
+	@Override
+	public void onAgeEditAfter(String age) {
+		
+	}
+
+	@Override
+	public void onNickNameEditAfter(String nickNmae) {
+		mInfoNicknameText.setText(nickNmae);		
+	}
+
+	@Override
+	public void onGenderEditAfter(String gender) {
+		
+	}
+
+	@Override
+	public void onAddressEditAfter(String address) {
 		
 	}
 }

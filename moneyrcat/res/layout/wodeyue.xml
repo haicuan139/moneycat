@@ -67,4 +67,11 @@
         android:layout_toRightOf="@+id/textView1"
         android:text="13922334444" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@color/line" />
+
 </RelativeLayout>

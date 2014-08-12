@@ -5,5 +5,13 @@
     android:background="@color/background"
     android:orientation="vertical" >
     <include layout="@layout/back_header"/>
-
+<include layout="@layout/wodeyue"/>
+	
+    <ListView
+        android:id="@+id/mingxiListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+         >
+    </ListView>
 </LinearLayout>

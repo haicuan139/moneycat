@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.emperises.monercat.adapter.HomeViewPagerAdapter;
+import com.emperises.monercat.customview.MainViewPager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.ui.HomeActivity;
 import com.emperises.monercat.ui.MingXiActivity;
@@ -31,7 +32,7 @@ import com.emperises.monercat.utils.PushUtils;
 @SuppressWarnings("deprecation")
 public class MainActivity extends ActivityGroup implements OnClickListener {
 
-	private ViewPager mHomePager;
+	private MainViewPager mHomePager;
 	private String[] titleIds = null;
 
 	@Override
@@ -40,7 +41,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		PushUtils.startPush(this);
 		titleIds = new String[] { getResources().getString(R.string.home), getResources().getString(R.string.tasktitle),getResources().getString(R.string.my), getResources().getString(R.string.more) };
-		mHomePager = (ViewPager) findViewById(R.id.homePager);
+		mHomePager = (MainViewPager) findViewById(R.id.homePager);
 		mHomePager.setOffscreenPageLimit(4);
 		View home = getLocalActivityManager().startActivity("index",
 				new Intent(this, HomeActivity.class)).getDecorView();

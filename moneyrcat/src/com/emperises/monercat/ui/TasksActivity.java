@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
-import com.emperises.monercat.ui.v3.ActivityMessageList;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
@@ -56,7 +55,7 @@ public class TasksActivity extends  BaseActivity implements OnRefreshListener<Li
 
 		@Override
 		public int getCount() {
-			return 2;
+			return 3;
 		}
 
 		@Override
@@ -79,6 +78,9 @@ public class TasksActivity extends  BaseActivity implements OnRefreshListener<Li
 				break;
 			case 1:
 				title.setText("完善个人信息");
+				break;
+			case 2:
+				title.setText("推荐招财喵");
 				break;
 
 			default:
@@ -104,10 +106,19 @@ public class TasksActivity extends  BaseActivity implements OnRefreshListener<Li
 	}
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		if(position == 2){
-			startActivity(new Intent(this , ActivityMyInfo.class));	
-		}else{
+		switch (position) {
+		case 1:
 			startActivity(new Intent(this , CustomTaskActivity.class));
+			break;
+		case 2:
+			startActivity(new Intent(this , ActivityMyInfo.class));	
+			break;
+		case 3:
+			startActivity(new Intent(this , RecommendActivity.class));
+			break;
+
+		default:
+			break;
 		}
 	}
 

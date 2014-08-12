@@ -1,5 +1,8 @@
 package com.emperises.monercat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxParams;
 import android.app.Activity;
@@ -21,6 +24,7 @@ import com.emperises.monercat.customview.CustomDialogConfig;
 import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
+import com.emperises.monercat.domain.MyInfo;
 import com.emperises.monercat.interfaces.HeaderImageChangeInterface;
 import com.emperises.monercat.interfaces.HeaderImageEvent;
 import com.emperises.monercat.interfaces.HttpInterface;
@@ -116,9 +120,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		}
 		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
 		if(mHeader != null){
+			HeaderImageEvent.getInstance().addHeaderImageListener(this);
 			int resId = getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
 			if(resId == 0){
-				resId = R.drawable.header_normal_icon;
+				resId = R.drawable.test_headimage1;
+				setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
 			}
 			mHeader.setBackgroundResource(resId);
 		}
@@ -149,6 +155,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			.getUMSocialService("com.umeng.share");
 	private DatabaseInterface mDatabase;
 
+	protected DatabaseInterface getDatabaseInterface() {
+		return mDatabase;
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -158,10 +167,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		// testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 		sp = getSharedPreferences("config", MODE_PRIVATE);
-		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
-		if(mHeader != null){
-			HeaderImageEvent.getInstance().addHeaderImageListener(this);
-		}
 	}
 
 	private void showDialog(CustomDialogConfig config) {

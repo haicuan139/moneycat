@@ -10,7 +10,9 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.format.DateUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -24,6 +26,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
+import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -33,6 +36,8 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	private PullToRefreshListView mAdListView;
 	private MyAdAdapter mAdListAdapter;
 	private static final int REFRESH_COMPLETE = 1;
+	private static final int START_AUTO_VIEWPAGER = 2;
+	
 	private Handler mHandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -40,6 +45,9 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 			switch (msg.what) {
 			case REFRESH_COMPLETE:
 				mAdListView.onRefreshComplete();
+				break;
+			case START_AUTO_VIEWPAGER:
+				mAdPager.startAutoScroll();
 				break;
 			default:
 				break;
@@ -53,7 +61,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-	}
+	} 
 
 	
 	@Override
@@ -91,12 +99,38 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		///////////////////////
 		mAdPager.setAdapter(new ImagePagerAdapter(this, mListImage).setInfiniteLoop(true));
 		mAdPager.setInterval(2000);
+		mAdPager.setStopScrollWhenTouch(true);
 		mAdPager.startAutoScroll();
 		mAdPager.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2
 				% mListImage.size());
         mAdPager.setOnPageChangeListener(this);
         mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
-        
+        mAdPager.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View view, MotionEvent event) {
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
+					mAdPager.stopAutoScroll();
+					Logger.i("AUTOSCROLL", "ACTION_DOWN");
+					break;
+				case MotionEvent.ACTION_UP:
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							SystemClock.sleep(1000);
+							mHandler.sendEmptyMessage(START_AUTO_VIEWPAGER);
+						}
+					}).start();
+					Logger.i("AUTOSCROLL", "ACTION_UP");
+					break;
+
+				default:
+					break;
+				}
+				return false;
+			}
+		});
 	}
 
 

@@ -52,7 +52,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="19dp"
-            android:text="推荐招财猫"
+            android:text="推荐招财喵"
             android:textColor="@color/texttitle" />
 
         <ImageView
@@ -164,6 +164,7 @@
         android:layout_height="0.5dp"
         android:background="@color/line" />
 
+    
     <RelativeLayout
         android:layout_width="fill_parent"
         android:background="@drawable/white_selector"
