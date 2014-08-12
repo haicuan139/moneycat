@@ -47,18 +47,22 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 		case R.id.editinfo_address:
 			i.putExtra(INTENT_KEY_EDIT_TYPE, R.id.editinfo_address);
 			i.putExtra(INTENT_KEY_EDIT_VALUE, mAddressText.getText().toString());
+			startActivity(i);
 			break;
 		case R.id.editinfo_age:
 			i.putExtra(INTENT_KEY_EDIT_TYPE, R.id.editinfo_age);
 			i.putExtra(INTENT_KEY_EDIT_VALUE, mAgeText.getText().toString());
+			startActivity(i);
 			break;
 		case R.id.editinfo_gender:
 			i.putExtra(INTENT_KEY_EDIT_TYPE, R.id.editinfo_gender);
 			i.putExtra(INTENT_KEY_EDIT_VALUE, mGenderText.getText().toString());
+			startActivity(i);
 			break;
 		case R.id.editinfo_nickname:
 			i.putExtra(INTENT_KEY_EDIT_TYPE, R.id.editinfo_nickname);
 			i.putExtra(INTENT_KEY_EDIT_VALUE, mNicknameText.getText().toString());
+			startActivity(i);
 			break;
 		case R.id.editinfo_done_button:
 			finish();
@@ -80,7 +84,7 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 		default:
 			break;
 		}
-		startActivity(i);
+		
 	}
 
 	@Override
