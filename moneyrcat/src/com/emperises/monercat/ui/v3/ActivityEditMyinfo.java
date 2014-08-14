@@ -23,7 +23,7 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editmyinfo);
 		setCurrentTitle("编辑信息");
-		EditMyInfoEvent.getInstance().addEditInfoListener(this);
+		
 	}
 
 	@Override
@@ -110,5 +110,10 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	@Override
 	public void onAddressEditAfter(String address) {
 		mAddressText.setText(address);
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EditMyInfoEvent.getInstance().removeListener(this);
 	}
 }

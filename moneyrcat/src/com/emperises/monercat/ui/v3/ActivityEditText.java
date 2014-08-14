@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.interfaces.EditMyInfoEvent;
-import com.tencent.a.b.e;
 
 public class ActivityEditText extends OtherBaseActivity {
 
@@ -23,7 +20,6 @@ public class ActivityEditText extends OtherBaseActivity {
 		setContentView(R.layout.activity_edittext);
 		setCurrentTitle("编辑信息");
 	}
-
 	@Override
 	protected void initViews() {
 		super.initViews();

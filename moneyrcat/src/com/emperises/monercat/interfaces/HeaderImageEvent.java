@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.emperises.monercat.utils.Logger;
 
+
 public class HeaderImageEvent {
 
 	private static HeaderImageEvent event;
@@ -17,6 +18,14 @@ public class HeaderImageEvent {
 			event = new HeaderImageEvent();
 		}
 		return event;
+	}
+	public void removeListener(HeaderImageChangeInterface listener){
+		if(listener != null){
+			mHeaderImageChangeInterfaces.remove(listener);
+		}
+	}
+	public void removeAllListener(){
+		mHeaderImageChangeInterfaces.clear();
 	}
 	public void fireHeaderChangeImageEvent(int resId){
 		for (int i = 0; i < mHeaderImageChangeInterfaces.size(); i++) {

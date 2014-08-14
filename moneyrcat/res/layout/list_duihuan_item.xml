@@ -48,22 +48,24 @@
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="价值:6.8元"
+            android:text="数量:20"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/textcontent"
             android:textSize="10sp" />
     </LinearLayout>
 
-    <Button
+    <TextView
         android:id="@+id/button1"
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:focusable="false"
+        android:textColor="#ff0000"
+        android:background="#00000000"
+        android:gravity="center"
         android:layout_marginRight="10dp"
-        android:background="@drawable/black_button"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:text="兑换"
-        android:textColor="#ffffff" />
+        android:text="未兑换"
+         />
 
 </RelativeLayout>

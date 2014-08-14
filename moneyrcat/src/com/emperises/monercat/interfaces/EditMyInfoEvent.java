@@ -55,4 +55,10 @@ public class EditMyInfoEvent {
 			}
 		}
 	}
+	public void removeListener(EditMyInfoInterface listener){
+		mListeners.remove(listener);
+	}
+	public void removeAllListener(){
+		mListeners.clear();
+	}
 }

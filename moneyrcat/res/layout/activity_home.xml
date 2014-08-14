@@ -8,7 +8,7 @@
     <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
         android:id="@+id/adPager"
         android:layout_width="fill_parent"
-        android:layout_height="160dp"
+        android:layout_height="180dp"
         android:background="@drawable/adtest1" >
     </cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
 

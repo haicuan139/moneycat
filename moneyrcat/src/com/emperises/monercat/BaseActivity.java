@@ -1,8 +1,5 @@
 package com.emperises.monercat;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxParams;
 import android.app.Activity;
@@ -25,6 +22,10 @@ import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
 import com.emperises.monercat.domain.MyInfo;
+import com.emperises.monercat.interfaces.BalanceEvent;
+import com.emperises.monercat.interfaces.BalanceInterface;
+import com.emperises.monercat.interfaces.EditMyInfoEvent;
+import com.emperises.monercat.interfaces.EditMyInfoInterface;
 import com.emperises.monercat.interfaces.HeaderImageChangeInterface;
 import com.emperises.monercat.interfaces.HeaderImageEvent;
 import com.emperises.monercat.interfaces.HttpInterface;
@@ -35,8 +36,10 @@ import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.emperises.monercat.utils.Logger;
 import com.emperises.monercat.utils.Util;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.controller.listener.SocializeListeners.SnsPostListener;
 import com.umeng.socialize.media.QQShareContent;
 import com.umeng.socialize.media.QZoneShareContent;
 import com.umeng.socialize.media.TencentWbShareContent;
@@ -48,7 +51,7 @@ import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 public abstract class BaseActivity extends Activity implements OnClickListener,
-		HttpInterface, LocalConfigKey ,HeaderImageChangeInterface{
+		HttpInterface, LocalConfigKey ,HeaderImageChangeInterface,BalanceInterface,EditMyInfoInterface{
 
 	private FinalHttp mFinalHttp;
 	private ProgressDialog mProgressDialog;
@@ -62,6 +65,29 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			header.setBackgroundResource(resId);
 		}
 		
+	}
+	@Override
+	public void onBalanceAddAfter(float balance) {
+		TextView ye = (TextView) findViewById(R.id.yue_text);
+		if(ye != null){
+			showToast("恭喜您获得"+balance+"元!");
+			float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+			setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + currentBalance);
+			ye.setText("余额:"+(balance + currentBalance)+"元");
+		}
+	}
+	@Override
+	public void onBalanceDecAfter(float balance) {
+		TextView ye = (TextView) findViewById(R.id.yue_text);
+		if(ye != null){
+			float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+			if(currentBalance == 0){
+				ye.setText("余额:0.0元");
+			}else{
+				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
+				ye.setText("余额:"+(currentBalance - balance)+"元");
+			}
+		}
 	}
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -110,6 +136,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
+		
 		titleText = (TextView) findViewById(R.id.titleText);
 		if (findViewById(R.id.leftItem) != null
 				&& findViewById(R.id.rightItem) != null) {
@@ -127,6 +154,12 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 				setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
 			}
 			mHeader.setBackgroundResource(resId);
+		}
+		TextView ye = (TextView) findViewById(R.id.yue_text);
+		if(ye != null){
+			BalanceEvent.getInstance().addBalanceListener(this);
+			float banlance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+			ye.setText("余额:"+banlance+"元");
 		}
 		initViews();
 	}
@@ -167,6 +200,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		// testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 		sp = getSharedPreferences("config", MODE_PRIVATE);
+		EditMyInfoEvent.getInstance().addEditInfoListener(this);
 	}
 
 	private void showDialog(CustomDialogConfig config) {
@@ -317,7 +351,21 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 
 	protected void openShare() {
-		mController.openShare(this, false);
+		
+		
+		mController.openShare(this, new SnsPostListener() {
+			
+			@Override
+			public void onStart() {
+				
+			}
+			
+			@Override
+			public void onComplete(SHARE_MEDIA arg0, int arg1, SocializeEntity arg2) {
+				//增加余额
+				BalanceEvent.getInstance().fireBalanceAddEvent(1.0f);
+			}
+		});
 	}
 
 	protected void startRequest() {
@@ -397,4 +445,37 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	public int px2dip(float pixel) {
 		return Util.px2dip(pixel, this);
 	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		HeaderImageEvent.getInstance().removeListener(this);
+		BalanceEvent.getInstance().removeListener(this);
+		EditMyInfoEvent.getInstance().removeListener(this);
+	}
+	@Override
+	public void onInfoEditAfter(MyInfo info) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAgeEditAfter(String age) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onNickNameEditAfter(String nickNmae) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onGenderEditAfter(String gender) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void onAddressEditAfter(String address) {
+		// TODO Auto-generated method stub
+		
+	}	
 }

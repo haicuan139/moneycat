@@ -15,13 +15,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.emperises.monercat.BaseActivity;
+import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public class TasksActivity extends  BaseActivity implements OnRefreshListener<ListView> , OnItemClickListener{
+public class TasksActivity extends  OtherBaseActivity implements OnRefreshListener<ListView> , OnItemClickListener{
 
 	private PullToRefreshListView mTaskListView;
 	private static final int REFRESH_COMPLETE = 1;

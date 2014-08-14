@@ -19,6 +19,7 @@ public class CustomTaskActivity extends OtherBaseActivity {
 	protected void initViews() {
 		super.initViews();
 		web = (WebView) findViewById(R.id.webview);
-		web.loadUrl("http://115.28.136.194:8088/4GUser/lotte/test.html");
+		web.getSettings().setJavaScriptEnabled(true); 
+		web.loadUrl("http://bmw.thefront.com.cn/bmw-x4/?from=groupmessage&isappinstalled=0#/");
 	}
 }

@@ -3,12 +3,16 @@ package com.emperises.monercat.domain;
 
 public class ADInfo extends DomainObject {
 	private String adId;// 
+	private int adIconResId;
 	private String adImage; // 
 	private String adDescription; //
 	private String adSource;// 
 	private String adIcon; // 
 	private String adAward; // 
 	private String adType;//
+	private String adUrl;//html5
+	private String recommendPrice;//推荐价格
+	private String clickPrice;//点击价格
 	private static final long serialVersionUID = 1L;
 	private String adTtile; // 
 
@@ -84,6 +88,38 @@ public class ADInfo extends DomainObject {
 				+ adImage + ", adDescription=" + adDescription + ", adSource="
 				+ adSource + ", adIcon=" + adIcon + ", adAward=" + adAward
 				+ ", adType=" + adType + "]";
+	}
+
+	public String getClickPrice() {
+		return clickPrice;
+	}
+
+	public void setClickPrice(String clickPrice) {
+		this.clickPrice = clickPrice;
+	}
+
+	public String getRecommendPrice() {
+		return recommendPrice;
+	}
+
+	public void setRecommendPrice(String recommendPrice) {
+		this.recommendPrice = recommendPrice;
+	}
+
+	public String getAdUrl() {
+		return adUrl;
+	}
+
+	public void setAdUrl(String adUrl) {
+		this.adUrl = adUrl;
+	}
+
+	public int getAdIconResId() {
+		return adIconResId;
+	}
+
+	public void setAdIconResId(int adIconResId) {
+		this.adIconResId = adIconResId;
 	}
 
 }

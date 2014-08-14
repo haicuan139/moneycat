@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.emperises.monercat.domain.MyInfo;
 import com.emperises.monercat.ui.MingXiActivity;
 
 public class OtherBaseActivity extends BaseActivity {
@@ -66,5 +67,6 @@ public class OtherBaseActivity extends BaseActivity {
 			break;
 		}
 	}
+	
 
 }

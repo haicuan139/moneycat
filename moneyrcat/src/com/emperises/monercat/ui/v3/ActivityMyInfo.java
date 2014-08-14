@@ -25,6 +25,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.emperises.monercat.OtherBaseActivity;
@@ -217,9 +218,11 @@ public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInter
 
 		@Override
 		public View getView(int position, View arg1, ViewGroup arg2) {
-			ImageView i = new ImageView(ActivityMyInfo.this);
-			i.setBackgroundResource(mHeaders.get(position));
-			return i;
+//			RelativeLayout i = (RelativeLayout) getLayoutInflater().inflate(R.layout.girdview_headimage, null);
+//			ImageView h = (ImageView) i.findViewById(R.id.headerimageitem);
+			ImageView h = new ImageView(ActivityMyInfo.this);
+			h.setBackgroundResource(mHeaders.get(position));
+			return h;
 		}
 		
 	}
@@ -246,5 +249,10 @@ public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInter
 	@Override
 	public void onAddressEditAfter(String address) {
 		
+	}
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		EditMyInfoEvent.getInstance().removeListener(this);
 	}
 }

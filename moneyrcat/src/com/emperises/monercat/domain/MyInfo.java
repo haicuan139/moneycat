@@ -9,8 +9,10 @@ public class MyInfo extends DomainObject {
 	private String balance; //余额
 	private String telNumber;
 	private String myLink;
-	private String myQRCodePath;
+	private String myQRCodeLocalPath;//我的二维码,本地地址
+	private String myQRCodeUrlPath; //我的二维码在线地址
 	private String level;
+	private String userId;
 	public String getUserName() {
 		return userName;
 	}
@@ -53,17 +55,29 @@ public class MyInfo extends DomainObject {
 	public void setMyLink(String myLink) {
 		this.myLink = myLink;
 	}
-	public String getMyQRCodePath() {
-		return myQRCodePath;
-	}
-	public void setMyQRCodePath(String myQRCodePath) {
-		this.myQRCodePath = myQRCodePath;
-	}
 	public String getLevel() {
 		return level;
 	}
 	public void setLevel(String level) {
 		this.level = level;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getMyQRCodeLocalPath() {
+		return myQRCodeLocalPath;
+	}
+	public void setMyQRCodeLocalPath(String myQRCodeLocalPath) {
+		this.myQRCodeLocalPath = myQRCodeLocalPath;
+	}
+	public String getMyQRCodeUrlPath() {
+		return myQRCodeUrlPath;
+	}
+	public void setMyQRCodeUrlPath(String myQRCodeUrlPath) {
+		this.myQRCodeUrlPath = myQRCodeUrlPath;
 	}
 	
 	
