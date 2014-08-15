@@ -8,10 +8,13 @@
     <include layout="@layout/back_header" />
 
     <RelativeLayout
+        android:id="@+id/myinfo_edit"
+        android:onClick="onClick"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content" >
 
         <ImageView
+            android:id="@+id/imageView1"
             android:layout_width="fill_parent"
             android:layout_height="180dp"
             android:layout_alignParentLeft="true"
@@ -36,22 +39,50 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/test_headimage5"
                 android:onClick="onClick" />
-
-
         </RelativeLayout>
 
-        <LinearLayout
-            android:id="@+id/view1"
-            android:layout_width="fill_parent"
+        <TextView
+            android:id="@+id/myinfo_normalinfo"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/relativeLayout1"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical" >
+            android:layout_alignLeft="@+id/myinfo_nickname"
+            android:layout_below="@+id/myinfo_nickname"
+            android:layout_marginTop="12dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="男21岁 河北省 石家庄"
+            android:textColor="@color/textcontent"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/myinfo_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView1"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/relativeLayout1"
+            android:text="流金岁月"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/myinfo_normalinfo333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/myinfo_nickname"
+            android:layout_alignBottom="@+id/myinfo_nickname"
+            android:layout_toRightOf="@+id/myinfo_nickname"
+            android:text="Lv.0"
+            android:textColor="#6e7d83"
+            android:textSize="10sp" />
+    </RelativeLayout>
 
             <View
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/line" />
 
             <RelativeLayout
@@ -184,54 +215,4 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/line" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/myinfo_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/view1"
-            android:layout_marginLeft="26dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_toRightOf="@+id/relativeLayout1"
-            android:text="流金岁月"
-            android:textColor="#000000" />
-
-        <TextView
-            android:id="@+id/myinfo_normalinfo333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/myinfo_nickname"
-            android:layout_marginLeft="4dp"
-            android:layout_toRightOf="@+id/myinfo_nickname"
-            android:text="Lv.0"
-            android:textColor="#6e7d83"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/myinfo_normalinfo"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/myinfo_nickname"
-            android:layout_below="@+id/myinfo_nickname"
-            android:layout_marginTop="10dp"
-            android:text="男21岁 河北省 石家庄"
-            android:textColor="@color/textcontent"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/myinfo_edit"
-            android:layout_width="25dp"
-            android:onClick="onClick"
-            android:layout_height="25dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/myinfo_normalinfo333"
-            android:layout_marginRight="42dp"
-            android:src="@drawable/edit_button" />
-
-    </RelativeLayout>
-
 </LinearLayout>

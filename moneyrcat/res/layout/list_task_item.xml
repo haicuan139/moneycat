@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/wodeguanggao"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="20dp"
     android:paddingTop="20dp"
     android:background="@drawable/white_selector" >
@@ -37,16 +37,6 @@
         android:background="@drawable/right_arrow" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:text="0.1元"
-        android:textColor="@color/textcontent"
-        android:textSize="10sp" />
-
-    <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,5 +45,17 @@
         android:layout_toLeftOf="@+id/imageView2"
         android:text="未完成"
         android:textColor="#AAff0a0a" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/taskTitle"
+        android:layout_alignBottom="@+id/taskTitle"
+        android:layout_toRightOf="@+id/taskTitle"
+        android:text="0.1元"
+        android:textColor="@color/textcontent"
+        android:textSize="10sp" />
     
 </RelativeLayout>

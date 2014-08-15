@@ -40,7 +40,7 @@
                 android:id="@+id/adTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="宝马汽车"
+                android:text="荣耀之上传 奇不止"
                 android:textColor="@color/texttitle"
                 android:textSize="17sp" />
 
@@ -51,7 +51,7 @@
                 android:layout_below="@+id/adTitle"
                 android:ellipsize="end"
                 android:layout_marginTop="5dp"
-                android:text="理理气,顺顺心，找我小陈陈理理气陈陈陈理理气陈陈理理气陈陈理理理气陈陈理理理气陈陈理理理气陈陈理理理气陈陈理,顺顺心，找我小陈陈理理气陈,顺顺心，找我小陈陈理理气陈"
+                android:text="全新BMW M3和全新BMW M4双门跑车即将上市"
                 android:maxLines="3"
                 android:textColor="@color/textcontent"
                 android:textSize="10sp" />

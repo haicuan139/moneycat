@@ -28,7 +28,7 @@ public class TiXianDialogActivity extends OtherBaseActivity {
 			finish();
 			break;
 		case R.id.commit_bt:
-			showCommitOkToast();
+			tixian(queryBalance());
 			finish();
 			break;
 		default:

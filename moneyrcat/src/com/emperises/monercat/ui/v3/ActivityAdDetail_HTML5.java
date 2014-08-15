@@ -4,17 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.webkit.WebSettings.RenderPriority;
+import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.domain.ADInfo;
-import com.emperises.monercat.interfaces.BalanceEvent;
 import com.emperises.monercat.ui.RecommendDialogActivity;
 import com.emperises.monercat.ui.WYCJDialogActivity;
 
@@ -42,10 +42,8 @@ public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 		webSettings.setRenderPriority(RenderPriority.HIGH);
 		webSettings.setDefaultTextEncodingName("utf-8");
-		webSettings.setUseWideViewPort(true);
 		webSettings.setLoadWithOverviewMode(true);
 		webSettings.setGeolocationEnabled(true);
-		webSettings.setGeolocationDatabasePath(getDir("database", Context.MODE_PRIVATE).getPath());
 		webview.setHorizontalScrollBarEnabled(false);
 		webview.setVerticalScrollBarEnabled(false);
 	}
@@ -57,14 +55,11 @@ public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 		initWebSetting(mAdWebView);
 		ADInfo info = (ADInfo) getIntent().getSerializableExtra(INTENT_KEY_ADINFO);
 		mAdWebView.loadUrl(info.getAdUrl());
-		mAdWebView.setWebChromeClient(new WebChromeClient(){
+		mAdWebView.setWebViewClient(new WebViewClient(){
 			@Override
-			public void onProgressChanged(WebView view, int newProgress) {
-				super.onProgressChanged(view, newProgress);
-				if(newProgress == 100){
-					//加载完成，完成点击计费
-					BalanceEvent.getInstance().fireBalanceAddEvent(1.0f);
-				}
+			public void onPageFinished(WebView view, String url) {
+				addBalance(1.0f);
+				super.onPageFinished(view, url);
 			}
 		});
 	}

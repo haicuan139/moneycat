@@ -16,51 +16,54 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:background="#ecebeb"
+        android:background="#AA000000"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
          >
 
         <Button
             android:id="@+id/share"
             android:onClick="onClick"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="17dp"
-            android:textSize="20sp"
-            android:background="#00000000"
-            android:text="分享" />
+            android:textSize="14sp"
+            android:textColor="@color/texttitle"
+            android:layout_gravity="center"
+            android:background="@drawable/commit_bt_selector"
+            android:text="分享广告" />
 
         <Button
+            android:textColor="@color/texttitle"
+            android:layout_weight="1"
             android:id="@+id/woyaocanjia"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/share"
-            android:layout_alignBottom="@+id/share"
+            android:layout_height="35dp"
             android:layout_marginRight="24dp"
-            android:layout_toLeftOf="@+id/share"
-            android:background="#00000000"
             android:text="我要参加"
+            android:background="@drawable/commit_bt_selector"
             android:onClick="onClick"
-            android:textSize="20sp" />
+            android:layout_gravity="center"
+            android:textSize="14sp" />
 
         <Button
+            android:textColor="@color/texttitle"
+            android:layout_gravity="center"
+            android:textSize="14sp"
             android:id="@+id/recommend_friend"
             android:onClick="onClick"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/woyaocanjia"
-            android:layout_alignBottom="@+id/woyaocanjia"
-            android:layout_marginRight="14dp"
-            android:layout_toLeftOf="@+id/woyaocanjia"
-            android:background="#00000000"
-            android:text="推荐好友参加"
-            android:textSize="20sp" />
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/commit_bt_selector"
+            android:text="推荐好友"
+             />
 
-    </RelativeLayout>
-
+</LinearLayout>
 </RelativeLayout>

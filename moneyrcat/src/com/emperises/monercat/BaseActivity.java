@@ -66,29 +66,43 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		}
 		
 	}
+	//余额改变时
 	@Override
-	public void onBalanceAddAfter(float balance) {
-		TextView ye = (TextView) findViewById(R.id.yue_text);
-		if(ye != null){
-			showToast("恭喜您获得"+balance+"元!");
-			float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-			setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + currentBalance);
-			ye.setText("余额:"+(balance + currentBalance)+"元");
-		}
-	}
-	@Override
-	public void onBalanceDecAfter(float balance) {
+	public void onBalanceChange() {
 		TextView ye = (TextView) findViewById(R.id.yue_text);
 		if(ye != null){
 			float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-			if(currentBalance == 0){
-				ye.setText("余额:0.0元");
-			}else{
-				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
-				ye.setText("余额:"+(currentBalance - balance)+"元");
-			}
+			ye.setText("余额:"+currentBalance+"元");
 		}
 	}
+	//查询当前余额
+	protected float queryBalance() {
+		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+		return currentBalance;
+	}
+	//增加余额
+	protected void addBalance(float balance) {
+		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+		setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + currentBalance);
+		BalanceEvent.getInstance().fireBalanceChange();
+		showToast("恭喜您获得"+balance+"元钱!");
+		Logger.i("BALANCE", "余额增加");
+	}
+	//提现
+	protected void tixian(float money) {
+		showToast("成功提现:"+queryBalance()+"元");
+		//余额减少
+		decBalance(money);
+	}
+	//减少余额
+	protected void decBalance(float balance) {
+		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+		if(currentBalance != 0){
+			setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
+			BalanceEvent.getInstance().fireBalanceChange();
+		}
+	}
+	
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.myheaderimage:
@@ -158,8 +172,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		TextView ye = (TextView) findViewById(R.id.yue_text);
 		if(ye != null){
 			BalanceEvent.getInstance().addBalanceListener(this);
-			float banlance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-			ye.setText("余额:"+banlance+"元");
+			ye.setText("余额:"+queryBalance()+"元");
 		}
 		initViews();
 	}
@@ -196,7 +209,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		// 社会化分享初始化
 		initShare();
-		mDatabase = new DatabaseImpl(this, null);// TODO:创建数据库
+		if(mDatabase == null){
+			mDatabase = new DatabaseImpl(this, null);// TODO:创建数据库
+		}
 		// testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 		sp = getSharedPreferences("config", MODE_PRIVATE);
@@ -363,7 +378,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			@Override
 			public void onComplete(SHARE_MEDIA arg0, int arg1, SocializeEntity arg2) {
 				//增加余额
-				BalanceEvent.getInstance().fireBalanceAddEvent(1.0f);
+				addBalance(1.0f);
 			}
 		});
 	}

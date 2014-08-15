@@ -53,17 +53,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" >
 
-            <TextView
-                android:id="@+id/editText1"
-                android:layout_width="fill_parent"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/textView2"
-                android:textColor="@color/texttitle"
-                android:text="100元"
-                 />
 
             <TextView
                 android:id="@+id/textView2"
@@ -74,6 +63,18 @@
                 android:layout_marginLeft="20dp"
                 android:text="金额"
                 android:textColor="@color/texttitle" />
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="fill_parent"
+                android:layout_marginRight="20dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/textView2"
+                android:background="@drawable/commit_bt_normal"
+                android:textColor="@color/texttitle"
+                android:textSize="13sp"
+                android:ems="10" />
         </RelativeLayout>
         
 

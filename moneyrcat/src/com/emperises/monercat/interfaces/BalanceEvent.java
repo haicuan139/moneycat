@@ -29,19 +29,11 @@ public class BalanceEvent {
 	public void addBalanceListener(BalanceInterface listener){
 		mListeners.add(listener);
 	}
-	public void fireBalanceAddEvent(float balance){
+	public void fireBalanceChange(){
 		Logger.i("BALANCE", "余额增加接口数量:"+mListeners.size());
 		for(BalanceInterface listener : mListeners){
 			if(listener != null){
-				listener.onBalanceAddAfter(balance);
-			}
-		}
-	}
-	public void fireBalanceDecEvent(float balance){
-		Logger.i("BALANCE", "余额减少接口数量:"+mListeners.size());
-		for(BalanceInterface listener : mListeners){
-			if(listener != null){
-				listener.onBalanceDecAfter(balance);
+				listener.onBalanceChange();
 			}
 		}
 	}

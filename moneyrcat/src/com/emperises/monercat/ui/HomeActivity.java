@@ -76,7 +76,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		mAdListView.setOnItemClickListener(this);
 		mListImage = new ArrayList<View>();
 		ImageView i = new ImageView(this);
-		i.setBackgroundResource(R.drawable.adtest1);
+		i.setBackgroundResource(R.drawable.testwahaha);
 		ImageView i1 = new ImageView(this);
 		i1.setBackgroundResource(R.drawable.testwanglaoji);
 		ImageView i2 = new ImageView(this);

@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.ui.v3.ActivityDuiHuanJiLu;
-import com.emperises.monercat.ui.v3.ActivityTiXianJiLu;
 
 public class DuiHuanActivity extends OtherBaseActivity implements
 		OnItemClickListener {
@@ -41,7 +40,7 @@ public class DuiHuanActivity extends OtherBaseActivity implements
 
 		@Override
 		public int getCount() {
-			return 10;
+			return 5;
 		}
 
 		@Override

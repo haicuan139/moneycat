@@ -46,7 +46,7 @@ public class MoreActivity extends BaseActivity {
 			}
 			break;
 		case R.id.more_recommend:
-			startActivity(new Intent(this , RecommendActivity.class));
+			openShare();
 			break;
 		case R.id.more_haoping:
 			startActivity(new Intent(this , HaoPinTestActivity.class));
