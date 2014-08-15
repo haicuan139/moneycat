@@ -3,6 +3,7 @@ package com.emperises.monercat.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
@@ -18,7 +19,8 @@ public class WoDeTabActivity extends BaseActivity {
 
 	@Override
 	protected void initViews() {
-		
+		ImageView i = (ImageView) findViewById(R.id.headerImage);
+		i.setBackgroundResource(getHeadImageResId());
 	}
 
 	@Override

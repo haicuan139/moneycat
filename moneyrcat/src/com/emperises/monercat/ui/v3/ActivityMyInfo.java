@@ -62,7 +62,7 @@ public class ActivityMyInfo extends OtherBaseActivity {
 	protected void initViews() {
 		super.initViews();
 		mHeadImage = (ImageView) findViewById(R.id.headerImage);
-		mHeadImage.setBackgroundResource(getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID));
+		mHeadImage.setBackgroundResource(getHeadImageResId());
 		mInfoNicknameText = (TextView) findViewById(R.id.myinfo_nickname);
 		TextView t = (TextView) findViewById(R.id.myinfo_wodeyue);
 		t.setText(queryBalance()+"元");

@@ -18,7 +18,7 @@ public class ActivityQRCode extends OtherBaseActivity {
 	protected void initViews() {
 		super.initViews();
 		ImageView headerImage = (ImageView) findViewById(R.id.headerImage);
-		headerImage.setBackgroundResource(getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID));
+		headerImage.setBackgroundResource(getHeadImageResId());
 	}
 	
 }

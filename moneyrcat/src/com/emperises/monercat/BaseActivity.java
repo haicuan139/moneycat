@@ -75,6 +75,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			ye.setText("余额:"+currentBalance+"元");
 		}
 	}
+	//获得头像资源id
+	protected int getHeadImageResId() {
+		return getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
+	}
 	//查询当前余额
 	protected float queryBalance() {
 		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
@@ -173,12 +177,19 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
 		if(mHeader != null){
 			HeaderImageEvent.getInstance().addHeaderImageListener(this);
-			int resId = getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
+			int resId = getHeadImageResId();
 			if(resId == 0){
 				resId = R.drawable.test_headimage1;
 				setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
 			}
 			mHeader.setBackgroundResource(resId);
+			mHeader.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivity(new Intent(BaseActivity.this, ActivityMyInfo.class));
+				}
+			});
 		}
 		TextView ye = (TextView) findViewById(R.id.yue_text);
 		if(ye != null){

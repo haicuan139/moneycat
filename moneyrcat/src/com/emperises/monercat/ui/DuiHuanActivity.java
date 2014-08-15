@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
@@ -40,7 +42,7 @@ public class DuiHuanActivity extends OtherBaseActivity implements
 
 		@Override
 		public int getCount() {
-			return 5;
+			return 3;
 		}
 
 		@Override
@@ -59,6 +61,15 @@ public class DuiHuanActivity extends OtherBaseActivity implements
 		public View getView(int position, View arg1, ViewGroup arg2) {
 			View v = getLayoutInflater().inflate(R.layout.list_duihuan_item,
 					null);
+			ImageView i = (ImageView) v.findViewById(R.id.duihuan_icon);
+			TextView t = (TextView) v.findViewById(R.id.duihuan_title);
+			if(position == 1){
+				t.setText("东恒服饰金卡");
+				i.setBackgroundResource(R.drawable.huiyuanka1);
+			}else if(position == 2){
+				t.setText("万东国际金卡");
+				i.setBackgroundResource(R.drawable.huiyuanka2);
+			}
 			return v;
 		}
 

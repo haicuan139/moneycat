@@ -27,7 +27,7 @@ public class ActivityShenLinJiLu extends OtherBaseActivity {
 
 		@Override
 		public int getCount() {
-			return 10;
+			return 6;
 		}
 
 		@Override

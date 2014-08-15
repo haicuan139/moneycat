@@ -48,7 +48,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="5dp"
-	        android:text="签到获得0.1元"
+	        android:text="奔驰广告申领"
 	        android:textColor="@color/textcontent"
 	        android:textSize="12sp" />
 
@@ -57,7 +57,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="5dp"
 	        android:layout_marginTop="5dp"
-	        android:text="奔驰汽车推荐获得2元"
+	        android:text="兑换电信充值卡"
 	        android:textColor="@color/textcontent"
 	        android:textSize="12sp" />
 
