@@ -32,11 +32,11 @@ import com.emperises.monercat.R;
 import com.emperises.monercat.customview.headerimage.CropImageActivity;
 import com.emperises.monercat.domain.MyInfo;
 import com.emperises.monercat.interfaces.EditMyInfoEvent;
-import com.emperises.monercat.interfaces.EditMyInfoInterface;
 import com.emperises.monercat.interfaces.HeaderImageEvent;
+import com.emperises.monercat.ui.BindActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 
-public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInterface{
+public class ActivityMyInfo extends OtherBaseActivity {
 	private static final int FLAG_CHOOSE_IMG = 5;
 	private static final int FLAG_CHOOSE_PHONE = 6;
 	private static final int FLAG_MODIFY_FINISH = 7;
@@ -56,7 +56,6 @@ public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInter
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myinfo);
 		setCurrentTitle("我的信息");
-		EditMyInfoEvent.getInstance().addEditInfoListener(this);
 	}
 
 	@Override
@@ -65,6 +64,8 @@ public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInter
 		mHeadImage = (ImageView) findViewById(R.id.headerImage);
 		mHeadImage.setBackgroundResource(getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID));
 		mInfoNicknameText = (TextView) findViewById(R.id.myinfo_nickname);
+		TextView t = (TextView) findViewById(R.id.myinfo_wodeyue);
+		t.setText(queryBalance()+"元");
 	}
 
 	@Override
@@ -190,6 +191,9 @@ public class ActivityMyInfo extends OtherBaseActivity implements EditMyInfoInter
 			break;
 		case R.id.myinfo_edit:
 			startActivity(new Intent(this , ActivityEditMyinfo.class));
+			break;
+		case R.id.myinfo_tel:
+			startActivity(new Intent(this , BindActivity.class));
 			break;
 		default:
 			break;

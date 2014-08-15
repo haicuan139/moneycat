@@ -90,16 +90,27 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 	//提现
 	protected void tixian(float money) {
-		showToast("成功提现:"+queryBalance()+"元");
+		showToast("成功提现:"+money+"元");
 		//余额减少
 		decBalance(money);
 	}
+	//兑换
+		protected void duihuan(float money) {
+			showToast("成功兑换电信充值卡");
+			//余额减少
+			decBalance(money);
+		}
 	//减少余额
 	protected void decBalance(float balance) {
 		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-		if(currentBalance != 0){
-			setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
-			BalanceEvent.getInstance().fireBalanceChange();
+		if(balance > currentBalance){
+			//TODO:在显示兑换列表的时候,如果有足够的余额去兑换,才会被点击
+			showToast("您的余额不足!完成任务,点击广告都可以获得金钱!");
+		}else{
+			if(currentBalance != 0){
+				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
+				BalanceEvent.getInstance().fireBalanceChange();
+			}
 		}
 	}
 	

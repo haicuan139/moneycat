@@ -103,7 +103,7 @@
                     android:textColor="@color/texttitle" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/myinfo_wodeyue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/textView3"
@@ -119,6 +119,7 @@
                 android:background="@color/line" />
 
             <RelativeLayout
+                android:id="@+id/myinfo_tel"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:onClick="onClick"
@@ -135,7 +136,7 @@
                     android:textColor="@color/texttitle" />
 
                 <TextView
-                    android:id="@+id/textView4333"
+                    android:id="@+id/myinfo_wodeyue333"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/textView3222"
@@ -168,7 +169,7 @@
                     android:textColor="@color/texttitle" />
 
                 <TextView
-                    android:id="@+id/textView422"
+                    android:id="@+id/myinfo_wodeyue22"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/textView322"
