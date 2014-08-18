@@ -13,6 +13,7 @@ import android.text.format.DateUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -26,6 +27,9 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
+import com.emperises.monercat.domain.ADInfo;
+import com.emperises.monercat.ui.HomeActivity.MyAdAdapter;
+import com.emperises.monercat.ui.v3.ActivityAdDetail_HTML5;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -56,6 +60,7 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 			}
 		}
 	};
+	private ArrayList<ADInfo> mAdInfos;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +86,17 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 		mListImage.add(i1);
 		mListImage.add(i2);
 		mListImage.add(i3);
+		for (int j = 0; j < mListImage.size(); j++) {
+			mListImage.get(j).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(TasksActivity.this,ActivityAdDetail_HTML5.class);
+					ADInfo itemInfo = (ADInfo) mAdInfos.get(0);
+					i.putExtra(INTENT_KEY_ADINFO, itemInfo);
+					startActivityWithAnimation(i);	
+				}
+			});
+		}
 		// /////////////////////
 		mPagerIndexLayout = (LinearLayout) findViewById(R.id.pagerindex);
 		mAdPager.setAdapter(new ImagePagerAdapter(this, mListImage)
@@ -116,8 +132,63 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 				}
 				return false;
 			}
-		});	
+		});
+		initTestData();
 	}
+	private void initTestData() {
+		mAdInfos = new ArrayList<ADInfo>();
+		
+		ADInfo bmwx4 = new ADInfo();
+		bmwx4.setAdDescription("全新BMW M3和全新BMW M4双门跑车即将上市");
+		bmwx4.setAdTtile("荣耀之上 传奇不止");
+		bmwx4.setAdUrl("http://bmw.thefront.com.cn/bmw-x4/?from=groupmessage&isappinstalled=0#/");
+		bmwx4.setAdIconResId(R.drawable.bmtestbg);
+		
+		ADInfo zfzx = new ADInfo();
+		zfzx.setAdDescription("中福在线连环夺宝！点击进入!");
+		zfzx.setAdTtile("中福在线");
+		zfzx.setAdUrl("http://m.zolcai.com/wap/touch/buy/preBuy.act?lotteryName=ssq");
+		zfzx.setAdIconResId(R.drawable.zfzx);
+		//王老吉
+		ADInfo wanglaoji = new ADInfo();
+		wanglaoji.setAdDescription("王老吉幸运摇摇乐！点击马上抽奖！");
+		wanglaoji.setAdTtile("凉茶始祖王老吉");
+		wanglaoji.setAdUrl("http://wlj2014.21yod.net/index");
+		wanglaoji.setAdIconResId(R.drawable.wanglaoji);
+		//奇瑞
+		ADInfo qirui = new ADInfo();
+		qirui.setAdDescription("奇瑞E5以人性化视角观察家庭用车,众多人性科技配备,超越同级的车身尺寸,亲民价为,为您和您的家人打造一个温馨的城堡。");
+		qirui.setAdTtile("奇瑞E5");
+		qirui.setAdUrl("http://www.chery.cn/wap.php/product?easyname=E5");
+		qirui.setAdIconResId(R.drawable.qirui);
+		//广汽三菱
+		ADInfo gxsl = new ADInfo();
+		gxsl.setAdDescription("够劲就来挑战！畅想省会炫动一夏,广汽三菱挑战赛！马上参加！");
+		gxsl.setAdTtile("广汽三菱");
+		gxsl.setAdUrl("http://m.baidu.com/from=2001c/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_2003%2Cta%40iphone_1_7.1_1_9.6/baiduid=C1D35B1318B1650D2BD6EC9481989296/w=0_10_%E5%B9%BF%E6%B1%BD%E4%B8%89%E8%8F%B1%E5%AE%98%E7%BD%91/t=iphone/l=3/tc?m=8&srd=1&dict=21&src=http%3A%2F%2Fpajero.gmmc.com.cn%2F");
+		gxsl.setAdIconResId(R.drawable.sanling);
+		//长丰猎豹
+		ADInfo cflb = new ADInfo();
+		cflb.setAdDescription("猎豹汽车,驰聘无疆！猎豹Q6傲世登场,驾驭飞腾,领略非凡人生！");
+		cflb.setAdTtile("猎豹汽车");
+		cflb.setAdUrl("http://m.baidu.com/from=2001c/bd_page_type=1/ssid=0/uid=0/pu=usm%400%2Csz%401320_2003%2Cta%40iphone_1_7.1_1_9.6/baiduid=C1D35B1318B1650D2BD6EC9481989296/w=0_10_%E9%95%BF%E4%B8%B0%E7%8C%8E%E8%B1%B9%E5%AE%98%E7%BD%91/t=iphone/l=3/tc?m=8&srd=1&dict=21&src=http%3A%2F%2Fwww.leopaard.com%2Fcarmodel%2Fintro.php%3F7");
+		cflb.setAdIconResId(R.drawable.changfengliebao);
+		//哇哈哈
+		ADInfo wahaha = new ADInfo();
+		wahaha.setAdDescription("理理气,顺顺心，找我小陈陈");
+		wahaha.setAdTtile("哇哈哈饮品");
+		wahaha.setAdUrl("http://www.wahaha.com.cn/product/37");
+		wahaha.setAdIconResId(R.drawable.wahaha);
+		mAdInfos.add(bmwx4);
+		mAdInfos.add(wahaha);
+		mAdInfos.add(cflb);
+		mAdInfos.add(gxsl);
+		mAdInfos.add(qirui);
+		mAdInfos.add(wanglaoji);
+		mAdInfos.add(zfzx);
+		
+	}
+
 	class MyAdAdapter extends BaseAdapter{
 
 		@Override

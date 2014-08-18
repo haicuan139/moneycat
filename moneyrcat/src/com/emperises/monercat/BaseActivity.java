@@ -61,8 +61,12 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	@Override
 	public void onHeaderImageChange(int resId) {
 		ImageView header = (ImageView) findViewById(R.id.myheaderimage);
+		ImageView headerInfo = (ImageView) findViewById(R.id.headerImage);
 		if(header != null){
 			header.setBackgroundResource(resId);
+		}
+		if(headerInfo != null){
+			headerInfo.setBackgroundResource(resId);
 		}
 		
 	}
@@ -196,6 +200,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			BalanceEvent.getInstance().addBalanceListener(this);
 			ye.setText("余额:"+queryBalance()+"元");
 		}
+		
 		initViews();
 	}
 

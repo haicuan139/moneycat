@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
+import com.emperises.monercat.interfaces.HeaderImageEvent;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 
 public class WoDeTabActivity extends BaseActivity {
@@ -19,8 +20,9 @@ public class WoDeTabActivity extends BaseActivity {
 
 	@Override
 	protected void initViews() {
-		ImageView i = (ImageView) findViewById(R.id.headerImage);
-		i.setBackgroundResource(getHeadImageResId());
+		HeaderImageEvent.getInstance().addHeaderImageListener(this);
+		ImageView mHeaderImage = (ImageView) findViewById(R.id.headerImage);//我的
+		mHeaderImage.setBackgroundResource(getHeadImageResId());
 	}
 
 	@Override

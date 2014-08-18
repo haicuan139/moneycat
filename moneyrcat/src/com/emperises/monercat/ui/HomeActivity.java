@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.format.DateUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -87,6 +88,17 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		mListImage.add(i1);
 		mListImage.add(i2);
 		mListImage.add(i3);
+		for (int j = 0; j < mListImage.size(); j++) {
+			mListImage.get(j).setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Intent i = new Intent(HomeActivity.this,ActivityAdDetail_HTML5.class);
+					ADInfo itemInfo = (ADInfo) mAdInfos.get(0);
+					i.putExtra(INTENT_KEY_ADINFO, itemInfo);
+					startActivityWithAnimation(i);	
+				}
+			});
+		}
         mAdListView.setOnRefreshListener(this);
         initTestData();
 		 
@@ -130,9 +142,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 
 
 	private void initTestData() {
-		//初始化测试数据
-		//中福在线
-		List<ADInfo> mAdInfos = new ArrayList<ADInfo>();
+		mAdInfos = new ArrayList<ADInfo>();
 		
 		ADInfo bmwx4 = new ADInfo();
 		bmwx4.setAdDescription("全新BMW M3和全新BMW M4双门跑车即将上市");
@@ -261,6 +271,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	}
 	private int currentIndex = 0;
 	private Button mMXButton;
+	private List<ADInfo> mAdInfos;
 	private void changeIndexBg(int currentPosition){
 		for (int i = 0; i < mPagerIndexLayout.getChildCount(); i++) {
 			ImageView bg = (ImageView) mPagerIndexLayout.getChildAt(i);
