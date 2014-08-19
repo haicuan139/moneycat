@@ -12,15 +12,16 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.format.DateUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
@@ -28,13 +29,13 @@ import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
 import com.emperises.monercat.domain.ADInfo;
-import com.emperises.monercat.ui.HomeActivity.MyAdAdapter;
 import com.emperises.monercat.ui.v3.ActivityAdDetail_HTML5;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 public class TasksActivity extends  OtherBaseActivity implements OnRefreshListener<ListView> , OnItemClickListener,OnPageChangeListener{
 	private List<View> mListImage;
@@ -51,6 +52,7 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 			switch (msg.what) {
 			case REFRESH_COMPLETE:
 				mTaskListView.onRefreshComplete();
+				mPullScrollView.onRefreshComplete();
 				break;
 			case START_AUTO_VIEWPAGER:
 				mAdPager.startAutoScroll();
@@ -65,13 +67,28 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tasks);
+	}
+	@Override
+	protected void initViews() {
+		mPullScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_scrollview);
+		mPullScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						SystemClock.sleep(1000);
+						mHandler.sendEmptyMessage(REFRESH_COMPLETE);
+					}
+				}).start();
+			}
+		});
 		mTaskListView = (PullToRefreshListView) findViewById(R.id.taskListView);
 		mTaskListView.setOnRefreshListener(this);
 		mTaskListView.setAdapter(new MyAdAdapter());
 		mTaskListView.setOnItemClickListener(this);
-	}
-	@Override
-	protected void initViews() {
 		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
 		mListImage = new ArrayList<View>();
 		ImageView i = new ImageView(this);
@@ -278,6 +295,7 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 		changeIndexBg(currentIndex);
 	}
 	private int currentIndex = 0;
+	private PullToRefreshScrollView mPullScrollView;
 
 	private void changeIndexBg(int currentPosition) {
 		for (int i = 0; i < mPagerIndexLayout.getChildCount(); i++) {

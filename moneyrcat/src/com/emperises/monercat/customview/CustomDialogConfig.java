@@ -1,8 +1,8 @@
 package com.emperises.monercat.customview;
 
-import com.emperises.monercat.customview.CustomDialog.DialogClick;
-
 import android.view.View.OnClickListener;
+
+import com.emperises.monercat.customview.CustomDialog.DialogClick;
 
 public class CustomDialogConfig {
 

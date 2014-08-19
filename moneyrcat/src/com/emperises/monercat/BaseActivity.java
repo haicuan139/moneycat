@@ -318,10 +318,10 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	// }
 	private void initShare() {
 		// 设置分享内容
-		String shareContent = "招财喵分享测试 http://www.baidu.com";
+		String shareContent = "你的好友分享了一个招财喵给你!招财喵，真正可以赚钱的APP!";
 		// String picUrl = "http://www.baidu.com/img/baidu_sylogo1.gif";
-		String shareUrl = "http://www.baidu.com";
-		String shareTitle = "招财喵";
+		String shareUrl = "http://bmw.thefront.com.cn/bmw-x4/?from=groupmessage&isappinstalled=0#/";
+		String shareTitle = "招财喵,真正可以赚钱的APP";
 		// QQ好友
 		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "1101962112",
 				"RY1S5XEVSVnjx3B7");
@@ -364,10 +364,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		mController.setAppWebSite(SHARE_MEDIA.RENREN, shareUrl);
 		// 设置分享到微信的内容, 图片类型
 		UMImage mUMImgBitmap = new UMImage(this, R.drawable.ic_launcher);// TODO:改为网页LOGO图片
-		WeiXinShareContent weixinContent = new WeiXinShareContent(mUMImgBitmap);
+		WeiXinShareContent weixinContent = new WeiXinShareContent();
 		weixinContent.setTitle(shareTitle);
 		weixinContent.setTargetUrl(shareUrl);
 		weixinContent.setShareContent(shareContent);
+		weixinContent.setShareImage(mUMImgBitmap);
 		mController.setShareMedia(weixinContent);
 
 		// 设置朋友圈分享的内容

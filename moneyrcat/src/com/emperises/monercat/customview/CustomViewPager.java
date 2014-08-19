@@ -1,11 +1,11 @@
 package com.emperises.monercat.customview;
 
-import com.emperises.monercat.utils.Util;
-
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import com.emperises.monercat.utils.Util;
 
 public class CustomViewPager extends ViewPager{
 

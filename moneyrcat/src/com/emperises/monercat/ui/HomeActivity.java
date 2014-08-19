@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
@@ -34,6 +35,7 @@ import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 
 public class HomeActivity extends BaseActivity implements OnRefreshListener<ListView> ,OnPageChangeListener ,OnItemClickListener
 {
@@ -49,6 +51,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 			switch (msg.what) {
 			case REFRESH_COMPLETE:
 				mAdListView.onRefreshComplete();
+				mPullScrollView.onRefreshComplete();
 				break;
 			case START_AUTO_VIEWPAGER:
 				mAdPager.startAutoScroll();
@@ -70,6 +73,24 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	
 	@Override
 	protected void initViews() {
+		mPullScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_scrollview);
+		mPullScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
+
+			@Override
+			public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+//				String label = DateUtils.formatDateTime(HomeActivity.this, System.currentTimeMillis(),
+//						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+//				mPullScrollView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						SystemClock.sleep(1000);
+						mHandler.sendEmptyMessage(REFRESH_COMPLETE);
+					}
+				}).start();
+			}
+		});
 		mMXButton = (Button) findViewById(R.id.mingxi_button);
 		mMXButton.setText(R.string.tixian);
 		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
@@ -248,7 +269,6 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	}
 
 
-
 	@Override
 	public void onPageScrollStateChanged(int arg0) {
 		
@@ -272,6 +292,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 	private int currentIndex = 0;
 	private Button mMXButton;
 	private List<ADInfo> mAdInfos;
+	private PullToRefreshScrollView mPullScrollView;
 	private void changeIndexBg(int currentPosition){
 		for (int i = 0; i < mPagerIndexLayout.getChildCount(); i++) {
 			ImageView bg = (ImageView) mPagerIndexLayout.getChildAt(i);

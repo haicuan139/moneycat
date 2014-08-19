@@ -25,4 +25,14 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/back_button" />
 
+        <ImageView
+            android:id="@+id/ad_share"
+            android:visibility="gone"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/share" />
+
 </RelativeLayout>

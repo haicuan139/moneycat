@@ -1,16 +1,14 @@
 package com.emperises.monercat.ui.v3;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
@@ -22,6 +20,7 @@ import com.emperises.monercat.ui.WYCJDialogActivity;
 public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 
 	private WebView mAdWebView;
+	private ImageView mShareButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +37,11 @@ public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 		webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
 		webSettings.setDomStorageEnabled(true);
 		webSettings.setDatabaseEnabled(true);
+		
+		webSettings.setBuiltInZoomControls(true);
+		webSettings.setSupportZoom(true);
+		webSettings.setUseWideViewPort(true);
+		
 		webSettings.setJavaScriptEnabled(true);
 		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
 		webSettings.setRenderPriority(RenderPriority.HIGH);
@@ -51,6 +55,8 @@ public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 	@Override
 	protected void initViews() {
 		super.initViews();
+		mShareButton = (ImageView) findViewById(R.id.ad_share);
+		mShareButton.setVisibility(View.VISIBLE);
 		mAdWebView = (WebView) findViewById(R.id.adwebView);
 		initWebSetting(mAdWebView);
 		ADInfo info = (ADInfo) getIntent().getSerializableExtra(INTENT_KEY_ADINFO);
@@ -73,7 +79,7 @@ public class ActivityAdDetail_HTML5 extends OtherBaseActivity {
 		case R.id.recommend_friend:
 			startActivity(new Intent(this , RecommendDialogActivity.class));
 			break;
-		case R.id.share:
+		case R.id.ad_share:
 			openShare();
 			break;
 

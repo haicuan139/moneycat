@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 
-import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.MainActivity;
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;

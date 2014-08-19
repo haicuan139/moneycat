@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.domain.ADInfo;
-import com.emperises.monercat.ui.HomeActivity.MyAdAdapter;
 import com.emperises.monercat.ui.v3.ActivityAdDeatil;
 import com.emperises.monercat.ui.v3.ActivityShenLinJiLu;
 

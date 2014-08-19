@@ -1,10 +1,10 @@
 package com.emperises.monercat.ui;
 
-import com.emperises.monercat.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
+
+import com.emperises.monercat.R;
 
 public class HaoPinTestActivity extends Activity {
 
