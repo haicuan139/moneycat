@@ -1,5 +1,8 @@
 package com.emperises.monercat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxParams;
 import android.app.Activity;
@@ -21,16 +24,17 @@ import com.emperises.monercat.customview.CustomDialogConfig;
 import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
+import com.emperises.monercat.domain.DomainObject;
 import com.emperises.monercat.domain.MyInfo;
-import com.emperises.monercat.interfaces.BalanceEvent;
-import com.emperises.monercat.interfaces.BalanceInterface;
-import com.emperises.monercat.interfaces.EditMyInfoEvent;
-import com.emperises.monercat.interfaces.EditMyInfoInterface;
-import com.emperises.monercat.interfaces.HeaderImageChangeInterface;
-import com.emperises.monercat.interfaces.HeaderImageEvent;
-import com.emperises.monercat.interfaces.HttpInterface;
-import com.emperises.monercat.interfaces.HttpRequest;
-import com.emperises.monercat.interfaces.LocalConfigKey;
+import com.emperises.monercat.interfacesandevents.BalanceEvent;
+import com.emperises.monercat.interfacesandevents.BalanceInterface;
+import com.emperises.monercat.interfacesandevents.EditMyInfoEvent;
+import com.emperises.monercat.interfacesandevents.EditMyInfoInterface;
+import com.emperises.monercat.interfacesandevents.HeaderImageChangeInterface;
+import com.emperises.monercat.interfacesandevents.HeaderImageEvent;
+import com.emperises.monercat.interfacesandevents.HttpInterface;
+import com.emperises.monercat.interfacesandevents.HttpRequest;
+import com.emperises.monercat.interfacesandevents.LocalConfigKey;
 import com.emperises.monercat.ui.MingXiActivity;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 import com.emperises.monercat.utils.Logger;
@@ -81,7 +85,12 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 	//获得头像资源id
 	protected int getHeadImageResId() {
-		return getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
+		int resId = getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
+		if(resId == 0){
+			resId = R.drawable.test_headimage1;
+			setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
+		}
+		return resId;
 	}
 	//查询当前余额
 	protected float queryBalance() {
@@ -169,39 +178,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
-		
-		titleText = (TextView) findViewById(R.id.titleText);
-		if (findViewById(R.id.leftItem) != null
-				&& findViewById(R.id.rightItem) != null) {
-			Button leftButton = (Button) findViewById(R.id.leftItem);
-			leftButton.setOnClickListener(this);
-			Button rightButton = (Button) findViewById(R.id.rightItem);
-			rightButton.setOnClickListener(this);
-		}
-		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
-		if(mHeader != null){
-			HeaderImageEvent.getInstance().addHeaderImageListener(this);
-			int resId = getHeadImageResId();
-			if(resId == 0){
-				resId = R.drawable.test_headimage1;
-				setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
-			}
-			mHeader.setBackgroundResource(resId);
-			mHeader.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					startActivity(new Intent(BaseActivity.this, ActivityMyInfo.class));
-				}
-			});
-		}
-		TextView ye = (TextView) findViewById(R.id.yue_text);
-		if(ye != null){
-			BalanceEvent.getInstance().addBalanceListener(this);
-			ye.setText("余额:"+queryBalance()+"元");
-		}
-		
+		initBaseView();	
 		initViews();
+		initBaseData();
 	}
 
 	public String getCurrentTitle() {
@@ -238,8 +217,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		initShare();
 		if(mDatabase == null){
 			mDatabase = new DatabaseImpl(this, null);// TODO:创建数据库
+			List<Class<?>> classs = new ArrayList<Class<?>>();
+			classs.add(MyInfo.class);
+			mDatabase.createTableDatabaseForListClass(classs);
 		}
-		// testDB(d.getDatabase());
+//		 testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		EditMyInfoEvent.getInstance().addEditInfoListener(this);
@@ -393,6 +375,14 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		mController.setShareMedia(new UMImage(this, R.drawable.ic_launcher));
 	}
 
+	protected boolean isFirstRun() {
+		if(!getBoleanValueForKey(LOCAL_CONFIGKEY_FIRSTRUN)){
+			//第一次运行
+			setBooleanForKey(LOCAL_CONFIGKEY_FIRSTRUN, true);
+			return true;
+		}
+		return false;
+	}
 	protected void openShare() {
 		
 		mController.openShare(this, new SnsPostListener() {
@@ -429,6 +419,49 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 
 	abstract protected void initViews();
 
+	private void initBaseData(){
+		if(isFirstRun()){
+			//初始化个人信息
+			MyInfo info = new MyInfo();
+			info.setBalance("0.0");
+			info.setDeviceId(Util.getDeviceId(this));
+			info.setHeaderResId(getHeadImageResId()+"");
+			info.setLevel(0+"");
+			List<DomainObject> objs = new ArrayList<DomainObject>();
+			objs.add(info);
+			getDatabaseInterface().insertDataForObjs(objs);
+		}
+	}
+	
+	private void initBaseView(){
+		titleText = (TextView) findViewById(R.id.titleText);
+		if (findViewById(R.id.leftItem) != null
+				&& findViewById(R.id.rightItem) != null) {
+			Button leftButton = (Button) findViewById(R.id.leftItem);
+			leftButton.setOnClickListener(this);
+			Button rightButton = (Button) findViewById(R.id.rightItem);
+			rightButton.setOnClickListener(this);
+		}
+		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
+		if(mHeader != null){
+			HeaderImageEvent.getInstance().addHeaderImageListener(this);
+			int resId = getHeadImageResId();
+			mHeader.setBackgroundResource(resId);
+			mHeader.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					startActivity(new Intent(BaseActivity.this, ActivityMyInfo.class));
+				}
+			});
+		}
+		TextView ye = (TextView) findViewById(R.id.yue_text);
+		if(ye != null){
+			BalanceEvent.getInstance().addBalanceListener(this);
+			ye.setText("余额:"+queryBalance()+"元");
+		}
+	
+	}
 	@Override
 	public void onFail(Throwable t, int errorNo, String strMsg) {
 		mProgressDialog.dismiss();

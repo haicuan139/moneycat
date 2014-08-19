@@ -7,15 +7,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.emperises.monercat.domain.DomainObject;
+import com.emperises.monercat.domain.MyInfo;
 
 public class DatabaseImpl implements DatabaseInterface {
 
 	private SQLiteDatabase db;
 
-	public DatabaseImpl(Context context , List<Class<?>> objs) {
+	public DatabaseImpl(Context context, List<Class<?>> objs) {
 		DatabaseHelper mDatabaseHelper = new DatabaseHelper(context, objs);
 		this.db = mDatabaseHelper.getWritableDatabase();
 	}
+
 	@Override
 	public SQLiteDatabase getDatabase() {
 		return db;
@@ -32,9 +34,16 @@ public class DatabaseImpl implements DatabaseInterface {
 	}
 
 	@Override
-	public void insertDataForObjs(List<DomainObject> objs)
-			throws IllegalArgumentException, IllegalAccessException {
-		DatabaseUtil.insertDataForObjs(objs, db);
+	public void insertDataForObjs(List<DomainObject> objs) {
+		try {
+			DatabaseUtil.insertDataForObjs(objs, db);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -46,55 +55,130 @@ public class DatabaseImpl implements DatabaseInterface {
 	}
 
 	@Override
-	public Object queryDatabaseForClass(Class<?> classz, String[] columns,
-			String where, String[] selectionArgs, String orderBy, String limit)
-			throws InstantiationException, IllegalAccessException {
+	public List<Object> queryDatabaseForClass(Class<?> classz, String[] columns,
+			String where, String[] selectionArgs, String orderBy, String limit) {
 
-		return DatabaseUtil.queryDatabaseForClass(classz, db, columns, where,
-				selectionArgs, orderBy, limit);
+		try {
+			return DatabaseUtil.queryDatabaseForClass(classz, db, columns,
+					where, selectionArgs, orderBy, limit);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
-	public Object queryDatabaseForClass(Class<?> classz, String where,
-			String[] selectionArgs, String orderBy, String limit)
-			throws InstantiationException, IllegalAccessException {
+	public List<Object> queryDatabaseForClass(Class<?> classz, String where,
+			String[] selectionArgs, String orderBy, String limit) {
 
-		return DatabaseUtil.queryDatabaseForClass(classz, db, where,
-				selectionArgs, orderBy, limit);
+		try {
+			return DatabaseUtil.queryDatabaseForClass(classz, db, where,
+					selectionArgs, orderBy, limit);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public List<Object> queryDatabaseForClassToList(List<Class<?>> classz,
 			String[] columns, String where, String[] selectionArgs,
-			String orderBy, String limit) throws InstantiationException,
-			IllegalAccessException {
+			String orderBy, String limit) {
 
-		return DatabaseUtil.queryDatabaseForClassToList(classz, db, columns,
-				where, selectionArgs, orderBy, limit);
+		try {
+			return DatabaseUtil.queryDatabaseForClassToList(classz, db,
+					columns, where, selectionArgs, orderBy, limit);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
-	public Object queryDatabaseForClass(Class<?> classz, String[] columns,
-			String where, String[] selectionArgs)
-			throws InstantiationException, IllegalAccessException {
+	public List<Object> queryDatabaseForClass(Class<?> classz, String[] columns,
+			String where, String[] selectionArgs) {
 
-		return DatabaseUtil.queryDatabaseForClass(classz, db, columns, where,
-				selectionArgs);
+		try {
+			return DatabaseUtil.queryDatabaseForClass(classz, db, columns,
+					where, selectionArgs);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
-	public Object queryDatabaseForClass(Class<?> classz, String where,
-			String[] selectionArgs) throws InstantiationException,
-			IllegalAccessException {
+	public List<Object> queryDatabaseForClass(Class<?> classz, String where,
+			String[] selectionArgs) {
 
-		return DatabaseUtil.queryDatabaseForClass(classz, db, where,
-				selectionArgs);
+		try {
+			return DatabaseUtil.queryDatabaseForClass(classz, db, where,
+					selectionArgs);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public void update(String tabName, Object obj, String whereClause,
-			String[] whereArgs) throws IllegalArgumentException,
-			IllegalAccessException {
-		DatabaseUtil.update(tabName, obj, db, whereClause, whereArgs);
+			String[] whereArgs) {
+		try {
+			DatabaseUtil.update(tabName, obj, db, whereClause, whereArgs);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+
+	@Override
+	public void saveMyInfo(DomainObject myInfoObj) {
+		try {
+			DatabaseUtil.saveMyInfo(myInfoObj, db);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public MyInfo getMyInfo() {
+		try {
+			return DatabaseUtil.getMyInfo(db);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

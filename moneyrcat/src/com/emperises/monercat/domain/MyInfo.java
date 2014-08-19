@@ -2,22 +2,24 @@ package com.emperises.monercat.domain;
 
 public class MyInfo extends DomainObject {
 	private static final long serialVersionUID = 1L;
-	private String userName;
-	private String gender;
-	private String age;
-	private String address;
+	private String nickName; //姓名
+	private String gender; //性别
+	private String age; //年龄
+	private String address; //地址
 	private String balance; //余额
-	private String telNumber;
-	private String myLink;
+	private String telNumber; //电话号码
+	private String myLink; //个人链接
 	private String myQRCodeLocalPath;//我的二维码,本地地址
 	private String myQRCodeUrlPath; //我的二维码在线地址
-	private String level;
-	private String userId;
+	private String level;//等级
+	private String userId; //用户标识
+	private String deviceId; //设备ID
+	private String headerResId; //头像资源ID
 	public String getUserName() {
-		return userName;
+		return nickName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setNickName(String userName) {
+		this.nickName = userName;
 	}
 	public String getGender() {
 		return gender;
@@ -78,6 +80,19 @@ public class MyInfo extends DomainObject {
 	}
 	public void setMyQRCodeUrlPath(String myQRCodeUrlPath) {
 		this.myQRCodeUrlPath = myQRCodeUrlPath;
+	}
+	public String getDeviceId() {
+		return deviceId;
+	}
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
+	}
+	public int getHeaderResId() {
+		//转换为INT类型
+		return Integer.parseInt(headerResId);
+	}
+	public void setHeaderResId(String headerResId) {
+		this.headerResId = headerResId;
 	}
 	
 	

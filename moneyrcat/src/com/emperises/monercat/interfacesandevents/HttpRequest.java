@@ -1,4 +1,4 @@
-package com.emperises.monercat.interfaces;
+package com.emperises.monercat.interfacesandevents;
 
 import net.tsz.afinal.http.AjaxCallBack;
 public class HttpRequest extends AjaxCallBack<String> {

@@ -8,8 +8,8 @@ import android.widget.TextView;
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.domain.MyInfo;
-import com.emperises.monercat.interfaces.EditMyInfoEvent;
-import com.emperises.monercat.interfaces.EditMyInfoInterface;
+import com.emperises.monercat.interfacesandevents.EditMyInfoEvent;
+import com.emperises.monercat.interfacesandevents.EditMyInfoInterface;
 
 public class ActivityEditMyinfo extends OtherBaseActivity implements
 		EditMyInfoInterface {
@@ -17,13 +17,14 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	private TextView mAgeText;
 	private TextView mGenderText;
 	private TextView mNicknameText;
+	private MyInfo mInfo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editmyinfo);
 		setCurrentTitle("编辑信息");
-		
+
 	}
 
 	@Override
@@ -33,15 +34,16 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 		mAgeText = (TextView) findViewById(R.id.editinfo_agetext);
 		mGenderText = (TextView) findViewById(R.id.editinfo_gendertext);
 		mNicknameText = (TextView) findViewById(R.id.editinfo_nicknametext);
+		mInfo = getDatabaseInterface().getMyInfo();
 	}
 
 	@Override
 	public void onClick(View v) {
 		Intent i = new Intent(this, ActivityEditText.class);
-//		mAgeText.setText(age);
-//		mNicknameText.setText(nickNmae);
-//		mGenderText.setText(gender);
-//		mAddressText.setText(address);
+		// mAgeText.setText(age);
+		// mNicknameText.setText(nickNmae);
+		// mGenderText.setText(gender);
+		// mAddressText.setText(address);
 		super.onClick(v);
 		switch (v.getId()) {
 		case R.id.editinfo_address:
@@ -61,30 +63,23 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 			break;
 		case R.id.editinfo_nickname:
 			i.putExtra(INTENT_KEY_EDIT_TYPE, R.id.editinfo_nickname);
-			i.putExtra(INTENT_KEY_EDIT_VALUE, mNicknameText.getText().toString());
+			i.putExtra(INTENT_KEY_EDIT_VALUE, mNicknameText.getText()
+					.toString());
 			startActivity(i);
 			break;
 		case R.id.editinfo_done_button:
 			finish();
-//			//修改完成将数据插入到数据库中
-//			try {
-//				MyInfo info = (MyInfo) getDatabaseInterface().queryDatabaseForClass(MyInfo.class, null, null);
-//				if(info == null){
-//					//第一次设置个人信息，插入一条数据
-//					getDatabaseInterface().insertDataForObjs(objs);
-//				}else{
-//					//修改信息
-//				}
-//			} catch (InstantiationException e) {
-//				e.printStackTrace();
-//			} catch (IllegalAccessException e) {
-//				e.printStackTrace();
-//			}
+			// //修改完成将数据插入到数据库中
+			saveMyInfo();
 			break;
 		default:
 			break;
 		}
-		
+
+	}
+
+	private void saveMyInfo() {
+		getDatabaseInterface().saveMyInfo(mInfo);
 	}
 
 	@Override
@@ -95,22 +90,27 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	@Override
 	public void onAgeEditAfter(String age) {
 		mAgeText.setText(age);
+		mInfo.setAge(age);
 	}
 
 	@Override
 	public void onNickNameEditAfter(String nickNmae) {
 		mNicknameText.setText(nickNmae);
+		mInfo.setNickName(nickNmae);
 	}
 
 	@Override
 	public void onGenderEditAfter(String gender) {
 		mGenderText.setText(gender);
+		mInfo.setGender(gender);
 	}
 
 	@Override
 	public void onAddressEditAfter(String address) {
 		mAddressText.setText(address);
+		mInfo.setAddress(address);
 	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

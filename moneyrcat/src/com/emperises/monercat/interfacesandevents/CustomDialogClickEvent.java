@@ -1,4 +1,4 @@
-package com.emperises.monercat.interfaces;
+package com.emperises.monercat.interfacesandevents;
 
 public class CustomDialogClickEvent {
 

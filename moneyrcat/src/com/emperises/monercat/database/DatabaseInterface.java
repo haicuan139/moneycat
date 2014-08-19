@@ -6,18 +6,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.emperises.monercat.domain.DomainObject;
+import com.emperises.monercat.domain.MyInfo;
 
 public interface DatabaseInterface {
 
 	SQLiteDatabase getDatabase();
 	void createTableDatabaseForClass(Class<?> classz);
 	void createTableDatabaseForListClass(List<Class<?>> classz);
-	void insertDataForObjs(List<DomainObject> objs) throws IllegalArgumentException, IllegalAccessException;
+	void insertDataForObjs(List<DomainObject> objs) ;
 	Cursor queryCursor(Class<?> cls,String[] columns , String where, String[] selectionArgs, String orderBy , String limit);
-	Object queryDatabaseForClass(Class<?> classz , String[] columns , String where ,String[] selectionArgs, String orderBy , String limit) throws InstantiationException, IllegalAccessException;
-	Object queryDatabaseForClass(Class<?> classz , String where ,String[] selectionArgs, String orderBy , String limit) throws InstantiationException, IllegalAccessException;
-	List<Object> queryDatabaseForClassToList(List<Class<?>> classz , String[] columns , String where, String[] selectionArgs, String orderBy,String limit) throws InstantiationException, IllegalAccessException;
-	Object queryDatabaseForClass(Class<?> classz , String[] columns , String where ,String[] selectionArgs) throws InstantiationException, IllegalAccessException;
-	Object queryDatabaseForClass(Class<?> classz , String where ,String[] selectionArgs) throws InstantiationException, IllegalAccessException;
-	void update(String tabName ,Object obj, String whereClause , String[] whereArgs) throws IllegalArgumentException, IllegalAccessException;
+	Object queryDatabaseForClass(Class<?> classz , String[] columns , String where ,String[] selectionArgs, String orderBy , String limit);
+	Object queryDatabaseForClass(Class<?> classz , String where ,String[] selectionArgs, String orderBy , String limit);
+	List<Object> queryDatabaseForClassToList(List<Class<?>> classz , String[] columns , String where, String[] selectionArgs, String orderBy,String limit) ;
+	Object queryDatabaseForClass(Class<?> classz , String[] columns , String where ,String[] selectionArgs);
+	Object queryDatabaseForClass(Class<?> classz , String where ,String[] selectionArgs) ;
+	void update(String tabName ,Object obj, String whereClause , String[] whereArgs) ;
+	void saveMyInfo(DomainObject myInfoObj);
+	MyInfo getMyInfo();
 }

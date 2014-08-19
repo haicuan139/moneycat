@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
-import com.emperises.monercat.interfaces.HeaderImageEvent;
+import com.emperises.monercat.interfacesandevents.HeaderImageEvent;
 import com.emperises.monercat.ui.v3.ActivityMyInfo;
 
 public class WoDeTabActivity extends BaseActivity {

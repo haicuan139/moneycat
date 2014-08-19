@@ -3,8 +3,8 @@ package com.emperises.monercat.customview;
 import android.content.Context;
 import android.content.Intent;
 
-import com.emperises.monercat.interfaces.CustomDialogClickEvent;
-import com.emperises.monercat.interfaces.CustomDialogClickEvent.CustomDialogClickEventInterface;
+import com.emperises.monercat.interfacesandevents.CustomDialogClickEvent;
+import com.emperises.monercat.interfacesandevents.CustomDialogClickEvent.CustomDialogClickEventInterface;
 
 public class DialogManager {
 	private static CustomDialogConfig mCustomDialogConfig;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
-import com.emperises.monercat.interfaces.CustomDialogClickEvent.CustomDialogClickEventInterface;
+import com.emperises.monercat.interfacesandevents.CustomDialogClickEvent.CustomDialogClickEventInterface;
 
 public class CustomDialog extends OtherBaseActivity implements CustomDialogClickEventInterface{
 

@@ -63,9 +63,6 @@ public class Util {
 		//TODO:获取本地手机号码
 		return "";
 	}
-	public static void update(Context context){
-		
-	}
 	/**
 	 * 下载APK
 	 * @param k

@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
-import com.emperises.monercat.interfaces.EditMyInfoEvent;
+import com.emperises.monercat.interfacesandevents.EditMyInfoEvent;
 
 public class ActivityEditText extends OtherBaseActivity {
 

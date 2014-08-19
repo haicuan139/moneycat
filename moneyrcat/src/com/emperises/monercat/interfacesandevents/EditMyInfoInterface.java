@@ -1,4 +1,4 @@
-package com.emperises.monercat.interfaces;
+package com.emperises.monercat.interfacesandevents;
 
 import com.emperises.monercat.domain.MyInfo;
 

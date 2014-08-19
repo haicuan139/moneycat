@@ -31,8 +31,8 @@ import com.emperises.monercat.OtherBaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.customview.headerimage.CropImageActivity;
 import com.emperises.monercat.domain.MyInfo;
-import com.emperises.monercat.interfaces.EditMyInfoEvent;
-import com.emperises.monercat.interfaces.HeaderImageEvent;
+import com.emperises.monercat.interfacesandevents.EditMyInfoEvent;
+import com.emperises.monercat.interfacesandevents.HeaderImageEvent;
 import com.emperises.monercat.ui.BindActivity;
 import com.emperises.monercat.ui.MingXiActivity;
 
