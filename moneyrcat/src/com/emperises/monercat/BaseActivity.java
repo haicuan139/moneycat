@@ -395,7 +395,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 
 	protected void openShare() {
 		
-		
 		mController.openShare(this, new SnsPostListener() {
 			
 			@Override

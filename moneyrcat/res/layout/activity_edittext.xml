@@ -8,10 +8,10 @@
     <include layout="@layout/back_header" />
 
     <EditText
+            android:background="@color/background"
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#f2f2f2"
         android:ems="10"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -28,7 +28,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp" >
+        android:layout_marginTop="10dp" >
 
         <Button
             android:id="@+id/edit_cancel"
