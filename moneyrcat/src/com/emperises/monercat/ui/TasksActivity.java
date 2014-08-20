@@ -227,15 +227,18 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 		public View getView(int position, View arg1, ViewGroup arg2) {
 			View v = getLayoutInflater().inflate(R.layout.list_task_item, null);
 			TextView title = (TextView) v.findViewById(R.id.taskTitle);
+			ImageView i = (ImageView) v.findViewById(R.id.task_icon);
 			switch (position) {
 			case 0:
 				title.setText("签到大转盘");
 				break;
 			case 1:
 				title.setText("完善个人信息");
+				i.setBackgroundResource(R.drawable.wode_myinfo);
 				break;
 			case 2:
 				title.setText("推荐招财喵");
+				i.setBackgroundResource(R.drawable.wode_recommend);
 				break;
 
 			default:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#ffffff</color>
+    <color name="background">#F6F8F9</color>
     <color name="texttitle">#555555</color>
     <color name="textcontent">#777777</color>
     <color name="gl_background">#737373</color>

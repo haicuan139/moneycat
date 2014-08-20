@@ -74,6 +74,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="姓名"
                 android:textColor="@color/texttitle" />
+
+
         </RelativeLayout>
 
         <RelativeLayout

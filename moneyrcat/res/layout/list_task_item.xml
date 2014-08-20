@@ -8,7 +8,7 @@
     android:background="@drawable/white_selector" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/task_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/imageView1"
+        android:layout_toRightOf="@+id/task_icon"
         android:text="签到大转盘"
         android:textColor="@color/texttitle"
         android:textSize="18sp" />

@@ -3,6 +3,7 @@
     android:id="@+id/pull_scrollview"
     android:layout_width="match_parent"
     android:scrollbars="none"
+    android:background="#F6F8F9"
     android:layout_height="match_parent" >
 
     <LinearLayout
