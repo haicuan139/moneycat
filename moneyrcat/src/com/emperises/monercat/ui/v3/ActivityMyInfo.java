@@ -52,6 +52,7 @@ public class ActivityMyInfo extends OtherBaseActivity {
 	private TextView mInfoNicknameText;
 	private TextView mCurrentBalance;
 	private TextView mGenderAgeAddr;
+	private TextView mTel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,11 @@ public class ActivityMyInfo extends OtherBaseActivity {
 		mCurrentBalance = (TextView) findViewById(R.id.myinfo_balance);
 		mCurrentBalance.setText(queryBalance()+"元");
 		mGenderAgeAddr = (TextView) findViewById(R.id.myinfo_normalinfo);
-		TextView mTel = (TextView) findViewById(R.id.myinfo_tel_text);
+		mTel = (TextView) findViewById(R.id.myinfo_tel_text);
+		setMyInfo();
+	}
+
+	private void setMyInfo() {
 		MyInfo info = getMyInfoForDatabase();
 		if(info != null){
 			String gender = info.getGender();
@@ -243,32 +248,11 @@ public class ActivityMyInfo extends OtherBaseActivity {
 		
 	}
 	@Override
-	public void onInfoEditAfter(MyInfo info) {
-		
-	}
-
-	@Override
-	public void onAgeEditAfter(String age) {
-		
-	}
-
-	@Override
-	public void onNickNameEditAfter(String nickNmae) {
-		mInfoNicknameText.setText(nickNmae);		
-	}
-
-	@Override
-	public void onGenderEditAfter(String gender) {
-		
-	}
-
-	@Override
-	public void onAddressEditAfter(String address) {
-		
+	public void onMyInfoChange(MyInfo info) {
+		setMyInfo();
 	}
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		EditMyInfoEvent.getInstance().removeListener(this);
 	}
 }

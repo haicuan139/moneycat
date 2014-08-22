@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.emperises.monercat.domain.DomainObject;
 import com.emperises.monercat.domain.MyInfo;
+import com.emperises.monercat.interfacesandevents.EditMyInfoEvent;
 import com.emperises.monercat.utils.Logger;
 
 public class DatabaseUtil {
@@ -275,5 +276,6 @@ public class DatabaseUtil {
 		Logger.i("DATABASE", "保存用户信息执行");
 		//TODO:设置用户的userID
 		update(MyInfo.class.getSimpleName(), myInfoObj, db, "deviceId", new String[]{"A100003AA788FA"});
+		EditMyInfoEvent.getInstance().fireEditInfoEvent((MyInfo)myInfoObj);
 	}
 }

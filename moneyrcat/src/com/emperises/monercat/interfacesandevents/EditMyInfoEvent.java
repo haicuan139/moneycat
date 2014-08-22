@@ -23,7 +23,7 @@ public class EditMyInfoEvent {
 	public void fireEditInfoEvent(MyInfo info){
 		for(EditMyInfoInterface listener : mListeners){
 			if(listener != null){
-				listener.onInfoEditAfter(info);
+				listener.onMyInfoChange(info);
 			}
 		}
 	}

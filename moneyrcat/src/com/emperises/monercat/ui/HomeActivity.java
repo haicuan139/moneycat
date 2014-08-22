@@ -30,6 +30,7 @@ import com.emperises.monercat.BaseActivity;
 import com.emperises.monercat.R;
 import com.emperises.monercat.adapter.ImagePagerAdapter;
 import com.emperises.monercat.domain.ADInfo;
+import com.emperises.monercat.domain.MyInfo;
 import com.emperises.monercat.ui.v3.ActivityAdDetail_HTML5;
 import com.emperises.monercat.utils.Logger;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -70,7 +71,7 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		setContentView(R.layout.activity_home);
 	} 
 
-	
+
 	@Override
 	protected void initViews() {
 		mPullScrollView = (PullToRefreshScrollView) findViewById(R.id.pull_scrollview);

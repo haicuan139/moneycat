@@ -3,9 +3,9 @@
     android:id="@+id/wodeyue"
     android:layout_width="fill_parent"
     android:layout_height="40dp"
-    android:onClick="onClick"
     android:layout_alignParentLeft="true"
-    android:background="#f4f4f4" >
+    android:background="#f4f4f4"
+    android:onClick="onClick" >
 
     <ImageView
         android:id="@+id/myheaderimage"
@@ -13,9 +13,9 @@
         android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:onClick="onClick"
         android:layout_marginLeft="10dp"
-        android:background="@drawable/header_normal_icon" />
+        android:background="@drawable/header_normal_icon"
+        android:onClick="onClick" />
 
     <TextView
         android:id="@+id/yue_lv"
@@ -24,11 +24,12 @@
         android:layout_alignBottom="@+id/myheaderimage"
         android:layout_marginLeft="4dp"
         android:layout_toRightOf="@+id/myheaderimage"
-        android:text="Lv.0"
+        android:text="Lv.12"
         android:textColor="#6e7d83"
         android:textSize="10sp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -46,13 +47,13 @@
 
         <Button
             android:id="@+id/mingxi_button"
-            android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:layout_height="28dp"
             android:background="@drawable/black_button"
+            android:onClick="onClick"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="明细"
             android:textColor="#ffffff"
             android:textSize="13sp" />
@@ -60,14 +61,14 @@
 
     <TextView
         android:id="@+id/yue_tel"
-        android:textSize="10sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/yue_lv"
         android:layout_marginLeft="10dp"
-        android:textColor="#6e7d83"
         android:layout_toRightOf="@+id/yue_lv"
-        android:text="13922334444" />
+        android:text="13922334444"
+        android:textColor="#6e7d83"
+        android:textSize="10sp" />
 
     <View
         android:layout_width="fill_parent"
@@ -75,5 +76,15 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:background="@color/line" />
+
+    <TextView
+        android:id="@+id/yue_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/yue_lv"
+        android:layout_marginTop="3dp"
+        android:text="暴走青年"
+        android:textColor="#6e7d83"
+        android:textSize="13sp" />
 
 </RelativeLayout>

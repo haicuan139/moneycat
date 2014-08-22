@@ -12,16 +12,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.emperises.monercat.customview.CustomDialog.DialogClick;
 import com.emperises.monercat.customview.CustomDialogConfig;
+import com.emperises.monercat.customview.CustomToast;
 import com.emperises.monercat.customview.DialogManager;
 import com.emperises.monercat.database.DatabaseImpl;
 import com.emperises.monercat.database.DatabaseInterface;
@@ -56,7 +58,8 @@ import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
 
 public abstract class BaseActivity extends Activity implements OnClickListener,
-		HttpInterface, LocalConfigKey ,HeaderImageChangeInterface,BalanceInterface,EditMyInfoInterface{
+		HttpInterface, LocalConfigKey, HeaderImageChangeInterface,
+		BalanceInterface, EditMyInfoInterface {
 
 	private FinalHttp mFinalHttp;
 	private ProgressDialog mProgressDialog;
@@ -67,99 +70,110 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	public void onHeaderImageChange(int resId) {
 		ImageView header = (ImageView) findViewById(R.id.myheaderimage);
 		ImageView headerInfo = (ImageView) findViewById(R.id.headerImage);
-		if(header != null){
+		if (header != null) {
 			header.setBackgroundResource(resId);
 		}
-		if(headerInfo != null){
+		if (headerInfo != null) {
 			headerInfo.setBackgroundResource(resId);
 		}
-		
+
 	}
-	//余额改变时
+
+	// 余额改变时
 	@Override
 	public void onBalanceChange() {
-		MyInfo  info = getMyInfoForDatabase();
+		MyInfo info = getMyInfoForDatabase();
 		TextView ye = (TextView) findViewById(R.id.yue_balance);
-		if(ye != null && info != null){
+		if (ye != null && info != null) {
 			float currentBalance = Float.parseFloat(info.getBalance());
-			ye.setText("余额:"+currentBalance+"元"); 
-			Logger.i("BALANCE", "余额改变:"+currentBalance+"元");
-		} 
+			ye.setText("余额:" + currentBalance + "元");
+			Logger.i("BALANCE", "余额改变:" + currentBalance + "元");
+		}
 	}
-	//获得头像资源id
+
+	// 获得头像资源id
 	protected int getHeadImageResId() {
 		int resId = getIntValueForKey(LOCAL_CONFIGKEY_HEADER_RESID);
-		if(resId == 0){
+		if (resId == 0) {
 			resId = R.drawable.test_headimage1;
-			setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID, R.drawable.test_headimage1);
+			setIntForKey(LOCAL_CONFIGKEY_HEADER_RESID,
+					R.drawable.test_headimage1);
 		}
 		return resId;
 	}
-	//查询当前余额
+
+	// 查询当前余额
 	protected float queryBalance() {
 		MyInfo info = getMyInfoForDatabase();
-		float currentBalance  = 0.0f;
-		if(info != null){
+		float currentBalance = 0.0f;
+		if (info != null) {
 			currentBalance = Float.parseFloat(info.getBalance());
-		}else{
+		} else {
 			Logger.i("BALANCE", "queryBalance : info ＝ null");
 		}
 		return currentBalance;
 	}
-	//增加余额
+
+	// 增加余额
 	protected void addBalance(float balance) {
 		MyInfo info = new MyInfo();
 		info = getMyInfoForDatabase();
-		if(info != null){
+		if (info != null) {
 			float oldBalance = Float.parseFloat(info.getBalance());
 			float currentBalance = balance + oldBalance;
-			//余额保存到数据库
-			info.setBalance(currentBalance+"");
+			// 余额保存到数据库
+			info.setBalance(currentBalance + "");
 			getDatabaseInterface().saveMyInfo(info);
-//		setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + oldBalance);
+			// setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + oldBalance);
 			BalanceEvent.getInstance().fireBalanceChange();
-			showToast("恭喜您获得"+balance+"元钱!");
+//			showToast("恭喜您获得" + balance + "元钱!");
+			CustomToast.makeGoldText(this, R.drawable.gold_icon,"恭喜您获得" + balance + "元钱!").show();;
 			Logger.i("BALANCE", "余额增加");
-		}else{
+		} else {
 			Logger.i("BALANCE", "addBalance : info ＝ null");
 		}
 	}
-	//提现
+
+
+	// 提现
 	protected void tixian(float money) {
-		showToast("成功提现:"+money+"元");
-		//余额减少
+		showToast("成功提现:" + money + "元");
+		// 余额减少
 		decBalance(money);
 	}
-	//兑换
-		protected void duihuan(float money) {
-			showToast("成功兑换电信充值卡");
-			//余额减少
-			decBalance(money);
-		}
-	//减少余额
+
+	// 兑换
+	protected void duihuan(float money) {
+		showToast("成功兑换电信充值卡");
+		// 余额减少
+		decBalance(money);
+	}
+
+	// 减少余额
 	protected void decBalance(float balance) {
 		MyInfo info = new MyInfo();
 		info = getMyInfoForDatabase();
-		if(info != null){
+		if (info != null) {
 			float oldBalance = Float.parseFloat(info.getBalance());
-			if(balance > oldBalance){
-				//TODO:在显示兑换列表的时候,如果有足够的余额去兑换,才会被点击
+			if (balance > oldBalance) {
+				// TODO:在显示兑换列表的时候,如果有足够的余额去兑换,才会被点击
 				showToast("您的余额不足!完成任务,点击广告都可以获得金钱!");
-			}else{
-				if(oldBalance != 0){
-//				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,oldBalance - balance  );
+			} else {
+				if (oldBalance != 0) {
+					// setFloatForKey(LOCAL_CONFIGKEY_BALANCE,oldBalance -
+					// balance );
 					float currentBalance = oldBalance - balance;
-					info.setBalance(currentBalance+"");
+					info.setBalance(currentBalance + "");
 					getDatabaseInterface().saveMyInfo(info);
 					BalanceEvent.getInstance().fireBalanceChange();
-					Logger.i("BALANCE", "余额减少:"+currentBalance+"元");		
+					Logger.i("BALANCE", "余额减少:" + currentBalance + "元");
 				}
 			}
-		}else{
+		} else {
 			Logger.i("BALANCE", "decBalance : info ＝ null");
 		}
 	}
-	
+
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.myheaderimage:
@@ -179,6 +193,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 
 	/**
 	 * 获得屏幕宽高
+	 * 
 	 * @return
 	 */
 	protected int[] getWindowScreenWH(Context context) {
@@ -187,8 +202,8 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int screenWidth = dm.widthPixels;
 		int screenHeigh = dm.heightPixels;
-		int[] i = new int[]{screenWidth,screenHeigh};
-		Logger.i("SCREEN", "宽:"+screenWidth+"--高:"+screenHeigh);
+		int[] i = new int[] { screenWidth, screenHeigh };
+		Logger.i("SCREEN", "宽:" + screenWidth + "--高:" + screenHeigh);
 		return i;
 	}
 
@@ -208,7 +223,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
 		initBaseData();
-		initBaseView();	
+		initBaseView();
 		initViews();
 	}
 
@@ -239,18 +254,19 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	protected DatabaseInterface getDatabaseInterface() {
 		return mDatabase;
 	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// 社会化分享初始化
 		initShare();
-		if(mDatabase == null){
+		if (mDatabase == null) {
 			mDatabase = new DatabaseImpl(this, null);// TODO:创建数据库
 			List<Class<?>> classs = new ArrayList<Class<?>>();
 			classs.add(MyInfo.class);
 			mDatabase.createTableDatabaseForListClass(classs);
 		}
-//		 testDB(d.getDatabase());
+		// testDB(d.getDatabase());
 		mFinalHttp = new FinalHttp();
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		EditMyInfoEvent.getInstance().addEditInfoListener(this);
@@ -405,25 +421,27 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 
 	protected boolean isFirstRun() {
-		if(!getBoleanValueForKey(LOCAL_CONFIGKEY_FIRSTRUN)){
-			//第一次运行
+		if (!getBoleanValueForKey(LOCAL_CONFIGKEY_FIRSTRUN)) {
+			// 第一次运行
 			setBooleanForKey(LOCAL_CONFIGKEY_FIRSTRUN, true);
 			return true;
 		}
 		return false;
 	}
+
 	protected void openShare() {
-		
+
 		mController.openShare(this, new SnsPostListener() {
-			
+
 			@Override
 			public void onStart() {
-				
+
 			}
-			
+
 			@Override
-			public void onComplete(SHARE_MEDIA arg0, int arg1, SocializeEntity arg2) {
-				//增加余额
+			public void onComplete(SHARE_MEDIA arg0, int arg1,
+					SocializeEntity arg2) {
+				// 增加余额
 				addBalance(1.0f);
 			}
 		});
@@ -448,16 +466,16 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 
 	abstract protected void initViews();
 
-	private void initBaseData(){
-		if(isFirstRun()){
-			//初始化个人信息
+	private void initBaseData() {
+		if (isFirstRun()) {
+			// 初始化个人信息
 			MyInfo info = new MyInfo();
-			info.setBalance("5.0");
+			info.setBalance("50000.0");
 			info.setDeviceId(Util.getDeviceId(this));
-			info.setHeaderResId(getHeadImageResId()+"");
-			info.setLevel(0+"");
+			info.setHeaderResId(getHeadImageResId() + "");
+			info.setLevel(0 + "");
 			info.setAddress("北京市朝阳区三里屯SOHOB1205");
-			info.setAge(30+"");
+			info.setAge(30 + "");
 			info.setGender("男");
 			info.setMyLink("http://www.emperises.com/mylink?id=1321324");
 			info.setNickName("暴走青年");
@@ -468,8 +486,8 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			getDatabaseInterface().insertDataForObjs(objs);
 		}
 	}
-	
-	private void initBaseView(){
+
+	private void initBaseView() {
 		titleText = (TextView) findViewById(R.id.titleText);
 		if (findViewById(R.id.leftItem) != null
 				&& findViewById(R.id.rightItem) != null) {
@@ -478,35 +496,43 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 			Button rightButton = (Button) findViewById(R.id.rightItem);
 			rightButton.setOnClickListener(this);
 		}
+		setBaseHeaderInfo();
+
+	}
+
+	// 顶部信息
+	private void setBaseHeaderInfo() {
 		ImageView mHeader = (ImageView) findViewById(R.id.myheaderimage);
-		if(mHeader != null){
+		TextView ye = (TextView) findViewById(R.id.yue_balance);
+		TextView lv = (TextView) findViewById(R.id.yue_lv);
+		TextView tel = (TextView) findViewById(R.id.yue_tel);
+		TextView nickname = (TextView) findViewById(R.id.yue_nickname);
+		MyInfo info = getMyInfoForDatabase();
+		if (ye != null && info != null) {
 			HeaderImageEvent.getInstance().addHeaderImageListener(this);
 			int resId = getHeadImageResId();
 			mHeader.setBackgroundResource(resId);
 			mHeader.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
-					startActivity(new Intent(BaseActivity.this, ActivityMyInfo.class));
+					startActivity(new Intent(BaseActivity.this,
+							ActivityMyInfo.class));
 				}
 			});
-		}
-		TextView ye = (TextView) findViewById(R.id.yue_balance);
-		TextView lv = (TextView) findViewById(R.id.yue_lv);
-		TextView tel = (TextView) findViewById(R.id.yue_tel);
-		MyInfo info = getMyInfoForDatabase();
-		if(ye != null && info != null){
 			BalanceEvent.getInstance().addBalanceListener(this);
-			ye.setText("余额:"+queryBalance()+"元");
-			lv.setText("Lv."+info.getLevel());
+			ye.setText("余额:" + queryBalance() + "元");
+			lv.setText("Lv." + info.getLevel());
 			tel.setText(info.getTelNumber());
+			nickname.setText(info.getNickName());
 		}
-	
 	}
+
 	protected MyInfo getMyInfoForDatabase() {
-		
+
 		return getDatabaseInterface().getMyInfo();
 	}
+
 	@Override
 	public void onFail(Throwable t, int errorNo, String strMsg) {
 		mProgressDialog.dismiss();
@@ -528,11 +554,11 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 
 	protected void showToast(String msg) {
-		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+		CustomToast.makeText(this, msg);
 	}
 
 	protected void showToast(int id) {
-		Toast.makeText(this, id, Toast.LENGTH_SHORT).show();
+		CustomToast.makeText(this, id);
 	}
 
 	protected void showErrorToast() {
@@ -565,7 +591,7 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	public int px2dip(float pixel) {
 		return Util.px2dip(pixel, this);
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
@@ -573,29 +599,34 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		BalanceEvent.getInstance().removeListener(this);
 		EditMyInfoEvent.getInstance().removeListener(this);
 	}
+
 	@Override
-	public void onInfoEditAfter(MyInfo info) {
-		// TODO Auto-generated method stub
-		
+	public void onMyInfoChange(MyInfo info) {
+		setBaseHeaderInfo();
+
 	}
+
 	@Override
 	public void onAgeEditAfter(String age) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void onNickNameEditAfter(String nickNmae) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void onGenderEditAfter(String gender) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void onAddressEditAfter(String address) {
 		// TODO Auto-generated method stub
-		
-	}	
+
+	}
 }

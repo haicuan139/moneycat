@@ -38,7 +38,7 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 		mInfo = getDatabaseInterface().getMyInfo();
 		if(info != null){
 			mAddressText.setText(info.getAddress());
-			mAddressText.setText(info.getAge()+"岁");
+			mAgeText.setText(info.getAge()+"岁");
 			mGenderText.setText(info.getGender());
 			mNicknameText.setText(info.getNickName());
 		}
@@ -90,11 +90,6 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	}
 
 	@Override
-	public void onInfoEditAfter(MyInfo info) {
-
-	}
-
-	@Override
 	public void onAgeEditAfter(String age) {
 		mAgeText.setText(age);
 		mInfo.setAge(age);
@@ -121,6 +116,5 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		EditMyInfoEvent.getInstance().removeListener(this);
 	}
 }

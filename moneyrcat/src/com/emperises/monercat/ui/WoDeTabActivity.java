@@ -14,6 +14,10 @@ import com.emperises.monercat.ui.v3.ActivityMyInfo;
 
 public class WoDeTabActivity extends BaseActivity {
 
+	private ImageView mHeaderImage;
+	private TextView genderAgeAddr;
+	private TextView mNicknameText;
+	private TextView mTelText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,22 +27,31 @@ public class WoDeTabActivity extends BaseActivity {
 	@Override
 	protected void initViews() {
 		HeaderImageEvent.getInstance().addHeaderImageListener(this);
-		ImageView mHeaderImage = (ImageView) findViewById(R.id.headerImage);//我的
+		mHeaderImage = (ImageView) findViewById(R.id.headerImage);
 		mHeaderImage.setBackgroundResource(getHeadImageResId());
-		TextView genderAgeAddr = (TextView) findViewById(R.id.mytab_genderageaddr);
-		TextView nickname = (TextView) findViewById(R.id.mytab_nickname);
-		TextView tel = (TextView) findViewById(R.id.mytab_tel);
+		genderAgeAddr = (TextView) findViewById(R.id.mytab_genderageaddr);
+		mNicknameText = (TextView) findViewById(R.id.mytab_nickname);
+		mTelText = (TextView) findViewById(R.id.mytab_tel);
+		setMyInfo();
+	}
+
+	private void setMyInfo() {
 		MyInfo info = getMyInfoForDatabase();
 		if(info != null){
 			String gender = info.getGender();
 			String age = info.getAge();
 			String addr = info.getAddress();
 			genderAgeAddr.setText(gender+age+"岁 "+addr);
-			nickname.setText(info.getNickName());
-			tel.setText(info.getTelNumber());
+			mNicknameText.setText(info.getNickName());
+			mTelText.setText(info.getTelNumber());
 		}
 	}
 
+	@Override
+	public void onMyInfoChange(MyInfo info) {
+		super.onMyInfoChange(info);
+		setMyInfo();
+	}
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
