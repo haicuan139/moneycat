@@ -15,7 +15,7 @@ public class MyInfo extends DomainObject {
 	private String userId; //用户标识
 	private String deviceId; //设备ID
 	private String headerResId; //头像资源ID
-	public String getUserName() {
+	public String getNickName() {
 		return nickName;
 	}
 	public void setNickName(String userName) {

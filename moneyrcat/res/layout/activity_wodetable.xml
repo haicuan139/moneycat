@@ -41,17 +41,19 @@
                     android:onClick="onClick" />
 
                 <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/mytab_genderageaddr"
+                    android:layout_width="fill_parent"
+                    android:layout_marginRight="30dp"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/headerImage"
-                    android:layout_alignLeft="@+id/textView1"
-                    android:text="男21岁 河北省石家庄"
+                    android:layout_alignLeft="@+id/mytab_nickname"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColor="@color/textcontent"
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/mytab_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/headerImage"
@@ -63,12 +65,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/mytab_tel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/textView2"
+                    android:layout_alignLeft="@+id/mytab_genderageaddr"
                     android:layout_centerVertical="true"
-                    android:text="手机号:13222333332"
                     android:textColor="@color/textcontent"
                     android:textSize="12sp" />
             </RelativeLayout>
@@ -95,7 +96,7 @@
                     android:background="@drawable/wodeguanggao" />
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/mytab_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -136,7 +137,7 @@
                     android:background="@drawable/woyaotixian" />
 
                 <TextView
-                    android:id="@+id/textView1_1"
+                    android:id="@+id/mytab_nickname_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -178,7 +179,7 @@
                     android:background="@drawable/chaozhiduihuan" />
 
                 <TextView
-                    android:id="@+id/textView1_3"
+                    android:id="@+id/mytab_nickname_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

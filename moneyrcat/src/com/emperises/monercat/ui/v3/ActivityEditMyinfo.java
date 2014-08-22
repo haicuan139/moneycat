@@ -30,11 +30,18 @@ public class ActivityEditMyinfo extends OtherBaseActivity implements
 	@Override
 	protected void initViews() {
 		super.initViews();
+		MyInfo info = getMyInfoForDatabase();
 		mAddressText = (TextView) findViewById(R.id.editinfo_addresstext);
 		mAgeText = (TextView) findViewById(R.id.editinfo_agetext);
 		mGenderText = (TextView) findViewById(R.id.editinfo_gendertext);
 		mNicknameText = (TextView) findViewById(R.id.editinfo_nicknametext);
 		mInfo = getDatabaseInterface().getMyInfo();
+		if(info != null){
+			mAddressText.setText(info.getAddress());
+			mAddressText.setText(info.getAge()+"岁");
+			mGenderText.setText(info.getGender());
+			mNicknameText.setText(info.getNickName());
+		}
 	}
 
 	@Override

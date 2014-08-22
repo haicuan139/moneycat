@@ -2,6 +2,7 @@ package com.emperises.monercat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxParams;
@@ -77,11 +78,13 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	//余额改变时
 	@Override
 	public void onBalanceChange() {
-		TextView ye = (TextView) findViewById(R.id.yue_text);
-		if(ye != null){
-			float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-			ye.setText("余额:"+currentBalance+"元");
-		}
+		MyInfo  info = getMyInfoForDatabase();
+		TextView ye = (TextView) findViewById(R.id.yue_balance);
+		if(ye != null && info != null){
+			float currentBalance = Float.parseFloat(info.getBalance());
+			ye.setText("余额:"+currentBalance+"元"); 
+			Logger.i("BALANCE", "余额改变:"+currentBalance+"元");
+		} 
 	}
 	//获得头像资源id
 	protected int getHeadImageResId() {
@@ -94,16 +97,32 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	}
 	//查询当前余额
 	protected float queryBalance() {
-		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
+		MyInfo info = getMyInfoForDatabase();
+		float currentBalance  = 0.0f;
+		if(info != null){
+			currentBalance = Float.parseFloat(info.getBalance());
+		}else{
+			Logger.i("BALANCE", "queryBalance : info ＝ null");
+		}
 		return currentBalance;
 	}
 	//增加余额
 	protected void addBalance(float balance) {
-		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-		setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + currentBalance);
-		BalanceEvent.getInstance().fireBalanceChange();
-		showToast("恭喜您获得"+balance+"元钱!");
-		Logger.i("BALANCE", "余额增加");
+		MyInfo info = new MyInfo();
+		info = getMyInfoForDatabase();
+		if(info != null){
+			float oldBalance = Float.parseFloat(info.getBalance());
+			float currentBalance = balance + oldBalance;
+			//余额保存到数据库
+			info.setBalance(currentBalance+"");
+			getDatabaseInterface().saveMyInfo(info);
+//		setFloatForKey(LOCAL_CONFIGKEY_BALANCE,balance + oldBalance);
+			BalanceEvent.getInstance().fireBalanceChange();
+			showToast("恭喜您获得"+balance+"元钱!");
+			Logger.i("BALANCE", "余额增加");
+		}else{
+			Logger.i("BALANCE", "addBalance : info ＝ null");
+		}
 	}
 	//提现
 	protected void tixian(float money) {
@@ -119,15 +138,25 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		}
 	//减少余额
 	protected void decBalance(float balance) {
-		float currentBalance = getFloatValueForKey(LOCAL_CONFIGKEY_BALANCE);
-		if(balance > currentBalance){
-			//TODO:在显示兑换列表的时候,如果有足够的余额去兑换,才会被点击
-			showToast("您的余额不足!完成任务,点击广告都可以获得金钱!");
-		}else{
-			if(currentBalance != 0){
-				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,currentBalance - balance  );
-				BalanceEvent.getInstance().fireBalanceChange();
+		MyInfo info = new MyInfo();
+		info = getMyInfoForDatabase();
+		if(info != null){
+			float oldBalance = Float.parseFloat(info.getBalance());
+			if(balance > oldBalance){
+				//TODO:在显示兑换列表的时候,如果有足够的余额去兑换,才会被点击
+				showToast("您的余额不足!完成任务,点击广告都可以获得金钱!");
+			}else{
+				if(oldBalance != 0){
+//				setFloatForKey(LOCAL_CONFIGKEY_BALANCE,oldBalance - balance  );
+					float currentBalance = oldBalance - balance;
+					info.setBalance(currentBalance+"");
+					getDatabaseInterface().saveMyInfo(info);
+					BalanceEvent.getInstance().fireBalanceChange();
+					Logger.i("BALANCE", "余额减少:"+currentBalance+"元");		
+				}
 			}
+		}else{
+			Logger.i("BALANCE", "decBalance : info ＝ null");
 		}
 	}
 	
@@ -178,9 +207,9 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
+		initBaseData();
 		initBaseView();	
 		initViews();
-		initBaseData();
 	}
 
 	public String getCurrentTitle() {
@@ -423,10 +452,17 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		if(isFirstRun()){
 			//初始化个人信息
 			MyInfo info = new MyInfo();
-			info.setBalance("0.0");
+			info.setBalance("5.0");
 			info.setDeviceId(Util.getDeviceId(this));
 			info.setHeaderResId(getHeadImageResId()+"");
 			info.setLevel(0+"");
+			info.setAddress("北京市朝阳区三里屯SOHOB1205");
+			info.setAge(30+"");
+			info.setGender("男");
+			info.setMyLink("http://www.emperises.com/mylink?id=1321324");
+			info.setNickName("暴走青年");
+			info.setTelNumber("13263485448");
+			info.setUserId(UUID.randomUUID().toString());
 			List<DomainObject> objs = new ArrayList<DomainObject>();
 			objs.add(info);
 			getDatabaseInterface().insertDataForObjs(objs);
@@ -455,12 +491,21 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 				}
 			});
 		}
-		TextView ye = (TextView) findViewById(R.id.yue_text);
-		if(ye != null){
+		TextView ye = (TextView) findViewById(R.id.yue_balance);
+		TextView lv = (TextView) findViewById(R.id.yue_lv);
+		TextView tel = (TextView) findViewById(R.id.yue_tel);
+		MyInfo info = getMyInfoForDatabase();
+		if(ye != null && info != null){
 			BalanceEvent.getInstance().addBalanceListener(this);
 			ye.setText("余额:"+queryBalance()+"元");
+			lv.setText("Lv."+info.getLevel());
+			tel.setText(info.getTelNumber());
 		}
 	
+	}
+	protected MyInfo getMyInfoForDatabase() {
+		
+		return getDatabaseInterface().getMyInfo();
 	}
 	@Override
 	public void onFail(Throwable t, int errorNo, String strMsg) {

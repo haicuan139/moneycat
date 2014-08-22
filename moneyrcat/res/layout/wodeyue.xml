@@ -18,7 +18,7 @@
         android:background="@drawable/header_normal_icon" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/yue_lv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/myheaderimage"
@@ -37,7 +37,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/yue_text"
+            android:id="@+id/yue_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -59,14 +59,14 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/yue_tel"
         android:textSize="10sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignTop="@+id/yue_lv"
         android:layout_marginLeft="10dp"
         android:textColor="#6e7d83"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/yue_lv"
         android:text="13922334444" />
 
     <View

@@ -44,5 +44,6 @@
 	<string name="recommend_title">推荐给朋友</string>
 	<string name="tixian">提现</string>
 	<string name="picture_nofound">图片没找到</string>
+	<string name="myqrcodestr">我的二维码</string>
 
 </resources>

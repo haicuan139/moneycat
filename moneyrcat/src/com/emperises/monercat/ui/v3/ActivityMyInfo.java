@@ -50,6 +50,8 @@ public class ActivityMyInfo extends OtherBaseActivity {
 	private ImageView mHeadImage;
 	private PopupWindow mPopupWindow;
 	private TextView mInfoNicknameText;
+	private TextView mCurrentBalance;
+	private TextView mGenderAgeAddr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +66,19 @@ public class ActivityMyInfo extends OtherBaseActivity {
 		mHeadImage = (ImageView) findViewById(R.id.headerImage);
 		mHeadImage.setBackgroundResource(getHeadImageResId());
 		mInfoNicknameText = (TextView) findViewById(R.id.myinfo_nickname);
-		TextView t = (TextView) findViewById(R.id.myinfo_wodeyue);
-		t.setText(queryBalance()+"元");
+		mCurrentBalance = (TextView) findViewById(R.id.myinfo_balance);
+		mCurrentBalance.setText(queryBalance()+"元");
+		mGenderAgeAddr = (TextView) findViewById(R.id.myinfo_normalinfo);
+		TextView mTel = (TextView) findViewById(R.id.myinfo_tel_text);
+		MyInfo info = getMyInfoForDatabase();
+		if(info != null){
+			String gender = info.getGender();
+			String age = info.getAge();
+			String addr = info.getAddress();
+			mGenderAgeAddr.setText(gender+age+"岁 "+addr);
+			mInfoNicknameText.setText(info.getNickName());
+			mTel.setText(info.getTelNumber());
+		}
 	}
 
 	@Override

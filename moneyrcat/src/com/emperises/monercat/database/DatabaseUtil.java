@@ -7,11 +7,12 @@ import java.util.List;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.TextUtils;
+import android.widget.TextView;
 
 import com.emperises.monercat.domain.DomainObject;
 import com.emperises.monercat.domain.MyInfo;
 import com.emperises.monercat.utils.Logger;
-import com.emperises.monercat.utils.Util;
 
 public class DatabaseUtil {
 	/**
@@ -111,7 +112,10 @@ public class DatabaseUtil {
 			String orderBy, String limit) {
 		// 获得表名
 		String tableName = cls.getSimpleName();
-		return db.query(tableName, columns, where + "=?", selectionArgs, null,
+		if(!TextUtils.isEmpty(where)){
+			where = where+"=?";
+		}
+		return db.query(tableName, columns, where, selectionArgs, null,
 				null, orderBy, limit);
 	}
 

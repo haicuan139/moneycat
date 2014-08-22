@@ -36,7 +36,7 @@
             android:onClick="onClick" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/qr_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/headerImage"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/headerImage"
-            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignLeft="@+id/qr_nickname"
             android:text="扫一扫二维码,一起发财"
             android:textColor="@color/textcontent" />
     </RelativeLayout>
