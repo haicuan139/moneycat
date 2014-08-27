@@ -332,17 +332,6 @@ public abstract class BaseActivity extends Activity implements OnClickListener,
 		return mDatabase.getDatabase();
 	}
 
-	// private void testDB(SQLiteDatabase db) {
-	// try {
-	// Object o = DatabaseUtil.queryDatabaseForClass(ADInfo.class, db, "adId",
-	// new String[]{"id"});
-	// Logger.i("SQL", o.toString());
-	// } catch (InstantiationException e) {
-	// e.printStackTrace();
-	// } catch (IllegalAccessException e) {
-	// e.printStackTrace();
-	// }
-	// }
 	private void initShare() {
 		// 设置分享内容
 		String shareContent = "你的好友分享了一个招财喵给你!招财喵，真正可以赚钱的APP!";
