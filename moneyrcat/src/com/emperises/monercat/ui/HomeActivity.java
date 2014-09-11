@@ -98,8 +98,10 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		mAdListView = (PullToRefreshListView) findViewById(R.id.adListView);
 		mAdListView.setOnItemClickListener(this);
 		mListImage = new ArrayList<View>();
+//		ImageView i4 = new ImageView(this);
+//		i4.setBackgroundResource(R.drawable.qiaqiaad);
 		ImageView i = new ImageView(this);
-		i.setBackgroundResource(R.drawable.testwahaha);
+		i.setBackgroundResource(R.drawable.qiaqiaad);
 		ImageView i1 = new ImageView(this);
 		i1.setBackgroundResource(R.drawable.testwanglaoji);
 		ImageView i2 = new ImageView(this);
@@ -207,6 +209,13 @@ public class HomeActivity extends BaseActivity implements OnRefreshListener<List
 		wahaha.setAdTtile("哇哈哈饮品");
 		wahaha.setAdUrl("http://www.wahaha.com.cn/product/37");
 		wahaha.setAdIconResId(R.drawable.wahaha);
+		
+		ADInfo qiaqia = new ADInfo();
+		qiaqia.setAdDescription("2014狂欢巴西!抽奖活动点击进入!");
+		qiaqia.setAdTtile("更时尚更快乐!就在洽洽瓜子!");
+		qiaqia.setAdUrl("http://qiaqia.tmall.com/shop/view_shop.htm?spm=0.0.0.0.fYEF70");
+		qiaqia.setAdIconResId(R.drawable.qiaqiaicon);
+		mAdInfos.add(qiaqia);
 		mAdInfos.add(bmwx4);
 		mAdInfos.add(wahaha);
 		mAdInfos.add(cflb);

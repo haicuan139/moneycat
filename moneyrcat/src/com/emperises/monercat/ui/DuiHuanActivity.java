@@ -66,9 +66,14 @@ public class DuiHuanActivity extends OtherBaseActivity implements
 			if(position == 1){
 				t.setText("东恒服饰金卡");
 				i.setBackgroundResource(R.drawable.huiyuanka1);
-			}else if(position == 2){
-				t.setText("万东国际金卡");
-				i.setBackgroundResource(R.drawable.huiyuanka2);
+			}
+//			else if(position == 2){
+//				t.setText("万东国际金卡");
+//				i.setBackgroundResource(R.drawable.huiyuanka2);
+//			}
+			else if(position == 2){
+				t.setText("洽洽瓜子优惠卷");
+				i.setBackgroundResource(R.drawable.qiaqiaduihuanicon);
 			}
 			return v;
 		}

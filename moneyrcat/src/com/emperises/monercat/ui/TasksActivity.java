@@ -92,7 +92,7 @@ public class TasksActivity extends  OtherBaseActivity implements OnRefreshListen
 		mAdPager = (AutoScrollViewPager) findViewById(R.id.adPager);
 		mListImage = new ArrayList<View>();
 		ImageView i = new ImageView(this);
-		i.setBackgroundResource(R.drawable.test_task_wahaha);
+		i.setBackgroundResource(R.drawable.qiaqiaad);
 		ImageView i1 = new ImageView(this);
 		i1.setBackgroundResource(R.drawable.test_task_wanglaoji);
 		ImageView i2 = new ImageView(this);
